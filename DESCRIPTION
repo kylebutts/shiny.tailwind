@@ -19,3 +19,5 @@ Imports:
     htmltools,
     shiny,
     xfun
+URL: https://github.com/kylebutts/shiny.tailwind
+BugReports: https://github.com/kylebutts/shiny.tailwind/issues
