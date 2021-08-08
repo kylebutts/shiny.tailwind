@@ -19,16 +19,21 @@ ui <- div(class="page-div",
           ),
 
           # Inputs
-          div(
-              sliderInput("bins",
-                          "Number of Bins:",
-                          min = 1,
-                          max = 10,
-                          value = 5)
+          div(class = "block shadow-md py-4 px-4 flex flex-row",
+              div(class = "flex-initial mx-4",
+                  sliderInput("bins", "Number of Bins:",
+                              min = 1, max = 10, value = 5)
+              ),
+              div(class = "flex-initial mx-4",
+                  textInput("firstname", "First Name", value = "")
+              ),
+              div(class = "flex-initial mx-4",
+                  textInput("lastname", "Last Name", value = "")
+              ),
           ),
 
           # Plot
-          div(
+          div(class = "block shadow-md py-4 px-4 mt-4",
               plotOutput("distPlot")
           )
 )

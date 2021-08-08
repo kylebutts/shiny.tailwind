@@ -1,10 +1,11 @@
 library(shiny)
+library(shiny.tailwind)
 
 # Define UI for application that draws a histogram
 # Note div uses custom.css page-div that @applies a lot of things
 ui <- div(class="page-div",
           # Load Tailwind CSS Just-in-time
-          use_tailwind(css = c("custom.css")),
+          shiny.tailwind::use_tailwind(css = c("custom.css")),
 
           # Title
           div(class = "flex flex-col w-full text-center py-12",
@@ -14,16 +15,21 @@ ui <- div(class="page-div",
           ),
 
           # Inputs
-          div(
-              sliderInput("bins",
-                          "Number of Bins:",
-                          min = 1,
-                          max = 10,
-                          value = 5)
+          div(class = "block shadow-md py-4 px-4 flex flex-row",
+              div(class = "flex-initial mx-4",
+                  sliderInput("bins", "Number of Bins:",
+                          min = 1, max = 10, value = 5)
+              ),
+              div(class = "flex-initial mx-4",
+                  textInput("firstname", "First Name", value = "")
+              ),
+              div(class = "flex-initial mx-4",
+                  textInput("lastname", "Last Name", value = "")
+              ),
           ),
 
           # Plot
-          div(
+          div(class = "block shadow-md py-4 px-4 mt-4",
               plotOutput("distPlot")
           )
 )
