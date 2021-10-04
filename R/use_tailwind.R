@@ -31,7 +31,7 @@
 #'   a specific way. You need to define the config JSON object as
 #'   `window.tailwindConfig` and you must call `window.tailwindCSS.refresh();`.
 #'   An example is in the folder
-#'   `inst/examples/03-modules` in the github repository.
+#'   `inst/examples/03-modules` in the github repository. This only works for version 2
 #'
 #' @param css Optional. Path to ".css" file. Can use @apply tags from Tiny.
 #' @param tailwindConfig Optional. Path to ".js" file containing json object
@@ -42,9 +42,13 @@
 #'   `window.tailwindConfig` in this script. Do not wrap in script lines.
 #'   For an example of loading module, see
 #'   \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}
+#' @param version Either 2/3. Which version to use. Default is 2.
 #'
 #' @export
-use_tailwind = function(css = NULL, tailwindConfig = NULL, tailwindModule = NULL) {
+use_tailwind = function(
+		css = NULL, tailwindConfig = NULL, tailwindModule = NULL,
+		version = 2
+	) {
 
 	# Check files exists
 	if(!is.null(css)) {
@@ -66,7 +70,14 @@ use_tailwind = function(css = NULL, tailwindConfig = NULL, tailwindModule = NULL
 	}
 
 	# Initialize html elements
-	html_cdn <- list(htmltools::HTML("<!-- Include CDN JavaScript -->\n<script src='https://unpkg.com/tailwindcss-jit-cdn'></script>"))
+
+	# CDN either version 2 or version 3
+	if(version == 2) {
+		html_cdn <- list(htmltools::HTML("<!-- Include CDN JavaScript -->\n<script src='https://unpkg.com/tailwindcss-jit-cdn'></script>"))
+	}
+	else {
+		html_cdn <- list(htmltools::HTML("<!-- Include CDN JavaScript -->\n<script src='https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp'></script>"))
+	}
 
 	html_css <- NULL
 	html_config <- NULL
@@ -75,27 +86,51 @@ use_tailwind = function(css = NULL, tailwindConfig = NULL, tailwindModule = NULL
 	# Prepare html elements
 	if(!is.null(css)) {
 		html_css <- lapply(css, function(x) {
-			htmltools::HTML(
-				paste0(
-					"<style type='postcss'>\n\n",
-					paste0(xfun::read_utf8(x), collapse = "\n"),
-					"\n\n</style>",
-					collapse = "\n"
+			if(version == 2) {
+				htmltools::HTML(
+					paste0(
+						"<style type='postcss'>\n\n",
+						paste0(xfun::read_utf8(x), collapse = "\n"),
+						"\n\n</style>",
+						collapse = "\n"
+					)
 				)
-			)
+			} else {
+				htmltools::HTML(
+					paste0(
+						"<style type='text/tailwindcss'>\n\n",
+						paste0(xfun::read_utf8(x), collapse = "\n"),
+						"\n\n</style>",
+						collapse = "\n"
+					)
+				)
+			}
 		})
 	}
 
 	if(!is.null(tailwindConfig)) {
-		html_config <- list(htmltools::HTML(
-			paste0(
-				"<!-- Specify a custom TailwindCSS configuration -->\n",
-				"<script type='tailwind-config'>\n\n",
-				paste0(xfun::read_utf8(tailwindConfig), collapse = "\n"),
-				"\n\n</script>",
-				collapse = "\n"
-			)
-		))
+		if(version == 2){
+			html_config <- list(htmltools::HTML(
+				paste0(
+					"<!-- Specify a custom TailwindCSS configuration -->\n",
+					"<script type='tailwind-config'>\n\n",
+					paste0(xfun::read_utf8(tailwindConfig), collapse = "\n"),
+					"\n\n</script>",
+					collapse = "\n"
+				)
+			))
+		} else {
+			html_config <- list(htmltools::HTML(
+				paste0(
+					"<!-- Specify a custom TailwindCSS configuration -->\n",
+					"<script>\n\n",
+					paste0(xfun::read_utf8(tailwindConfig), collapse = "\n"),
+					"\n\n</script>",
+					collapse = "\n"
+				)
+			))
+		}
+
 	}
 
 	if(!is.null(tailwindModule)) {
@@ -113,6 +148,8 @@ use_tailwind = function(css = NULL, tailwindConfig = NULL, tailwindModule = NULL
 			)
 		)
 	}
+
+
 
 	shiny::tagList(
 		c(

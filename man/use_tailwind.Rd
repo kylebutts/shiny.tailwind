@@ -4,7 +4,12 @@
 \alias{use_tailwind}
 \title{TailwindCSS with Shiny}
 \usage{
-use_tailwind(css = NULL, tailwindConfig = NULL, tailwindModule = NULL)
+use_tailwind(
+  css = NULL,
+  tailwindConfig = NULL,
+  tailwindModule = NULL,
+  version = 2
+)
 }
 \arguments{
 \item{css}{Optional. Path to ".css" file. Can use @apply tags from Tiny.}
@@ -18,6 +23,8 @@ Pass special tailwind config, following
 `window.tailwindConfig` in this script. Do not wrap in script lines.
 For an example of loading module, see
 \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}}
+
+\item{version}{Either 2/3. Which version to use. Default is 2.}
 }
 \description{
 TailwindCSS with Shiny
@@ -53,5 +60,5 @@ TailwindCSS is a utility-based design framework that makes designing simple.
   a specific way. You need to define the config JSON object as
   `window.tailwindConfig` and you must call `window.tailwindCSS.refresh();`.
   An example is in the folder
-  `inst/examples/03-modules` in the github repository.
+  `inst/examples/03-modules` in the github repository. This only works for version 2
 }
