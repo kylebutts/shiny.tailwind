@@ -5,16 +5,16 @@ library(shiny)
 ui <- div(class="page-div",
           # Load Tailwind CSS Just-in-time
           shiny.tailwind::use_tailwind(
-              css = c("custom.css"),
+              css = c("custom.css"), version = 3,
               # Custom coral color
               tailwindConfig = "tailwind.config.js"
           ),
 
           # Title
-          # Custom defined color hulk-600
+          # Custom defined color coral-600
           div(class = "bg-coral-600 flex flex-col w-full text-center py-12",
               h1(class = "text-3xl font-extrabold text-black tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem]",
-                 "Old Faithful"
+                 "Spooky"
              )
           ),
 
