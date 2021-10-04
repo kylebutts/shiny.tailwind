@@ -5,7 +5,7 @@ library(shiny)
 ui <- div(class="page-div",
           # Load Tailwind CSS Just-in-time
           shiny.tailwind::use_tailwind(
-              css = c("custom.css"),
+              css = c("custom.css"), version = 2,
               # Custom coral color
               tailwindModule = "tailwind.config.js"
           ),
