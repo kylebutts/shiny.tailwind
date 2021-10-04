@@ -151,17 +151,26 @@ use_tailwind does this automatically.)
 
 ### Customizing Tailwind
 
-Custom configuration of tailwind is also possible. There are two options
-available in ‘use_tailwind’. First, if you don’t want to use any custom
-modules, uses tailwindConfig. An example is in the folder
-‘inst/examples/02-config’ in the github repository. Note the ‘.js’ file
-should only consist of the JSON object. The function will place it in
-the appropriate script tag.
+Custom configuration of Tailwind is also possible. There are two options
+available in ‘use_tailwind’, but moving forward the option
+`tailwindConfig` will be the only one supported (with version 3.0 of
+Tailwind). See [this
+release](https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1)
+for details, but you need to define `tailwind.config = {}` as a JSON
+object. An example is in the folder ‘inst/examples/02-config’ in the
+github repository. Note the ‘.js’ file should only consist of the JSON
+object. The function will place it in the appropriate script tag. For
+details on all the ways you can configure Tailwind, see [this
+page](https://tailwindcss.com/docs/configuration) in their docs.
 
-If you want to use custom modules, for example TailwindTypography, note
-that you need to use the browser-version and you have to layout the
-config file in a specific way. You need to define the config JSON object
-as ‘window.tailwindConfig’ and you must call
+Version 3 of tailwind (the default by `use_tailwind`) will come loaded
+with all first-party plugins from Tailwind, i.e. Typography, Aspect
+Ratio, Forms, Line-clamp.
+
+For version 2, if you want to use custom modules, for example
+TailwindTypography, note that you need to use the browser-version and
+you have to layout the config file in a specific way. You need to define
+the config JSON object as ‘window.tailwindConfig’ and you must call
 ‘window.tailwindCSS.refresh();’. An example is in the folder
 ‘inst/examples/03-modules’ in the github repository.
 

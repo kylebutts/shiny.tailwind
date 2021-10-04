@@ -2,16 +2,13 @@
 #'
 #' @details
 #'   TailwindCSS is a utility-based design framework that makes designing simple.
+#'   See details in the README for this package for why this is so great.
 #'
 #'   However, the complete set of tailwind css classes is massive (~15mb), so
 #'   you don't want to load all of these. That is where Tailwind's new Just in
 #'   Time compiling comes in. It will only load the css classes you use, as you
-#'   use them. So if your shiny app renders ui dynamically, it will load whenever
-#'   the UI is rendered.
-#'
-#'   This is all possible thanks to the company Beyond Code who created a browser
-#'   version of Tailwind Just in Time. See
-#'   \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}.
+#'   use them. So if your shiny app renders ui dynamically, it will load
+#'   appropriate css whenever the UI is rendered.
 #'
 #'   Custom css can use the `@apply` directives that come with tailwind to easily
 #'   compile set of classes. See
@@ -23,31 +20,34 @@
 #'   available in `use_tailwind`. First, if you don't want to use any custom
 #'   modules, uses tailwindConfig. An example is in the folder
 #'   `inst/examples/02-config` in the github repository. Note the `.js` file should
-#'   only consist of the JSON object. The function will place it in the appropriate
-#'   script tag.
+#'   only consist of the creation of the JSON object `tailwind.config = {}`.
+#'   The function will place it in the appropriate script tag.
 #'
 #'   If you want to use custom modules, for example TailwindTypography, note that
 #'   you need to use the browser-version and you have to layout the config file in
 #'   a specific way. You need to define the config JSON object as
 #'   `window.tailwindConfig` and you must call `window.tailwindCSS.refresh();`.
 #'   An example is in the folder
-#'   `inst/examples/03-modules` in the github repository. This only works for version 2
+#'   `inst/examples/03-modules` in the github repository. **N.B.** This only
+#'   works for version 2. Version 3 will load all the "first-party" plugins:
+#'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
 #'
-#' @param css Optional. Path to ".css" file. Can use @apply tags from Tiny.
+#'
+#' @param css Optional. Path to ".css" file. Can use @apply tags for applying
+#'   Tailwind classes. See description for more details.
 #' @param tailwindConfig Optional. Path to ".js" file containing json object
-#'   `window.tailwindConfig`. Do not wrap in script lines.
-#'   Pass special tailwind config, following
-#'   \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}.
-#' @param tailwindModule Optional. Path to ".js" file. You must define
+#'   `tailwind.config = {}`. See
+#'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
+#' @param version Either 2/3. Which version of Tailwind to use. Default is 3.
+#' @param tailwindModule Only for version 2. Path to ".js" file. You must define
 #'   `window.tailwindConfig` in this script. Do not wrap in script lines.
 #'   For an example of loading module, see
 #'   \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}
-#' @param version Either 2/3. Which version to use. Default is 2.
 #'
 #' @export
 use_tailwind = function(
 		css = NULL, tailwindConfig = NULL, tailwindModule = NULL,
-		version = 2
+		version = 3
 	) {
 
 	# Check files exists
