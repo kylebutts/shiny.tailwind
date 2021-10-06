@@ -17,6 +17,7 @@ RoxygenNote: 7.1.1
 License: MIT + file LICENSE
 Imports: 
     htmltools,
+    rvest,
     shiny,
     xfun
 URL: https://github.com/kylebutts/shiny.tailwind
