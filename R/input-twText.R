@@ -1,6 +1,34 @@
-#' Wrapper around shiny::textInput but allowing for more classes
+#' Wrapper around [`shiny::textInput()`] but allowing for more classes
+
+#' @inheritParams shiny::textInput
+#' @param container_class additional classes to be applied to the container
+#' @param label_class additional classes to be applied to the label
+#' @param select_class additional classes to be applied to the select elements
+#'
+#' @seealso [shiny::textInput()]
 #'
 #' @export
+#' @examples
+#' if (interactive()) {
+#' library(shiny)
+#' # basic example
+#' shinyApp(
+#' 	ui = fluidPage(
+#' 		use_tailwind(),
+#' 		twTextInput(
+#' 		  "caption", "Caption", "Data Summary",
+#' 		  # Apply tailwind classes
+#' 		  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+#' 		  label_class = "font-serif",
+#' 		  input_class = "drop-shadow-lg font-mono"
+#' 		),
+#' 		verbatimTextOutput("value")
+#' 	),
+#' 	server = function(input, output) {
+#' 		output$value <- renderText({ input$caption })
+#' 	}
+#' )
+#' }
 twTextInput <- function(inputId,
 						label = NULL, value = NULL, placeholder = NULL,
 						type = "text",

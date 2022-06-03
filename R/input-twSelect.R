@@ -1,8 +1,39 @@
-#' Wrapper around shiny::selectInput but allowing for more classes
+#' Wrapper around [`shiny::selectInput()`] but allowing for more classes
 #'
 #' Note selectize is turned off (for now)
 #'
+#' @inheritParams shiny::selectInput
+#' @param container_class additional classes to be applied to the container
+#' @param label_class additional classes to be applied to the label
+#' @param select_class additional classes to be applied to the select elements
+#'
+#' @seealso [shiny::selectInput()]
+#'
 #' @export
+#' @examples
+#' if (interactive()) {
+#' library(shiny)
+#' # basic example
+#' shinyApp(
+#' 	ui = fluidPage(
+#' 		use_tailwind(),
+#' 		twSelectInput(
+#' 		  "variable", "Variable:",
+#' 		  c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+#' 		  # Apply tailwind classes
+#' 		  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+#' 		  label_class = "font-serif",
+#' 		  select_class = "drop-shadow-lg font-mono"
+#' 		),
+#' 		tableOutput("data")
+#' 	),
+#' 	server = function(input, output) {
+#' 		output$data <- renderTable({
+#' 			mtcars[, c("mpg", input$variable), drop = FALSE]
+#' 		}, rownames = TRUE)
+#' 	}
+#' )
+#' }
 twSelectInput <- function(inputId,
 						label = NULL, choices, selected = NULL, multiple = FALSE,
 						container_class = NULL, label_class = NULL, select_class = NULL) {
