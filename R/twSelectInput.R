@@ -55,12 +55,11 @@ twSelectInput <- function(inputId,
     temp <- shiny::selectInput(inputId = inputId, label = NULL,
                                choices = choices, selectize = FALSE)
 
-    # remove everything before the first option
-    opts <- gsub("^[\\s\\S]*?(?=<option)", "", toString(temp), perl = TRUE)
-    # remove everything between options
-    opts <- gsub("<\\/option>[\\S\\s]+?<option", "</option><option", opts, perl = TRUE)
-    # remove everything after the last options
-    opts <- gsub("<\\/option>[^(<option)]*$", "</option>", opts, perl = TRUE)
+    # Grab options
+    opts <-
+    	as.list(temp)[["children"]][[2]][["children"]][[1]][["children"]][[1]]
+    #                                ^                  ^                  ^
+    #                            skip label       containing div        options
 
     options <- shiny::HTML(opts)
 

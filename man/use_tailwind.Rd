@@ -4,12 +4,7 @@
 \alias{use_tailwind}
 \title{TailwindCSS with Shiny}
 \usage{
-use_tailwind(
-  css = NULL,
-  tailwindConfig = NULL,
-  tailwindModule = NULL,
-  version = c(3, 2)
-)
+use_tailwind(css = NULL, tailwindConfig = NULL)
 }
 \arguments{
 \item{css}{Optional. Path to ".css" file. Can use @apply tags for applying
@@ -18,13 +13,6 @@ Tailwind classes. See description for more details.}
 \item{tailwindConfig}{Optional. Path to ".js" file containing json object
 \code{tailwind.config = {}}. See
 \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.}
-
-\item{tailwindModule}{Only for version 2. Path to ".js" file. You must define
-\code{window.tailwindConfig} in this script. Do not wrap in script lines.
-For an example of loading module, see
-\url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}}
-
-\item{version}{Either 2/3. Which version of Tailwind to use. Default is 3.}
 }
 \description{
 TailwindCSS with Shiny
@@ -51,20 +39,11 @@ modules, uses tailwindConfig. An example is in the folder
 \code{inst/examples/02-config} in the github repository. Note the \code{.js} file should
 only consist of the creation of the JSON object \code{tailwind.config = {}}.
 The function will place it in the appropriate script tag.
-
-If you want to use custom modules, for example TailwindTypography, note that
-you need to use the browser-version and you have to layout the config file in
-a specific way. You need to define the config JSON object as
-\code{window.tailwindConfig} and you must call \code{window.tailwindCSS.refresh();}.
-An example is in the folder
-\code{inst/examples/03-modules} in the github repository. \strong{N.B.} This only
-works for version 2. Version 3 will load all the "first-party" plugins:
-\url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
 }
 \examples{
 if (interactive()) {
-library(shiny)
-list.files(system.file("examples", package = "shiny.tailwind"))
-runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
+  library(shiny)
+  list.files(system.file("examples", package = "shiny.tailwind"))
+  runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
 }
 }
