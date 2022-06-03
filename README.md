@@ -4,13 +4,15 @@
 # shiny.tailwind
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/shiny.tailwind)](https://cran.r-project.org/package=shiny.tailwind)
 <!-- badges: end -->
 
-The goal of shiny.tailwind is to bring TailwindCSS to Shiny apps.
+The goal of `shiny.tailwind` is to bring
+[TailwindCSS](https://tailwindcss.com/) to Shiny apps.
 
 ## Installation
 
-You can install the developmental version of shiny.tailwind with:
+You can install the development version of `shiny.tailwind` with:
 
 ``` r
 install.packages("devtools")
@@ -20,7 +22,7 @@ devtools::install_github("kylebutts/shiny.tailwind")
 ## Basic Use
 
 In your shiny UI declaration, just include
-`shiny.tailwind::use_tailwind` and all the appropraite files will be
+`shiny.tailwind::use_tailwind()` and all the appropriate files will be
 inserted into your shiny app. Therefore you can just start using
 tailwind classes and they will load dynamically and automatically.
 
@@ -38,7 +40,7 @@ library(shiny)
 library(shiny.tailwind)
 
 # Define UI for application that draws a histogram
-ui <- div(class="px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl",
+ui <- div(class = "px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl",
           # Load Tailwind CSS Just-in-time
           shiny.tailwind::use_tailwind(),
 
@@ -88,7 +90,15 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-Additonal examples are found in the `inst/examples/` folder.
+Additional examples are found in the `inst/examples/` folder, eg
+
+``` r
+library(shiny)
+library(shiny.tailwind)
+
+list.files(system.file("examples", package = "shiny.tailwind"))
+runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
+```
 
 ## What is Tailwind CSS?
 
@@ -103,7 +113,7 @@ are some example classes
     divs
 -   `text-left`/`text-center`/`text-right` left/center/right- align
     text.
--   `w-#/12` sets a column of width #/12 (similar to bootstrap’s grid)
+-   `w-#/12` sets a column of width \#/12 (similar to bootstrap’s grid)
 -   [Much, much more](https://tailwindcss.com/docs/)
 
 This makes a common framework for designing that is quick and intuitive.
@@ -130,7 +140,7 @@ can just use tailwind css classes and they will load automatically.
 Writing css in Tailwind is incredibly easy too, with the
 [`@apply`](https://tailwindcss.com/docs/functions-and-directives#apply)
 directive. For example, lets say you want to create a blue button class,
-say `.btn-blue`. I can use the `@apply` directive to autmoatically use a
+say `.btn-blue`. I can use the `@apply` directive to automatically use a
 bunch of TailwindCSS utility classes:
 
 ``` css
