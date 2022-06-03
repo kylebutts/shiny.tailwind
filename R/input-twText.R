@@ -33,36 +33,24 @@ twTextInput <- function(inputId,
 						label = NULL, value = NULL, placeholder = NULL,
 						type = "text",
 						container_class = NULL, label_class = NULL, input_class = NULL) {
-	if (!is.null(input_class)) {
-		input_class <- paste0("block form-control ", input_class, sep = " ")
-	} else {
-		input_class <- "block form-control"
-	}
+	input_class <- paste("block form-control", input_class)
+	container_class <- paste("block twTextInput form-group", container_class)
+	label_class <- paste("control-label", label_class)
 
-	if (!is.null(container_class)) {
-		container_class <- paste0("block twTextInput form-group ", container_class, sep = " ")
-	} else {
-		container_class <- "block twTextInput form-group"
-	}
-
-	if (!is.null(label_class)) {
-		label_class <- paste0("control-label ", label_class, sep = " ")
-	} else {
-		label_class <- "control-label"
-	}
-	label_id <- paste0(inputId, "label")
+	label_id <- paste0(inputId, "-label")
 
 	if (!is.null(label)) {
-		label_tag <- tags$label(class = label_class, id = inputId, `for` = inputId, label)
+		label_tag <- shiny::tags$label(class = label_class, id = inputId,
+									   `for` = inputId, label)
 	} else {
 		label_tag <- NULL
 	}
 
-	tagList(
-		tags$div(
+	shiny::tagList(
+		shiny::tags$div(
 			class = container_class,
 			label_tag,
-			tags$input(
+			shiny::tags$input(
 				id = inputId,
 				class = input_class, type = type,
 				value = value,
