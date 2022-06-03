@@ -1,4 +1,5 @@
 # ---- Setup -------------------------------------------------------------------
+library(shiny)
 library(DT)
 library(shiny.tailwind)
 library(palmerpenguins)
@@ -128,13 +129,12 @@ ui <- div(
                 )
             )
         ),
-        # Page 3 -------------------------------------------------------------------
-        div(class = "w-full min-h-screen snap-start mx-auto py-16",
-            div(class = "w-prose mx-auto prose",
-                h2("About the App"),
-                p("Data were collected and made available by ", a(src = "https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php", "Dr. Kristen Gorman"), "and the ", a(src = "https://pal.lternet.edu/", "Palmer Station, Antarctica LTER,"), "a member of the ", a(src = "https://lternet.edu/", "Long Term Ecological Research Network."), "See more about the data and R package", a(src = "https://allisonhorst.github.io/palmerpenguins/", "here."), "You can find these and more code examples for exploring palmerpenguins in", tags$code("vignette('examples', package='penguins').")),
-                p("Made with <3 using", a(src= "https://tailwindcss.com/", "tailwindcss,"), a(src= "https://github.com/kylebutts/shiny.tailwind", "shiny.tailwind,"), "and ", a(src = "https://github.com/rstudio/shiny", "shiny."))
-            )
+    # Page 3 -------------------------------------------------------------------
+    div(class = "w-full min-h-screen snap-start mx-auto py-16",
+        div(class = "w-prose mx-auto prose",
+            h2("About the App"),
+            p("Data were collected and made available by ", a(href = "https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php", target = "_blank", "Dr. Kristen Gorman"), "and the ", a(href = "https://pal.lternet.edu/", target = "_blank", "Palmer Station, Antarctica LTER,"), "a member of the ", a(href = "https://lternet.edu/", target = "_blank", "Long Term Ecological Research Network."), "See more about the data and R package", a(href = "https://allisonhorst.github.io/palmerpenguins/", target = "_blank", "here."), "You can find these and more code examples for exploring palmerpenguins in", a(href = "https://allisonhorst.github.io/palmerpenguins/articles/examples.html", target = "_blank", tags$code("vignette('examples', package='penguins')."))),
+            p("Made with <3 using", a(href = "https://tailwindcss.com/", target = "_blank", "tailwindcss,"), a(href = "https://github.com/kylebutts/shiny.tailwind", target = "_blank", "shiny.tailwind,"), "and ", a(href = "https://github.com/rstudio/shiny", target = "_blank", "shiny."))
         )
     )
 )
