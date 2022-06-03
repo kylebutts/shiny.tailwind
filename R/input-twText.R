@@ -1,9 +1,11 @@
 #' Wrapper around [`shiny::textInput()`] but allowing for more classes
 
 #' @inheritParams shiny::textInput
+#' @param type the type for the input, eg "text" (default), "password", "email",
+#' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
-#' @param select_class additional classes to be applied to the select elements
+#' @param input_class additional classes to be applied to the input elements
 #'
 #' @seealso [shiny::textInput()]
 #'
@@ -31,20 +33,18 @@
 #' }
 twTextInput <- function(inputId,
                         label = NULL, value = NULL, placeholder = NULL,
-                        type = "text",
-                        container_class = NULL, label_class = NULL, input_class = NULL) {
+                        type = "text", container_class = NULL,
+						label_class = NULL, input_class = NULL) {
     input_class <- paste("block form-control", input_class)
     container_class <- paste("block twTextInput form-group", container_class)
     label_class <- paste("control-label", label_class)
 
-    label_id <- paste0(inputId, "-label")
+    label_tag <- NULL
 
-    if (!is.null(label)) {
-        label_tag <- shiny::tags$label(class = label_class, id = inputId,
+    if (!is.null(label))
+        label_tag <- shiny::tags$label(class = label_class,
+        							   id = paste0(inputId, "-label"),
                                        `for` = inputId, label)
-    } else {
-        label_tag <- NULL
-    }
 
     shiny::tagList(
         shiny::tags$div(
