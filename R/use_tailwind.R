@@ -45,27 +45,25 @@
 #'   \url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}
 #'
 #' @export
-use_tailwind = function(
-		css = NULL, tailwindConfig = NULL, tailwindModule = NULL,
-		version = 3
-	) {
+use_tailwind = function(css = NULL, tailwindConfig = NULL,
+						tailwindModule = NULL, version = 3) {
 
 	# Check files exists
 	if(!is.null(css)) {
 		for(i in seq_along(css)) {
 			if(!file.exists(css[i])) {
-				stop(glue::glue("File: {css[i]} doesn't exist"))
+				stop(sprintf("File: %s doesn't exist", css[i]))
 			}
 		}
 	}
 	if(!is.null(tailwindConfig)) {
 		if(!file.exists(tailwindConfig)) {
-			stop(glue::glue("File: {tailwindConfig} doesn't exist"))
+			stop(sprintf("File: %s doesn't exist", tailwindConfig))
 		}
 	}
 	if(!is.null(tailwindModule)) {
 		if(!file.exists(tailwindModule)) {
-			stop(glue::glue("File: {tailwindModule} doesn't exist"))
+			stop(sprintf("File: %s doesn't exist", tailwindModule))
 		}
 	}
 
@@ -90,7 +88,7 @@ use_tailwind = function(
 				htmltools::HTML(
 					paste0(
 						"<style type='postcss'>\n\n",
-						paste0(xfun::read_utf8(x), collapse = "\n"),
+						paste0(read_utf8_(x), collapse = "\n"),
 						"\n\n</style>",
 						collapse = "\n"
 					)
@@ -99,7 +97,7 @@ use_tailwind = function(
 				htmltools::HTML(
 					paste0(
 						"<style type='text/tailwindcss'>\n\n",
-						paste0(xfun::read_utf8(x), collapse = "\n"),
+						paste0(read_utf8_(x), collapse = "\n"),
 						"\n\n</style>",
 						collapse = "\n"
 					)
@@ -114,7 +112,7 @@ use_tailwind = function(
 				paste0(
 					"<!-- Specify a custom TailwindCSS configuration -->\n",
 					"<script type='tailwind-config'>\n\n",
-					paste0(xfun::read_utf8(tailwindConfig), collapse = "\n"),
+					paste0(read_utf8_(tailwindConfig), collapse = "\n"),
 					"\n\n</script>",
 					collapse = "\n"
 				)
@@ -124,7 +122,7 @@ use_tailwind = function(
 				paste0(
 					"<!-- Specify a custom TailwindCSS configuration -->\n",
 					"<script>\n\n",
-					paste0(xfun::read_utf8(tailwindConfig), collapse = "\n"),
+					paste0(read_utf8_(tailwindConfig), collapse = "\n"),
 					"\n\n</script>",
 					collapse = "\n"
 				)
@@ -139,7 +137,7 @@ use_tailwind = function(
 				paste0(
 					"<!-- Specify a custom TailwindCSS configuration -->\n",
 					"<script type='module'>\n\n",
-					paste0(xfun::read_utf8(tailwindModule), collapse = "\n"),
+					paste0(read_utf8_(tailwindModule), collapse = "\n"),
 					"\n\n</script>"
 				)
 			),
@@ -159,5 +157,11 @@ use_tailwind = function(
 			html_css
 		)
 	)
+}
 
+# internal helper function to read utf8
+read_utf8_ <- function(file) {
+	r <- readLines(file, encoding = 'UTF-8', warn = FALSE)
+	if (!validUTF8(r)) stop(sprintf("The file %s is not encoded in UTF 8.", file))
+	r
 }

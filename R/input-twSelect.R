@@ -38,9 +38,14 @@ twSelectInput <- function(inputId,
 	# Extract options from select (IMO easier than rewriting)
 	temp <- shiny::selectInput(inputId = inputId, label = NULL, choices = choices, selectize = FALSE)
 
-	options <- shiny::HTML(
-		as.character(rvest::html_nodes(rvest::read_html(toString(temp)), xpath = "//option"))
-	)
+	# remove everything before the first option
+	opts <- gsub("^[\\s\\S]*?(?=<option)", "", toString(temp), perl = TRUE)
+	# remove everything between options
+	opts <- gsub("<\\/option>[\\S\\s]+?<option", "</option><option", opts, perl = TRUE)
+	# remove everything after the last options
+	opts <- gsub("<\\/option>[^(<option)]*$", "</option>", opts, perl = TRUE)
+
+	options <- shiny::HTML(opts)
 
 	tagList(
 		tags$div(
