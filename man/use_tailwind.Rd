@@ -4,59 +4,46 @@
 \alias{use_tailwind}
 \title{TailwindCSS with Shiny}
 \usage{
-use_tailwind(
-  css = NULL,
-  tailwindConfig = NULL,
-  tailwindModule = NULL,
-  version = 3
-)
+use_tailwind(css = NULL, tailwindConfig = NULL)
 }
 \arguments{
 \item{css}{Optional. Path to ".css" file. Can use @apply tags for applying
 Tailwind classes. See description for more details.}
 
 \item{tailwindConfig}{Optional. Path to ".js" file containing json object
-`tailwind.config = {}`. See
+\code{tailwind.config = {}}. See
 \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.}
-
-\item{tailwindModule}{Only for version 2. Path to ".js" file. You must define
-`window.tailwindConfig` in this script. Do not wrap in script lines.
-For an example of loading module, see
-\url{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}}
-
-\item{version}{Either 2/3. Which version of Tailwind to use. Default is 3.}
 }
 \description{
 TailwindCSS with Shiny
 }
 \details{
 TailwindCSS is a utility-based design framework that makes designing simple.
+See details in the README for this package for why this is so great.
 
-  However, the complete set of tailwind css classes is massive (~15mb), so
-  you don't want to load all of these. That is where Tailwind's new Just in
-  Time compiling comes in. It will only load the css classes you use, as you
-  use them. So if your shiny app renders ui dynamically, it will load
-  appropriate css whenever the UI is rendered.
+However, the complete set of tailwind css classes is massive (~15mb), so
+you don't want to load all of these. That is where Tailwind's new Just in
+Time compiling comes in. It will only load the css classes you use, as you
+use them. So if your shiny app renders ui dynamically, it will load
+appropriate css whenever the UI is rendered.
 
-  Custom css can use the `@apply` directives that come with tailwind to easily
-  compile set of classes. See
-  \url{https://tailwindcss.com/docs/functions-and-directives#apply} for
-  more details. It just *has* to be passed to the use_tailwind function if you
-  want to use the `@apply` directive.
+Custom css can use the \verb{@apply} directives that come with tailwind to easily
+compile set of classes. See
+\url{https://tailwindcss.com/docs/functions-and-directives#apply} for
+more details. It just \emph{has} to be passed to the use_tailwind function if you
+want to use the \verb{@apply} directive.
 
-  Custom configuration of tailwind is also possible. There are two options
-  available in `use_tailwind`. First, if you don't want to use any custom
-  modules, uses tailwindConfig. An example is in the folder
-  `inst/examples/02-config` in the github repository. Note the `.js` file should
-  only consist of the creation of the JSON object `tailwind.config = {}`.
-  The function will place it in the appropriate script tag.
-
-  If you want to use custom modules, for example TailwindTypography, note that
-  you need to use the browser-version and you have to layout the config file in
-  a specific way. You need to define the config JSON object as
-  `window.tailwindConfig` and you must call `window.tailwindCSS.refresh();`.
-  An example is in the folder
-  `inst/examples/03-modules` in the github repository. **N.B.** This only works for version 2. Version 3 will load all the "first-party"
-  plugins:
-  \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
+Custom configuration of tailwind is also possible. There are two options
+available in \code{use_tailwind}. First, if you don't want to use any custom
+modules, uses tailwindConfig. An example is in the folder
+\code{inst/examples/02-config} in the github repository. Note the \code{.js} file should
+only consist of the creation of the JSON object \code{tailwind.config = {}}.
+The function will place it in the appropriate script tag.
+}
+\examples{
+if (interactive()) {
+  library(shiny)
+  list.files(system.file("examples", package = "shiny.tailwind"))
+  runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
+}
 }

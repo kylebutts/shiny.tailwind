@@ -1,24 +1,29 @@
 Package: shiny.tailwind
 Type: Package
 Title: TailwindCSS for Shiny Apps
-Version: 0.1.0
-Authors@R: 
-    c(person(given = "Kyle",
+Version: 0.2.0
+Authors@R: c(
+      person(given = "Kyle",
              family = "Butts",
              role = c("aut","cre"),
              email = "kyle.butts@colorado.edu",
-             comment = c(ORCID = "0000-0002-9048-8059")))
+             comment = c(ORCID = "0000-0002-9048-8059")),
+      person(given = "David",
+             family = "Zimmermann-Kollenda",
+             role = "ctb",
+             email = "david_j_zimmermann@hotmail.com"))
 Description: Allows TailwindCSS to be used in Shiny apps with just-in-time 
   compiling, custom css with `@apply` directive, and custom tailwind 
   configurations.
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 License: MIT + file LICENSE
+Depends:
+  R (>= 3.6.0)
 Imports: 
     htmltools,
-    rvest,
-    shiny,
-    xfun
+    shiny
 URL: https://github.com/kylebutts/shiny.tailwind
 BugReports: https://github.com/kylebutts/shiny.tailwind/issues
+Roxygen: list(markdown = TRUE)
