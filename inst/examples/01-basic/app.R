@@ -3,7 +3,7 @@ library(shiny.tailwind)
 
 # Define UI for application that draws a histogram
 # Note div uses custom.css page-div that @applies a lot of things
-ui <- div(class="page-div",
+ui <- div(class = "page-div",
           # Load Tailwind CSS Just-in-time
           shiny.tailwind::use_tailwind(css = c("custom.css")),
 
@@ -11,14 +11,14 @@ ui <- div(class="page-div",
           div(class = "flex flex-col w-full text-center py-12",
               h1(class = "text-3xl font-extrabold text-black tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem]",
                  "Old Faithful"
-             )
+              )
           ),
 
           # Inputs
           div(class = "block shadow-md py-4 px-4 flex flex-row",
               div(class = "flex-initial mx-4",
                   sliderInput("bins", "Number of Bins:",
-                          min = 1, max = 10, value = 5)
+                              min = 1, max = 10, value = 5)
               ),
               div(class = "flex-initial mx-4",
                   textInput("firstname", "First Name", value = "")

@@ -2,7 +2,7 @@ library(shiny)
 
 # Define UI for application that draws a histogram
 # Note div uses custom.css page-div that @applies a lot of things
-ui <- div(class="page-div",
+ui <- div(class = "page-div",
           # Load Tailwind CSS Just-in-time
           shiny.tailwind::use_tailwind(
               css = c("custom.css"), version = 2,
@@ -14,7 +14,7 @@ ui <- div(class="page-div",
           div(class = "bg-coral-600 flex flex-col w-full text-center py-12",
               h1(class = "text-3xl font-extrabold text-black tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem]",
                  "Old Faithful"
-             )
+              )
           ),
           # Use Tailwind Typography with prose class
           div(class = "prose mx-auto mb-10 shadow-md py-4 px-4",

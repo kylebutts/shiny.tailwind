@@ -15,64 +15,64 @@
 #' library(shiny)
 #' # basic example
 #' shinyApp(
-#' 	ui = fluidPage(
-#' 		use_tailwind(),
-#' 		twSelectInput(
-#' 		  "variable", "Variable:",
-#' 		  c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
-#' 		  # Apply tailwind classes
-#' 		  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
-#' 		  label_class = "font-serif",
-#' 		  select_class = "drop-shadow-lg font-mono"
-#' 		),
-#' 		tableOutput("data")
-#' 	),
-#' 	server = function(input, output) {
-#' 		output$data <- renderTable({
-#' 			mtcars[, c("mpg", input$variable), drop = FALSE]
-#' 		}, rownames = TRUE)
-#' 	}
+#'     ui = fluidPage(
+#'         use_tailwind(),
+#'         twSelectInput(
+#'           "variable", "Variable:",
+#'           c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+#'           # Apply tailwind classes
+#'           container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+#'           label_class = "font-serif",
+#'           select_class = "drop-shadow-lg font-mono"
+#'         ),
+#'         tableOutput("data")
+#'     ),
+#'     server = function(input, output) {
+#'         output$data <- renderTable({
+#'             mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         }, rownames = TRUE)
+#'     }
 #' )
 #' }
 twSelectInput <- function(inputId,
-						  label = NULL, choices, selected = NULL, multiple = FALSE,
-						  container_class = NULL, label_class = NULL, select_class = NULL) {
+                          label = NULL, choices, selected = NULL, multiple = FALSE,
+                          container_class = NULL, label_class = NULL, select_class = NULL) {
 
-	select_class <- paste("block form-control", select_class)
-	container_class <- paste("block twSelectInput form-group", container_class)
-	label_class <- paste("control-label", label_class)
+    select_class <- paste("block form-control", select_class)
+    container_class <- paste("block twSelectInput form-group", container_class)
+    label_class <- paste("control-label", label_class)
 
-	if (!is.null(label)) {
-		label_tag <- shiny::tags$label(
-			class = label_class, id = paste0(inputId, "-label"),
-			`for` = inputId, label
-		)
-	} else {
-		label_tag <- NULL
-	}
+    if (!is.null(label)) {
+        label_tag <- shiny::tags$label(
+            class = label_class, id = paste0(inputId, "-label"),
+            `for` = inputId, label
+        )
+    } else {
+        label_tag <- NULL
+    }
 
-	# Extract options from select (IMO easier than rewriting)
-	temp <- shiny::selectInput(inputId = inputId, label = NULL,
-							   choices = choices, selectize = FALSE)
+    # Extract options from select (IMO easier than rewriting)
+    temp <- shiny::selectInput(inputId = inputId, label = NULL,
+                               choices = choices, selectize = FALSE)
 
-	# remove everything before the first option
-	opts <- gsub("^[\\s\\S]*?(?=<option)", "", toString(temp), perl = TRUE)
-	# remove everything between options
-	opts <- gsub("<\\/option>[\\S\\s]+?<option", "</option><option", opts, perl = TRUE)
-	# remove everything after the last options
-	opts <- gsub("<\\/option>[^(<option)]*$", "</option>", opts, perl = TRUE)
+    # remove everything before the first option
+    opts <- gsub("^[\\s\\S]*?(?=<option)", "", toString(temp), perl = TRUE)
+    # remove everything between options
+    opts <- gsub("<\\/option>[\\S\\s]+?<option", "</option><option", opts, perl = TRUE)
+    # remove everything after the last options
+    opts <- gsub("<\\/option>[^(<option)]*$", "</option>", opts, perl = TRUE)
 
-	options <- shiny::HTML(opts)
+    options <- shiny::HTML(opts)
 
-	shiny::tagList(
-		shiny::tags$div(
-			class = container_class,
-			label_tag,
-			shiny::tags$select(
-				id = inputId,
-				class = select_class,
-				options
-			)
-		)
-	)
+    shiny::tagList(
+        shiny::tags$div(
+            class = container_class,
+            label_tag,
+            shiny::tags$select(
+                id = inputId,
+                class = select_class,
+                options
+            )
+        )
+    )
 }

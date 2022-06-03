@@ -52,81 +52,81 @@
 #' runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
 #' }
 use_tailwind <- function(css = NULL, tailwindConfig = NULL,
-						 tailwindModule = NULL, version = c(3, 2)) {
-	version <- match.arg(version)
+                         tailwindModule = NULL, version = c(3, 2)) {
+    version <- match.arg(version)
 
-	# Check files exists
-	if (!is.null(css) && any(!file.exists(css)))
-		stop(sprintf("File: %s doesn't exist.",
-					 paste(css[!file.exists(css)], collapse = ", ")))
+    # Check files exists
+    if (!is.null(css) && any(!file.exists(css)))
+        stop(sprintf("File: %s doesn't exist.",
+                     paste(css[!file.exists(css)], collapse = ", ")))
 
-	if (!is.null(tailwindConfig) && !file.exists(tailwindConfig))
-		stop(sprintf("File: %s doesn't exist", tailwindConfig))
-	if (!is.null(tailwindModule) && !file.exists(tailwindModule))
-		stop(sprintf("File: %s doesn't exist", tailwindModule))
+    if (!is.null(tailwindConfig) && !file.exists(tailwindConfig))
+        stop(sprintf("File: %s doesn't exist", tailwindConfig))
+    if (!is.null(tailwindModule) && !file.exists(tailwindModule))
+        stop(sprintf("File: %s doesn't exist", tailwindModule))
 
-	# Initialize html elements
-	# CDN either version 2 or version 3
-	if (version == 2) {
-		url <- "https://unpkg.com/tailwindcss-jit-cdn"
-	} else {
-		url <- "https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp"
-	}
+    # Initialize html elements
+    # CDN either version 2 or version 3
+    if (version == 2) {
+        url <- "https://unpkg.com/tailwindcss-jit-cdn"
+    } else {
+        url <- "https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp"
+    }
 
-	html_cdn <- list(htmltools::HTML(sprintf(
-		"<!-- Include CDN JavaScript -->\n<script src='%s'></script>",
-		url
-	)))
+    html_cdn <- list(htmltools::HTML(sprintf(
+        "<!-- Include CDN JavaScript -->\n<script src='%s'></script>",
+        url
+    )))
 
 
-	html_css <- NULL
-	html_config <- NULL
-	html_module <- NULL
+    html_css <- NULL
+    html_config <- NULL
+    html_module <- NULL
 
-	# Prepare html elements
-	if (!is.null(css))
-		html_css <- lapply(css, function(x) {
-			htmltools::HTML(paste(
-				sprintf("<style type='%s'>\n\n",
-						if (version == 2) "postcss" else "text/tailwindcss"),
-				paste(read_utf8_(x), collapse = "\n"),
-				"\n\n</style>",
-				collapse = "\n"
-			))
-		})
+    # Prepare html elements
+    if (!is.null(css))
+        html_css <- lapply(css, function(x) {
+            htmltools::HTML(paste(
+                sprintf("<style type='%s'>\n\n",
+                        if (version == 2) "postcss" else "text/tailwindcss"),
+                paste(read_utf8_(x), collapse = "\n"),
+                "\n\n</style>",
+                collapse = "\n"
+            ))
+        })
 
-	if (!is.null(tailwindConfig))
-		html_config <- list(htmltools::HTML(paste(
-			"<!-- Specify a custom TailwindCSS configuration -->\n",
-			sprintf("<script%s>\n\n",
-					if (version == 2) " type='tailwind-config'" else ""),
-			paste(read_utf8_(tailwindConfig), collapse = "\n"),
-			"\n\n</script>",
-			collapse = "\n"
-		)))
+    if (!is.null(tailwindConfig))
+        html_config <- list(htmltools::HTML(paste(
+            "<!-- Specify a custom TailwindCSS configuration -->\n",
+            sprintf("<script%s>\n\n",
+                    if (version == 2) " type='tailwind-config'" else ""),
+            paste(read_utf8_(tailwindConfig), collapse = "\n"),
+            "\n\n</script>",
+            collapse = "\n"
+        )))
 
-	if (!is.null(tailwindModule))
-		html_module <- lapply(list(
-			paste(
-				"<!-- Specify a custom TailwindCSS configuration -->\n",
-				"<script type='module'>\n\n",
-				paste(read_utf8_(tailwindModule), collapse = "\n"),
-				"\n\n</script>"
-			),
-			"<script type='tailwind-config'>\nwindow.tailwindConfig\n</script>"
-		), htmltools::HTML)
+    if (!is.null(tailwindModule))
+        html_module <- lapply(list(
+            paste(
+                "<!-- Specify a custom TailwindCSS configuration -->\n",
+                "<script type='module'>\n\n",
+                paste(read_utf8_(tailwindModule), collapse = "\n"),
+                "\n\n</script>"
+            ),
+            "<script type='tailwind-config'>\nwindow.tailwindConfig\n</script>"
+        ), htmltools::HTML)
 
-	shiny::tagList(c(
-		html_cdn,
-		html_config,
-		html_module,
-		html_css
-	))
+    shiny::tagList(c(
+        html_cdn,
+        html_config,
+        html_module,
+        html_css
+    ))
 }
 
 # internal helper function to read utf8
 read_utf8_ <- function(file) {
-	r <- readLines(file, encoding = 'UTF-8', warn = FALSE)
-	if (!any(validUTF8(r))) stop(sprintf("The file %s is not encoded in UTF 8.", file))
-	r
+    r <- readLines(file, encoding = 'UTF-8', warn = FALSE)
+    if (!any(validUTF8(r))) stop(sprintf("The file %s is not encoded in UTF 8.", file))
+    r
 }
