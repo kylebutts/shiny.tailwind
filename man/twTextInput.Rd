@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-twText.R
 \name{twTextInput}
 \alias{twTextInput}
-\title{Wrapper around shiny::textInput but allowing for more classes}
+\title{Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes}
 \usage{
 twTextInput(
   inputId,
@@ -15,6 +15,48 @@ twTextInput(
   input_class = NULL
 )
 }
+\arguments{
+\item{inputId}{The \code{input} slot that will be used to access the value.}
+
+\item{label}{Display label for the control, or \code{NULL} for no label.}
+
+\item{value}{Initial value.}
+
+\item{placeholder}{A character string giving the user a hint as to what can
+be entered into the control. Internet Explorer 8 and 9 do not support this
+option.}
+
+\item{container_class}{additional classes to be applied to the container}
+
+\item{label_class}{additional classes to be applied to the label}
+
+\item{select_class}{additional classes to be applied to the select elements}
+}
 \description{
-Wrapper around shiny::textInput but allowing for more classes
+Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes
+}
+\examples{
+if (interactive()) {
+library(shiny)
+# basic example
+shinyApp(
+	ui = fluidPage(
+		use_tailwind(),
+		twTextInput(
+		  "caption", "Caption", "Data Summary",
+		  # Apply tailwind classes
+		  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+		  label_class = "font-serif",
+		  input_class = "drop-shadow-lg font-mono"
+		),
+		verbatimTextOutput("value")
+	),
+	server = function(input, output) {
+		output$value <- renderText({ input$caption })
+	}
+)
+}
+}
+\seealso{
+\code{\link[shiny:textInput]{shiny::textInput()}}
 }
