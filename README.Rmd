@@ -23,11 +23,12 @@ The goal of `shiny.tailwind` is to bring [TailwindCSS](https://tailwindcss.com/)
 
 ## Installation
 
-You can install the development version of `shiny.tailwind` with:
+You can install the package with:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("kylebutts/shiny.tailwind")
+install.packages("shiny.tailwind")
+# development version
+# remotes::install_github("kylebutts/shiny.tailwind")
 ```
 
 ## Basic Use 
