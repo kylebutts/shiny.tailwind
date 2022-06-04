@@ -4,9 +4,17 @@
 \alias{install_tailwindcss_cli}
 \title{Installs the tailwindcss CLI}
 \usage{
-install_tailwindcss_cli(overwrite = FALSE, version = "latest", verbose = FALSE)
+install_tailwindcss_cli(
+  basedir = NULL,
+  overwrite = FALSE,
+  version = "latest",
+  verbose = FALSE
+)
 }
 \arguments{
+\item{basedir}{directory where you want the tailwindcss executable to be
+installed}
+
 \item{overwrite}{if existing installations should be overwritten}
 
 \item{version}{the version to install, default is latest}
@@ -17,7 +25,18 @@ install_tailwindcss_cli(overwrite = FALSE, version = "latest", verbose = FALSE)
 the path to the tailwindcss CLI invisibly
 }
 \description{
-Installs the tailwindcss CLI
+This will download the tailwindcss standalone CLI to the folder
+\code{basedir}.
+}
+\details{
+This will download the tailwindcss standalone CLI to the folder
+\code{basedir}.
+See \href{https://tailwindcss.com/blog/standalone-cli}{here} for details on the
+standalone CLI. This saves you from having to install \code{node.js}.
+
+On the mac, after installing the CLI, you need to make sure that the file
+is executable to run it. The easiest way to do so, is to \code{cd} to your
+\code{basedir} from the terminal and then run \verb{chmod +x tailwindcss} on Mac.
 }
 \examples{
 if (interactive()) {
@@ -25,5 +44,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\link{tailwindcss_compile}
+\link{compile_tailwindcss}
 }
