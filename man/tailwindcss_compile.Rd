@@ -8,6 +8,8 @@ tailwindcss_compile(
   infile,
   outfile,
   watch = FALSE,
+  minify = FALSE,
+  content = ".",
   tailwindcss = NULL,
   verbose = FALSE
 )
@@ -19,6 +21,10 @@ tailwindcss_compile(
 
 \item{watch}{if the files should be continuously monitored (versus only
 compile the css once), default is False}
+
+\item{minify}{if the code should be minified, default is FALSE}
+
+\item{content}{content paths to remove unused classes, default is current dir}
 
 \item{tailwindcss}{name and path to the executable}
 
@@ -36,17 +42,28 @@ if (interactive()) {
   owd <- setwd(temp)
 
   infile <- "custom.css"
-  writeLines(
-    c("@tailwind base;","@tailwind components;", "@tailwind utilities;"),
-    infile)
+  writeLines("@tailwind base;", infile)
   outfile <- "out.css"
 
-  file.copy(system.file("examples", "01-Old_Faithful", "app.R", package = "shiny.tailwind"),
-            "app.R", overwrite = TRUE)
+  # file.copy(system.file("examples", "01-Old_Faithful", "app.R", package = "shiny.tailwind"),
+  #           "app.R", overwrite = TRUE)
 
-  tailwindcss_compile(infile, outfile)
+  # write a mini shiny UI
+  writeLines("
+    library(shiny)
+    div(class = \"page-div\",
+        div(class = \"w-full text-center py-12\",
+            h1(\"Hello World\")
+        )
+    )", "app.R")
+
+  tailwindcss <- NULL # can be set to the executable file
+  tailwindcss_compile(infile, outfile, tailwindcss = tailwindcss)
   cat(paste(readLines(outfile)[1:20], collapse = "\n"))
 
   setwd(owd)
 }
+}
+\seealso{
+\link{install_tailwindcss_cli}
 }

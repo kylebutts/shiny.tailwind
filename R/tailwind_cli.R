@@ -7,9 +7,10 @@
 #' @return the path to the tailwindcss CLI invisibly
 #' @export
 #'
+#' @seealso [tailwindcss_compile]
 #' @examples
 #' if (interactive()) {
-#'   install_tailwind_cli()
+#'   install_tailwindcss_cli()
 #' }
 install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbose = FALSE) {
 	if (cli_is_installed() && !overwrite)
@@ -129,30 +130,42 @@ cli_is_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 #'   compile the css once), default is False
 #' @param tailwindcss name and path to the executable
 #' @param verbose print information
+#' @param minify if the code should be minified, default is FALSE
+#' @param content content paths to remove unused classes, default is current dir
 #'
 #' @return the outfile invisibly
 #' @export
 #'
+#' @seealso [install_tailwindcss_cli]
 #' @examples
 #' if (interactive()) {
 #'   temp <- tempdir()
 #'   owd <- setwd(temp)
 #'
 #'   infile <- "custom.css"
-#'   writeLines(
-#'     c("@tailwind base;","@tailwind components;", "@tailwind utilities;"),
-#'     infile)
+#'   writeLines("@tailwind base;", infile)
 #'   outfile <- "out.css"
 #'
-#'   file.copy(system.file("examples", "01-Old_Faithful", "app.R", package = "shiny.tailwind"),
-#'             "app.R", overwrite = TRUE)
+#'   # file.copy(system.file("examples", "01-Old_Faithful", "app.R", package = "shiny.tailwind"),
+#'   #           "app.R", overwrite = TRUE)
 #'
-#'   tailwindcss_compile(infile, outfile)
+#'   # write a mini shiny UI
+#'   writeLines("
+#'     library(shiny)
+#'     div(class = \"page-div\",
+#'         div(class = \"w-full text-center py-12\",
+#'             h1(\"Hello World\")
+#'         )
+#'     )", "app.R")
+#'
+#'   tailwindcss <- NULL # can be set to the executable file
+#'   tailwindcss_compile(infile, outfile, tailwindcss = tailwindcss)
 #'   cat(paste(readLines(outfile)[1:20], collapse = "\n"))
 #'
 #'   setwd(owd)
 #' }
-tailwindcss_compile <- function(infile, outfile, watch = FALSE,
+tailwindcss_compile <- function(infile, outfile, watch = FALSE, minify = FALSE,
+								content = ".",
 								tailwindcss = NULL, verbose = FALSE) {
 
 	stopifnot(length(infile) == 1)
@@ -183,7 +196,10 @@ tailwindcss_compile <- function(infile, outfile, watch = FALSE,
 		)
 	}
 
-	cmd <- paste(tailwindcss, "-i", infile, "-o", outfile, if (watch) "--watch")
+	cmd <- paste(tailwindcss, "-i", infile, "-o", outfile,
+				 if (watch) "--watch",
+				 if (minify) "--minify",
+				 if (!is.null(content) && !is.na(content)) paste("--content", content))
 	system(cmd)
 	return(invisible(outfile))
 }

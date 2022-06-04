@@ -21,6 +21,9 @@ Installs the tailwindcss CLI
 }
 \examples{
 if (interactive()) {
-  install_tailwind_cli()
+  install_tailwindcss_cli()
 }
+}
+\seealso{
+\link{tailwindcss_compile}
 }
