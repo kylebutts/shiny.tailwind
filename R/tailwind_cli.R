@@ -44,12 +44,12 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   arch <- if (info[["machine"]] == "x86-64") "x64" else "arm64"
 
   file <- paste("tailwindcss",
-    if (sys == "windows") {
-      "windows-x64.exe"
-    } else {
-      paste(sys, arch, sep = "-")
-    },
-    sep = "-"
+                if (sys == "windows") {
+                  "windows-x64.exe"
+                } else {
+                  paste(sys, arch, sep = "-")
+                },
+                sep = "-"
   )
 
   # 3) get latest release version
@@ -215,7 +215,8 @@ compile_tailwindcss <- function(infile, outfile,
 
   # Create config if there is none
   if (!file.exists(conf_file)) {
-    cat(sprintf("Could not find %s, running 'tailwindcss init'\n", conf_file))
+    cat(sprintf("Could not find %s, copying default from shiny.tailwind\n",
+                conf_file))
 
     file.copy(
       system.file("default-tailwind.config.js", package = "shiny.tailwind"),
@@ -229,7 +230,10 @@ compile_tailwindcss <- function(infile, outfile,
     if (watch) "--watch",
     if (minify) "--minify"
   )
-  if (verbose) cat(cmd)
-  system(cmd)
+  if (verbose) cat(paste0("Runnding tailwindcss CLI command:\n  ", cmd))
+  a <- try(system(cmd, intern = TRUE), silent = TRUE)
+  if (inherits(a, "try-error"))
+    stop("Could not execute tailwindcss CLI with error\n", a)
+
   return(invisible(outfile))
 }
