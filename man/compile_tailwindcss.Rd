@@ -7,7 +7,6 @@
 compile_tailwindcss(
   infile,
   outfile,
-  basedir = NULL,
   watch = FALSE,
   minify = FALSE,
   content = ".",
@@ -20,9 +19,6 @@ compile_tailwindcss(
 
 \item{outfile}{the target css file, where tailwind will write the css to.
 Relative to basedir}
-
-\item{basedir}{directory where you want the tailwindcss executable to be
-installed}
 
 \item{watch}{if the files should be continuously monitored (versus only
 compile the css once), default is False}

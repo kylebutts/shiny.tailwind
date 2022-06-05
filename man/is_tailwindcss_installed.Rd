@@ -4,12 +4,9 @@
 \alias{is_tailwindcss_installed}
 \title{Checks if tailwindcss CLI is installed}
 \usage{
-is_tailwindcss_installed(basedir = NULL, tailwindcss = NULL, verbose = FALSE)
+is_tailwindcss_installed(tailwindcss = NULL, verbose = FALSE)
 }
 \arguments{
-\item{basedir}{directory where you want the tailwindcss executable to be
-installed}
-
 \item{tailwindcss}{name and path to the executable}
 
 \item{verbose}{report version number etc}
