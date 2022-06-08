@@ -44,6 +44,6 @@ The function will place it in the appropriate script tag.
 if (interactive()) {
   library(shiny)
   list.files(system.file("examples", package = "shiny.tailwind"))
-  runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
+  runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
 }
 }
