@@ -4,7 +4,9 @@
 # shiny.tailwind
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/shiny.tailwind)](https://cran.r-project.org/package=shiny.tailwind)
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/shiny.tailwind)](https://cran.r-project.org/package=shiny.tailwind)
 <!-- badges: end -->
 
 The goal of `shiny.tailwind` is to bring
@@ -39,52 +41,58 @@ with `shiny.tailwind::use_tailwind()`
 ``` r
 library(shiny)
 library(shiny.tailwind)
+# there is a bug (at the moment), that tailwind does not render correctly in the
+# RStudio viewer, the following code uses your default browser
+options(shiny.launch.browser = .rs.invokeShinyWindowExternal)
 
 # Define UI for application that draws a histogram
-ui <- div(class = "px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl",
-          # Load Tailwind CSS Just-in-time
-          shiny.tailwind::use_tailwind(),
-
-          # Title
-          div(class = "flex flex-col w-full text-center py-12",
-              h1(class = "text-3xl font-extrabold text-black tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem]",
-                 "Old Faithful"
-             )
-          ),
-
-          # Inputs
-          div(class = "block shadow-md py-4 px-4 flex flex-row",
-              div(class = "flex-initial mx-4",
-                  sliderInput("bins", "Number of Bins:",
-                          min = 1, max = 10, value = 5)
-              ),
-              div(class = "flex-initial mx-4",
-                  textInput("firstname", "First Name", value = "")
-              ),
-              div(class = "flex-initial mx-4",
-                  textInput("lastname", "Last Name", value = "")
-              ),
-          ),
-
-          # Plot
-          div(class = "block shadow-md py-4 px-4 mt-4",
-              plotOutput("distPlot")
-          )
+ui <- div(
+  class = "px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl",
+  # Load Tailwind CSS Just-in-time
+  shiny.tailwind::use_tailwind(),
+  
+  # Title
+  div(class = "flex flex-col w-full text-center py-12",
+      h1(class = "text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
+         "Old Faithful"
+      )
+  ),
+  
+  # Inputs
+  div(class = "block shadow-md py-4 px-4 flex flex-row rounded-md",
+      div(class = "flex-initial mx-4",
+          sliderInput("bins", "Number of Bins:",
+                      min = 1, max = 10, value = 5)
+      ),
+      div(class = "flex-initial mx-4",
+          twTextInput("firstname", "First Name", value = "",
+                      input_class = "rounded-md border border-2 border-lime-500")
+      ),
+      div(class = "flex-initial mx-4",
+          twTextInput("lastname", "Last Name", value = "",
+                      input_class = "rounded-md border border-2 border-amber-500")
+      ),
+  ),
+  
+  # Plot
+  div(class = "block shadow-md py-4 px-4 mt-4",
+      plotOutput("distPlot")
+  )
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
-    output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x,
-             breaks = bins,
-             col = 'darkgray', border = 'white')
-    })
+  
+  output$distPlot <- renderPlot({
+    # generate bins based on input$bins from ui.R
+    x    <- faithful[, 2]
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    
+    # draw the histogram with the specified number of bins
+    hist(x,
+         breaks = bins,
+         col = 'darkgray', border = 'white')
+  })
 }
 
 # Run the application
@@ -98,7 +106,7 @@ library(shiny)
 library(shiny.tailwind)
 
 list.files(system.file("examples", package = "shiny.tailwind"))
-runApp(system.file("examples", "01-basic", package = "shiny.tailwind"))
+runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
 ```
 
 ## What is Tailwind CSS?
