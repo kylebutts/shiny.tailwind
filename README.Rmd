@@ -120,11 +120,11 @@ runApp(system.file("examples", "01-old-faithful", package = "shiny.tailwind"))
 
 Tailwind CSS is a *utility-based* CSS framework that allows really quick and incredibly customizable styling of html all through classes. Here are some example classes
 
-- `my-4` which sets the margin top and bottom to size `4` (Tailwind has sizes that are consistent across classes. 4 happens to be `1rem`)
-- `shadow-sm`/`shadow-md`/`shadow-lg`/`shadow-xl` set a drop shadow on divs
-- `text-left`/`text-center`/`text-right` left/center/right- align text.
-- `w-#/12` sets a column of width #/12 (similar to bootstrap's grid)
-- [Much, much more](https://tailwindcss.com/docs/)
+- `my-4` which sets the **m**argin top and bottom (ie the **y** coordinates) to size `4` (Tailwind has sizes that are consistent across classes. 4 happens to be `1rem`). See also [docs/margin](https://tailwindcss.com/docs/margin).
+- `shadow-sm`/`shadow-md`/`shadow-lg`/`shadow-xl` set a drop shadow on divs. See also [docs/box-shadow](https://tailwindcss.com/docs/box-shadow).
+- `text-left`/`text-center`/`text-right` left/center/right- align text. See also [docs/text-align](https://tailwindcss.com/docs/text-align).
+- `w-#/12` sets a column of width #/12 (similar to bootstrap's grid). See also [docs/width](https://tailwindcss.com/docs/width).
+- [Much, much more](https://tailwindcss.com/docs/).
 
 This makes a common framework for designing that is quick and intuitive.
 
