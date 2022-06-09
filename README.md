@@ -30,7 +30,7 @@ inserted into your shiny app. Therefore you can just start using
 tailwind classes and they will load dynamically and automatically.
 
 If you want to compile your used tailwindcss classes to a local css
-file, see the [Details](#details) section.
+file, see the [Details](#details-about-shinytailwind) section.
 
 ## Example
 
