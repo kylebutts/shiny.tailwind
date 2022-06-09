@@ -168,6 +168,14 @@ work automatically. (Technical note, the `<style>` tag that holds the
 custom.css needs the property `type='postcss'` in order to work, and
 use_tailwind does this automatically.)
 
+See also the
+[`05-apply-directive`](https://github.com/kylebutts/shiny.tailwind/blob/master/inst/examples/05-apply-directive/app.R),
+which you can run with
+
+``` r
+runApp(system.file("examples", "05-apply-directive", package = "shiny.tailwind"))
+```
+
 ### Customizing Tailwind
 
 Custom configuration of Tailwind is also possible. There are two options

@@ -147,6 +147,12 @@ Setting `class = "btn-blue"` is equivalent to setting `class = "bg-blue-500 hove
 
 You can write custom css files for your shiny app, you just need to pass them through `use_tailwind()` in order to use the apply directive. Just pass `use_tailwind(css = "custom.css")` and the @apply directive will work automatically. (Technical note, the `<style>` tag that holds the custom.css needs the property `type='postcss'` in order to work, and use_tailwind does this automatically.)
 
+See also the [`05-apply-directive`](https://github.com/kylebutts/shiny.tailwind/blob/master/inst/examples/05-apply-directive/app.R), which you can run with 
+
+```r
+runApp(system.file("examples", "05-apply-directive", package = "shiny.tailwind"))
+```
+
 ### Customizing Tailwind
 
 Custom configuration of Tailwind is also possible. There are two options available in ‘use_tailwind', but moving forward the option `tailwindConfig` will be the only one supported (with version 3.0 of Tailwind). See [this release](https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1) for details, but you need to define `tailwind.config = {}` as a JSON object. An example is in the folder 'inst/examples/01-old-faithful' in the github repository. Note the '.js' file should only consist of the JSON object. The function will place it in the appropriate script tag. For details on all the ways you can configure Tailwind, see [this page](https://tailwindcss.com/docs/configuration) in their docs.
