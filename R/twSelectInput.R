@@ -11,6 +11,15 @@
 #'
 #' @export
 #' @examples
+#' twSelectInput(
+#'   "variable", "Variable:",
+#'   c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+#'   # Apply tailwind classes
+#'   container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+#'   label_class = "font-serif",
+#'   select_class = "drop-shadow-lg font-mono"
+#' )
+#'
 #' if (interactive()) {
 #' library(shiny)
 #' # basic example
@@ -42,7 +51,7 @@ twSelectInput <- function(inputId,
     container_class <- paste("block twSelectInput form-group", container_class)
     label_class <- paste("control-label", label_class)
 
-    if (!is.null(label)) {
+    if (!is.null(label_class)) {
         label_tag <- shiny::tags$label(
             class = label_class, id = paste0(inputId, "-label"),
             `for` = inputId, label

@@ -43,6 +43,15 @@ single-select lists and no values for multiple select lists.}
 Note selectize is turned off (for now)
 }
 \examples{
+twSelectInput(
+  "variable", "Variable:",
+  c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+  # Apply tailwind classes
+  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+  label_class = "font-serif",
+  select_class = "drop-shadow-lg font-mono"
+)
+
 if (interactive()) {
 library(shiny)
 # basic example
