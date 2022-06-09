@@ -9,3 +9,19 @@
 .rounded-box {
   @apply p-2 border border-2 rounded-md shadow-md;
 }
+
+/* override the values for the control-labels*/
+.control-label {
+  @apply font-serif text-gray-800;
+}
+
+/* override the colors of all slider inputs (irs)*/
+.irs-grid-text {
+  @apply font-mono text-teal-500;
+}
+.irs-single {
+  @apply bg-teal-500 !important;
+}
+.irs-bar {
+  @apply bg-teal-500 border-y-2 border-teal-500 !important;
+}
