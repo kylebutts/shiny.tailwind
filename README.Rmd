@@ -153,6 +153,31 @@ See also the [`05-apply-directive`](https://github.com/kylebutts/shiny.tailwind/
 runApp(system.file("examples", "05-apply-directive", package = "shiny.tailwind"))
 ```
 
+### Reusing Classes
+
+As the [official tailwindcss documentation](https://tailwindcss.com/docs/reusing-styles) puts it, the best way to reuse classes is to define loops and components. For example, let's say we want to have a multiple containers with the classes `p-2 bg-stone-200 border border-gray-600 rounded-md drop-shadow-md`, we could either re-type this string every time, or use something along the lines of this:
+
+```r
+mybox <- function(...) {
+  div(
+    class = "p-2 bg-stone-200 border border-gray-600 rounded-md drop-shadow-md",
+    ...
+  )
+}
+
+# in UI:
+
+div(
+  class = "flex flex-wrap",
+  mybox("This is the first box"),
+  mybox("This is a second box"),
+  mybox("This is a third box"),
+)
+
+```
+
+
+
 ### Customizing Tailwind
 
 Custom configuration of Tailwind is also possible. There are two options available in ‘use_tailwind', but moving forward the option `tailwindConfig` will be the only one supported (with version 3.0 of Tailwind). See [this release](https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1) for details, but you need to define `tailwind.config = {}` as a JSON object. An example is in the folder 'inst/examples/01-old-faithful' in the github repository. Note the '.js' file should only consist of the JSON object. The function will place it in the appropriate script tag. For details on all the ways you can configure Tailwind, see [this page](https://tailwindcss.com/docs/configuration) in their docs.

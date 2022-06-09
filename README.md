@@ -176,6 +176,35 @@ which you can run with
 runApp(system.file("examples", "05-apply-directive", package = "shiny.tailwind"))
 ```
 
+### Reusing Classes
+
+As the [official tailwindcss
+documentation](https://tailwindcss.com/docs/reusing-styles) puts it, the
+best way to reuse classes is to define loops and components. For
+example, let’s say we want to have a multiple containers with the
+classes
+`p-2 bg-stone-200 border border-gray-600 rounded-md drop-shadow-md`, we
+could either re-type this string every time, or use something along the
+lines of this:
+
+``` r
+mybox <- function(...) {
+  div(
+    class = "p-2 bg-stone-200 border border-gray-600 rounded-md drop-shadow-md",
+    ...
+  )
+}
+
+# in UI:
+
+div(
+  class = "flex flex-wrap",
+  mybox("This is the first box"),
+  mybox("This is a second box"),
+  mybox("This is a third box"),
+)
+```
+
 ### Customizing Tailwind
 
 Custom configuration of Tailwind is also possible. There are two options
