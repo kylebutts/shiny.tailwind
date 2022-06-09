@@ -149,11 +149,13 @@ can just use tailwind css classes and they will load automatically.
 
 If you need to work offline or do not want to have the live-connection
 required to tailwinds CDN, you can also install and use the CLI which
-will compile the required css to a local file. See also
-`?install_tailwindcss_cli()` to install the CLI (the program is around
-15MB and platform dependent), `?compile_tailwindcss()` to compile the
-files to a local CSS, or the `03-css-generation` example
-(`system.file("examples", "03-css-generation", package = "shiny.tailwindcss")`).
+will compile the required css to a local file. See also:
+
+-   `?install_tailwindcss_cli()` to install the CLI (the program is
+    around 15MB and platform dependent),
+-   `?compile_tailwindcss()` to compile the files to a local CSS,
+-   or the `03-css-generation` example
+    (`system.file("examples", "03-css-generation", package = "shiny.tailwindcss")`).
 
 ### Custom css and the `@apply` directive:
 
