@@ -12,7 +12,8 @@ twCheckboxInput(
   disabled = FALSE,
   container_class = NULL,
   label_class = NULL,
-  input_class = NULL
+  input_class = NULL,
+  center = TURE
 )
 }
 \arguments{
@@ -32,6 +33,9 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 \item{label_class}{additional classes to be applied to the label}
 
 \item{input_class}{additional classes to be applied to the input element}
+
+\item{center}{if a margin of 0px !important should be applied, effectively
+removing bootstrap styling (if applied) to center the checkbox easier}
 }
 \description{
 Wrapper around \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} but allowing for more classes
@@ -49,9 +53,10 @@ shinyApp(
         use_tailwind(),
         twCheckboxInput(
           "chk", "Check me!", value = TRUE,
-          container_class = "runded-tl-lg bg-gray-200 m-4 p-2",
-          label_class = "font-serif text-red-500",
-          input_class = "checked:focus:bg-red-200 hover:bg-red-500 bg-red-200"
+          container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+          label_class = "font-serif text-gray-600",
+          input_class = "text-pink-500 focus:ring-pink-500",
+          center = TRUE
         ),
         verbatimTextOutput("out")
     ),

@@ -5,7 +5,8 @@
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
 #' @param disabled if the user should not be able to interact with the field
-#'
+#' @param center if a margin of 0px !important should be applied, effectively
+#'  removing bootstrap styling (if applied) to center the checkbox easier
 #' @seealso [shiny::checkboxInput()]
 #'
 #' @export
@@ -22,9 +23,10 @@
 #'         use_tailwind(),
 #'         twCheckboxInput(
 #'           "chk", "Check me!", value = TRUE,
-#'           container_class = "runded-tl-lg bg-gray-200 m-4 p-2",
-#'           label_class = "font-serif text-red-500",
-#'           input_class = "checked:focus:bg-red-200 hover:bg-red-500 bg-red-200"
+#'           container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'           label_class = "font-serif text-gray-600",
+#'           input_class = "text-pink-500 focus:ring-pink-500",
+#'           center = TRUE
 #'         ),
 #'         verbatimTextOutput("out")
 #'     ),
@@ -36,7 +38,7 @@
 twCheckboxInput <- function(inputId, label = NULL, value = FALSE, width = NULL,
                             disabled = FALSE,
                             container_class = NULL, label_class = NULL,
-                            input_class = NULL) {
+                            input_class = NULL, center = TURE) {
 
   container_class <- paste("form-check", container_class)
   input_class <- paste("form-check-input", input_class)
@@ -48,6 +50,7 @@ twCheckboxInput <- function(inputId, label = NULL, value = FALSE, width = NULL,
     shiny::tags$input(
       type = "checkbox",
       id = inputId,
+      style = if (center) "margin: 0px !important;" else NULL,
       checked = if (value) "" else NULL,
       disabled = if (disabled) "" else NULL,
       class = input_class
