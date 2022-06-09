@@ -106,7 +106,7 @@ library(shiny)
 library(shiny.tailwind)
 
 list.files(system.file("examples", package = "shiny.tailwind"))
-runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
+runApp(system.file("examples", "01-old-faithful", package = "shiny.tailwind"))
 ```
 
 ## What is Tailwind CSS?
@@ -176,10 +176,10 @@ available in ‘use_tailwind’, but moving forward the option
 Tailwind). See [this
 release](https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1)
 for details, but you need to define `tailwind.config = {}` as a JSON
-object. An example is in the folder ‘inst/examples/02-config’ in the
-github repository. Note the ‘.js’ file should only consist of the JSON
-object. The function will place it in the appropriate script tag. For
-details on all the ways you can configure Tailwind, see [this
+object. An example is in the folder ‘inst/examples/01-old-faithful’ in
+the github repository. Note the ‘.js’ file should only consist of the
+JSON object. The function will place it in the appropriate script tag.
+For details on all the ways you can configure Tailwind, see [this
 page](https://tailwindcss.com/docs/configuration) in their docs.
 
 Version 3 of tailwind (the default by `use_tailwind`) will come loaded
@@ -190,8 +190,7 @@ For version 2, if you want to use custom modules, for example
 TailwindTypography, note that you need to use the browser-version and
 you have to layout the config file in a specific way. You need to define
 the config JSON object as ‘window.tailwindConfig’ and you must call
-‘window.tailwindCSS.refresh();’. An example is in the folder
-‘inst/examples/03-modules’ in the github repository.
+‘window.tailwindCSS.refresh();’.
 
 ## Credits
 
