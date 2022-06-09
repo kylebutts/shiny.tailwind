@@ -31,16 +31,15 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
 \item{label_class}{additional classes to be applied to the label}
 
-\item{input_class}{additional classes to be applied to the input elements}
+\item{input_class}{additional classes to be applied to the input element}
 }
 \description{
 Wrapper around \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} but allowing for more classes
 }
 \examples{
 shiny::checkboxInput("id", "label", value = FALSE)
-twCheckboxInput("id", "label", value = TRUE,
-                container_class = "CONTAINER", label_class = "LABEL",
-                input_class = "INPUT")
+twCheckboxInput("id", "label", value = TRUE, width = "200px", disabled = TRUE,
+                container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 
 if (interactive()) {
 library(shiny)

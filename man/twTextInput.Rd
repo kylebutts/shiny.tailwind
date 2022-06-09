@@ -9,6 +9,7 @@ twTextInput(
   label = NULL,
   value = NULL,
   placeholder = NULL,
+  width = NULL,
   type = "text",
   container_class = NULL,
   label_class = NULL,
@@ -26,6 +27,9 @@ twTextInput(
 be entered into the control. Internet Explorer 8 and 9 do not support this
 option.}
 
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+
 \item{type}{the type for the input, eg "text" (default), "password", "email",
 "month", "url", ... see also \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types]}{MDN Input Types}}
 
@@ -33,12 +37,16 @@ option.}
 
 \item{label_class}{additional classes to be applied to the label}
 
-\item{input_class}{additional classes to be applied to the input elements}
+\item{input_class}{additional classes to be applied to the input element}
 }
 \description{
 Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes
 }
 \examples{
+shiny::textInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder")
+twTextInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder",
+            type = "email", container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+
 if (interactive()) {
 library(shiny)
 # basic example

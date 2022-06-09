@@ -5,12 +5,16 @@
 #' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
-#' @param input_class additional classes to be applied to the input elements
+#' @param input_class additional classes to be applied to the input element
 #'
 #' @seealso [shiny::textInput()]
 #'
 #' @export
 #' @examples
+#' shiny::textInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder")
+#' twTextInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder",
+#'             type = "email", container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+#'
 #' if (interactive()) {
 #' library(shiny)
 #' # basic example
@@ -31,10 +35,9 @@
 #'     }
 #' )
 #' }
-twTextInput <- function(inputId,
-                        label = NULL, value = NULL, placeholder = NULL,
-                        type = "text", container_class = NULL,
-						label_class = NULL, input_class = NULL) {
+twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL, width = NULL,
+                        type = "text",
+                        container_class = NULL, label_class = NULL, input_class = NULL) {
     input_class <- paste("block form-control", input_class)
     container_class <- paste("block twTextInput form-group", container_class)
     label_class <- paste("control-label", label_class)
@@ -49,6 +52,7 @@ twTextInput <- function(inputId,
     shiny::tagList(
         shiny::tags$div(
             class = container_class,
+            style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
             label_tag,
             shiny::tags$input(
                 id = inputId,

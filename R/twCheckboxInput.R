@@ -3,7 +3,7 @@
 #' @inheritParams shiny::checkboxInput
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
-#' @param input_class additional classes to be applied to the input elements
+#' @param input_class additional classes to be applied to the input element
 #' @param disabled if the user should not be able to interact with the field
 #'
 #' @seealso [shiny::checkboxInput()]
@@ -11,9 +11,8 @@
 #' @export
 #' @examples
 #' shiny::checkboxInput("id", "label", value = FALSE)
-#' twCheckboxInput("id", "label", value = TRUE,
-#'                 container_class = "CONTAINER", label_class = "LABEL",
-#'                 input_class = "INPUT")
+#' twCheckboxInput("id", "label", value = TRUE, width = "200px", disabled = TRUE,
+#'                 container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 #'
 #' if (interactive()) {
 #' library(shiny)
