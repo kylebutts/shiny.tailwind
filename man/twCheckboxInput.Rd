@@ -2,7 +2,7 @@
 % Please edit documentation in R/twCheckboxInput.R
 \name{twCheckboxInput}
 \alias{twCheckboxInput}
-\title{Title}
+\title{Wrapper around \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} but allowing for more classes}
 \usage{
 twCheckboxInput(
   inputId,
@@ -16,13 +16,27 @@ twCheckboxInput(
 )
 }
 \arguments{
-\item{input_class}{}
+\item{inputId}{The \code{input} slot that will be used to access the value.}
+
+\item{label}{Display label for the control, or \code{NULL} for no label.}
+
+\item{value}{Initial value (\code{TRUE} or \code{FALSE}).}
+
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+
+\item{disabled}{if the user should not be able to interact with the field}
+
+\item{container_class}{additional classes to be applied to the container}
+
+\item{label_class}{additional classes to be applied to the label}
+
+\item{input_class}{additional classes to be applied to the input elements}
 }
 \description{
-Title
+Wrapper around \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} but allowing for more classes
 }
 \examples{
-
 shiny::checkboxInput("id", "label", value = FALSE)
 twCheckboxInput("id", "label", value = TRUE,
                 container_class = "CONTAINER", label_class = "LABEL",
@@ -47,5 +61,7 @@ shinyApp(
     }
 )
 }
-
+}
+\seealso{
+\code{\link[shiny:checkboxInput]{shiny::checkboxInput()}}
 }

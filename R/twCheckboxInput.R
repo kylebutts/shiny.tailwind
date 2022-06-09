@@ -1,19 +1,15 @@
-#' Title
+#' Wrapper around [`shiny::checkboxInput()`] but allowing for more classes
 #'
-#' @param inputId
-#' @param label
-#' @param value
-#' @param width
-#' @param container_class
-#' @param label_class
-#' @param disabled
-#' @param input_class
+#' @inheritParams shiny::checkboxInput
+#' @param container_class additional classes to be applied to the container
+#' @param label_class additional classes to be applied to the label
+#' @param input_class additional classes to be applied to the input elements
+#' @param disabled if the user should not be able to interact with the field
 #'
-#' @return
+#' @seealso [shiny::checkboxInput()]
+#'
 #' @export
-#'
 #' @examples
-#'
 #' shiny::checkboxInput("id", "label", value = FALSE)
 #' twCheckboxInput("id", "label", value = TRUE,
 #'                 container_class = "CONTAINER", label_class = "LABEL",
@@ -38,7 +34,6 @@
 #'     }
 #' )
 #' }
-#'
 twCheckboxInput <- function(inputId, label = NULL, value = FALSE, width = NULL,
                             disabled = FALSE,
                             container_class = NULL, label_class = NULL,
@@ -53,7 +48,6 @@ twCheckboxInput <- function(inputId, label = NULL, value = FALSE, width = NULL,
     style = if (!is.null(width)) paste0("width:", width) else NULL,
     shiny::tags$input(
       type = "checkbox",
-      # value = "",
       id = inputId,
       checked = if (value) "" else NULL,
       disabled = if (disabled) "" else NULL,
