@@ -33,7 +33,9 @@ install.packages("shiny.tailwind")
 
 ## Basic Use 
 
-In your shiny UI declaration, just include `shiny.tailwind::use_tailwind()` and all the appropriate files will be inserted into your shiny app. Therefore you can just start using tailwind classes and they will load dynamically and automatically. 
+In your shiny UI declaration, just include `shiny.tailwind::use_tailwind()` and all the appropriate files will be inserted into your shiny app. Therefore you can just start using tailwind classes and they will load dynamically and automatically.
+
+If you want to compile your used tailwindcss classes to a local css file, see the [Details](#details) section.
 
 ## Example
 
@@ -126,11 +128,14 @@ Tailwind CSS is a *utility-based* CSS framework that allows really quick and inc
 
 This makes a common framework for designing that is quick and intuitive.
 
-## Details about `shiny.tailwind`
+## Details about `shiny.tailwind` {#details}
 
 TailwindCSS is a utility-based design framework that makes designing simple. There is basically a class for every css idea you could have. However, the complete set of tailwind css classes is massive (~15mb), so you don't want to load all of these. That is where Tailwind's new Just in Time compiling comes in. It will only load the css classes you use, as you use them. So if your shiny app renders ui dynamically, it will load just the css needed whenever the UI is rendered.
 
 Normally, doing just in time requires a fancy node setup that is constantly monitoring html in a terminal. However, the company Beyond Code created a browser version of Tailwind Just in Time that runs completely in JS in the browser. See <https://beyondco.de/blog/tailwind-jit-compiler-via-cdn>. Therefore, you can just use tailwind css classes and they will load automatically.
+
+If you need to work offline or do not want to have the live-connection required to tailwinds CDN, you can also install and use the CLI which will compile the required css to a local file.
+See also `?install_tailwindcss_cli()` to install the CLI (the program is around 15MB and platform dependent), `?compile_tailwindcss()` to compile the files to a local CSS, or the `03-css-generation` example (`system.file("examples", "03-css-generation", package = "shiny.tailwindcss")`).
 
 
 ### Custom css and the `@apply` directive: 
