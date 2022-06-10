@@ -6,8 +6,8 @@
 \usage{
 twNumericInput(
   inputId,
-  label = NULL,
-  value = NULL,
+  label,
+  value,
   min = NA,
   max = NA,
   step = NA,

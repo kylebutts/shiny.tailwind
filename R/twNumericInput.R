@@ -36,7 +36,7 @@
 #'     }
 #' )
 #' }
-twNumericInput <- function(inputId, label = NULL, value = NULL,
+twNumericInput <- function(inputId, label, value,
                            min = NA, max = NA, step = NA, width = NULL,
                            disabled = FALSE, container_class = NULL,
                            label_class = NULL, input_class = NULL) {

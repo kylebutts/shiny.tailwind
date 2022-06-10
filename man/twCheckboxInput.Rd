@@ -6,14 +6,14 @@
 \usage{
 twCheckboxInput(
   inputId,
-  label = NULL,
+  label,
   value = FALSE,
   width = NULL,
   disabled = FALSE,
   container_class = NULL,
   label_class = NULL,
   input_class = NULL,
-  center = TURE
+  center = FALSE
 )
 }
 \arguments{

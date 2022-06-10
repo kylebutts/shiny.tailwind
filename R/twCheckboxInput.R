@@ -35,10 +35,10 @@
 #'     }
 #' )
 #' }
-twCheckboxInput <- function(inputId, label = NULL, value = FALSE, width = NULL,
+twCheckboxInput <- function(inputId, label, value = FALSE, width = NULL,
                             disabled = FALSE,
                             container_class = NULL, label_class = NULL,
-                            input_class = NULL, center = TURE) {
+                            input_class = NULL, center = FALSE) {
 
   container_class <- paste("form-check", container_class)
   input_class <- paste("form-check-input", input_class)
