@@ -25,16 +25,12 @@ form1 <- rounded_container(
     tags$label("for" = "number", class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300", "Pick a number"),
     tags$input(type = "number", id = "number", class = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500")
   ),
-  div(
-    class = "mt-6",
-    tags$label("for" = "countries", class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400", "Select your country"),
-    tags$select(
-      id = "countries", class = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
-      tags$option("United States"),
-      tags$option("Canada"),
-      tags$option("France"),
-      tags$option("Germany")
-    )
+  twSelectInput(
+    inputId = "countries",label = "Select your country",
+    choices = c("United States", "Canada", "France", "Germany"),
+    container_class = "mt-6",
+    label_class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400",
+    select_class = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
   ),
   div(
     class = "mt-6",
@@ -111,4 +107,4 @@ ui <- div(
 server <- function(input, output) {}
 
 
-shiny::shinyApp(ui, server)
+shinyApp(ui = ui, server = server)
