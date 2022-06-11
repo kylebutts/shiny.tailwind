@@ -7,6 +7,9 @@
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
 #' @param disabled if the user should not be able to interact with the field
+#' @param label_after_input TRUE/FALSE if the label should be put after the
+#' input box. Default is FALSE. Useful for special cases (floating labels),
+#' c.f. 04-shiny-inputs example app.
 #'
 #' @seealso [shiny::numericInput()]
 #'
@@ -38,20 +41,23 @@
 #' }
 twNumericInput <- function(inputId, label, value,
                            min = NA, max = NA, step = NA, width = NULL,
+                           placeholder = "",
                            disabled = FALSE, container_class = NULL,
-                           label_class = NULL, input_class = NULL) {
+                           label_class = NULL, input_class = NULL, label_after_input = FALSE) {
 
   container_class <- paste("form-group", container_class)
   input_class <- paste("form-control", input_class)
   label_class <- paste("form-label", label_class)
 
+  html_label <- shiny::tags$label(
+    class = label_class, "for" = inputId,
+    label
+  )
+
   res <- shiny::div(
     class = container_class,
     style = if (!is.null(width)) paste0("width:", width) else NULL,
-    shiny::tags$label(
-      class = label_class, "for" = inputId,
-      label
-    ),
+    if (!label_after_input) html_label,
     shiny::tags$input(
       type = "number",
       id = inputId,
@@ -60,8 +66,10 @@ twNumericInput <- function(inputId, label, value,
       max = if (!is.null(max)) max else NULL,
       step = if (!is.null(step)) step else NULL,
       disabled = if (disabled) "" else NULL,
+      placeholder = placeholder,
       class = input_class
-    )
+    ),
+    if (label_after_input) html_label
   )
 
   return(res)

@@ -6,6 +6,9 @@
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
+#' @param label_after_input TRUE/FALSE if the label should be put after the
+#' input box. Default is FALSE. Useful for special cases (floating labels),
+#' c.f. 04-shiny-inputs example app.
 #'
 #' @seealso [shiny::textAreaInput()]
 #'
@@ -40,7 +43,8 @@
 #' }
 twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, width = NULL, height = NULL,
                             rows = NULL, cols = NULL, resize = NULL,
-                            container_class = NULL, label_class = NULL, input_class = NULL) {
+                            container_class = NULL, label_class = NULL, input_class = NULL,
+                            label_after_input = FALSE) {
 
   input_class <- paste("form-control", input_class)
   container_class <- paste("twTextInput form-group", container_class)
@@ -62,16 +66,19 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
   if (!is.null(width)) st <- paste0("width:", width, ";")
   if (!is.null(height)) st <- paste0(st, paste0("height:", height, ";"))
 
+  html_label <- shiny::tags$label(
+    class = label_class,
+    id = paste0(inputId, "-label"),
+    "for" = inputId,
+    label
+  )
+
   shiny::div(
     class = container_class,
     # NOTE, no height here! only in textarea
     style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
-    shiny::tags$label(
-      class = label_class,
-      id = paste0(inputId, "-label"),
-      "for" = inputId,
-      label
-    ),
+
+    if (!label_after_input) html_label,
     shiny::tags$textarea(
       id = inputId,
       class = input_class,
@@ -80,6 +87,7 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
       rows = rows,
       cols = cols,
       value
-    )
+    ),
+    if (label_after_input) html_label
   )
 }

@@ -15,7 +15,8 @@ twNumericInput(
   disabled = FALSE,
   container_class = NULL,
   label_class = NULL,
-  input_class = NULL
+  input_class = NULL,
+  label_after_input = FALSE
 )
 }
 \arguments{
@@ -41,6 +42,10 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 \item{label_class}{additional classes to be applied to the label}
 
 \item{input_class}{additional classes to be applied to the input element}
+
+\item{label_after_input}{TRUE/FALSE if the label should be put after the
+input box. Default is FALSE. Useful for special cases (floating labels),
+c.f. 04-shiny-inputs example app.}
 
 \item{type}{the type for the input, eg "text" (default), "password", "email",
 "month", "url", ... see also \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types]}{MDN Input Types}}

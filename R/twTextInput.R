@@ -6,6 +6,9 @@
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
+#' @param label_after_input TRUE/FALSE if the label should be put after the
+#' input box. Default is FALSE. Useful for special cases (floating labels),
+#' c.f. 04-shiny-inputs example app.
 #'
 #' @seealso [shiny::textInput()]
 #'
@@ -59,29 +62,35 @@
 #' }
 twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL, width = NULL,
                         type = "text",
-                        container_class = NULL, label_class = NULL, input_class = NULL) {
-    input_class <- paste("block form-control", input_class)
-    container_class <- paste("block twTextInput form-group", container_class)
-    label_class <- paste("control-label", label_class)
+                        container_class = NULL, label_class = NULL, input_class = NULL,
+                        label_after_input = FALSE) {
+  input_class <- paste("block form-control", input_class)
+  container_class <- paste("block twTextInput form-group", container_class)
+  label_class <- paste("control-label", label_class)
 
-    label_tag <- NULL
+  label_tag <- NULL
 
-    if (!is.null(label))
-        label_tag <- shiny::tags$label(class = label_class,
-        							   id = paste0(inputId, "-label"),
-                                       `for` = inputId, label)
-
-    shiny::tagList(
-        shiny::tags$div(
-            class = container_class,
-            style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
-            label_tag,
-            shiny::tags$input(
-                id = inputId,
-                class = input_class, type = type,
-                value = value,
-                placeholder = placeholder
-            )
-        )
+  if (!is.null(label))
+    label_tag <- shiny::tags$label(
+      class = label_class,
+      id = paste0(inputId, "-label"),
+      `for` = inputId,
+      label
     )
+
+  shiny::tagList(
+    shiny::tags$div(
+      class = container_class,
+      style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
+      if (!label_after_input) label_tag,
+      shiny::tags$input(
+        id = inputId,
+        type = type,
+        value = value,
+        placeholder = placeholder,
+        class = input_class
+      ),
+      if (label_after_input) label_tag,
+    )
+  )
 }
