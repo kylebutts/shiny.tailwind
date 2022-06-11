@@ -46,7 +46,7 @@ twCheckboxInput <- function(inputId, label, value = FALSE, width = NULL,
 
   res <- shiny::div(
     class = container_class,
-    style = if (!is.null(width)) paste0("width:", width) else NULL,
+    style = if (!is.null(width)) paste0("width: ", width) else NULL,
     shiny::tags$input(
       type = "checkbox",
       id = inputId,

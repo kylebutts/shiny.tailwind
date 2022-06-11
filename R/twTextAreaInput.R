@@ -1,0 +1,85 @@
+#' Wrapper around [`shiny::textAreaInput()`] but allowing for more classes
+
+#' @inheritParams shiny::textAreaInput
+#' @param type the type for the input, eg "text" (default), "password", "email",
+#' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
+#' @param container_class additional classes to be applied to the container
+#' @param label_class additional classes to be applied to the label
+#' @param input_class additional classes to be applied to the input element
+#'
+#' @seealso [shiny::textAreaInput()]
+#'
+#' @export
+#' @examples
+#' shiny::textAreaInput("id", "Label", value = "The value", width = "200px",
+#'                      placeholder = "Placeholder")
+#' twTextAreaInput("id", "Label", value = "The value", width = "200px", height = "200px",
+#'                 placeholder = "Placeholder",
+#'                 container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+#'
+#' if (interactive()) {
+#' library(shiny)
+#' # basic example
+#' shinyApp(
+#'     ui = fluidPage(
+#'         use_tailwind(),
+#'         twTextAreaInput(
+#'           "text", "A Text", placeholder = "Here goes a placeholder",
+#'           width = "400px", height = "400px",
+#'           # Apply tailwind classes
+#'           container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'           label_class = "font-serif text-gray-600",
+#'           input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+#'         ),
+#'         verbatimTextOutput("value")
+#'     ),
+#'     server = function(input, output) {
+#'         output$value <- renderText(input$text)
+#'     }
+#' )
+#' }
+twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, width = NULL, height = NULL,
+                            rows = NULL, cols = NULL, resize = NULL,
+                            container_class = NULL, label_class = NULL, input_class = NULL) {
+
+  input_class <- paste("form-control", input_class)
+  container_class <- paste("twTextInput form-group", container_class)
+  label_class <- paste("control-label", label_class)
+
+  if (is.null(resize)) resize <- "both"
+  allowed_resize <- c("both", "none", "vertical", "horizontal")
+  if (!resize %in% allowed_resize)
+    stop("'resize' should be one of '", paste(allowed_resize, collapse = "', '"), "'")
+
+  label_tag <- NULL
+
+  if (!is.null(label))
+    label_tag <- shiny::tags$label(class = label_class,
+                                   id = paste0(inputId, "-label"),
+                                   `for` = inputId, label)
+
+  st <- paste0("resize: ", resize, ";")
+  if (!is.null(width)) st <- paste0("width:", width, ";")
+  if (!is.null(height)) st <- paste0(st, paste0("height:", height, ";"))
+
+  shiny::div(
+    class = container_class,
+    # NOTE, no height here! only in textarea
+    style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
+    shiny::tags$label(
+      class = label_class,
+      id = paste0(inputId, "-label"),
+      "for" = inputId,
+      label
+    ),
+    shiny::tags$textarea(
+      id = inputId,
+      class = input_class,
+      placeholder = placeholder,
+      style = st,
+      rows = rows,
+      cols = cols,
+      value
+    )
+  )
+}
