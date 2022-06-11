@@ -29,7 +29,7 @@
 #'           mtcars,
 #'           multiple = TRUE,
 #'           # Apply tailwind classes
-#'           container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-40",
+#'           container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-64",
 #'           label_class = "font-serif",
 #'           select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
 #'         ),

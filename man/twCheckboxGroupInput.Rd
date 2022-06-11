@@ -16,8 +16,7 @@ twCheckboxGroupInput(
   input_class = NULL,
   label_class = NULL,
   inner_container_class = NULL,
-  disabled = FALSE,
-  center = FALSE
+  disabled = FALSE
 )
 }
 \arguments{
@@ -50,9 +49,6 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 for each option}
 
 \item{disabled}{if the user should not be able to interact with the field}
-
-\item{center}{if a margin of 0px !important should be applied, effectively
-removing bootstrap styling (if applied) to center the checkbox easier}
 }
 \description{
 Wrapper around \code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()}} but allowing for more classes
@@ -74,13 +70,11 @@ shinyApp(
         use_tailwind(),
         twCheckboxGroupInput(
           "chks", "Check all that apply:",
-          choices = c("I want this" = "a", "I want that" = "b", "None" = "c"),
+          choices = c("I want this" = "a", "I want that" = "b", "None (disabled)" = "c"),
           disabled = c(FALSE, FALSE, TRUE),
           container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-          inner_container_class = "bg-red-500",
           label_class = "font-serif text-gray-600",
-          input_class = "text-pink-500 focus:ring-pink-500",
-          center = TRUE
+          input_class = "rounded rounded-full text-pink-500 border-pink-200 focus:ring-pink-500",
         ),
         verbatimTextOutput("out")
     ),

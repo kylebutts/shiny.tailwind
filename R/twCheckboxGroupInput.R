@@ -8,8 +8,6 @@
 #' @param inner_container_class additional classes to be applied to the container
 #' for each option
 #' @param disabled if the user should not be able to interact with the field
-#' @param center if a margin of 0px !important should be applied, effectively
-#'  removing bootstrap styling (if applied) to center the checkbox easier
 #' @seealso [shiny::checkboxGroupInput()]
 #'
 #' @export
@@ -30,13 +28,11 @@
 #'         use_tailwind(),
 #'         twCheckboxGroupInput(
 #'           "chks", "Check all that apply:",
-#'           choices = c("I want this" = "a", "I want that" = "b", "None" = "c"),
+#'           choices = c("I want this" = "a", "I want that" = "b", "None (disabled)" = "c"),
 #'           disabled = c(FALSE, FALSE, TRUE),
 #'           container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-#'           inner_container_class = "bg-red-500",
 #'           label_class = "font-serif text-gray-600",
-#'           input_class = "text-pink-500 focus:ring-pink-500",
-#'           center = TRUE
+#'           input_class = "rounded rounded-full text-pink-500 border-pink-200 focus:ring-pink-500",
 #'         ),
 #'         verbatimTextOutput("out")
 #'     ),
@@ -49,8 +45,7 @@ twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL
                                  inline = FALSE, width = NULL,
                                  container_class = NULL, main_label_class = NULL,
                                  input_class = NULL, label_class = NULL,
-                                 inner_container_class = NULL, disabled = FALSE,
-                                 center = FALSE) {
+                                 inner_container_class = NULL, disabled = FALSE) {
 
   container_class <- paste("form-group shiny-input-checkboxgroup shiny-input-container",
                            if (inline) "shiny-input-container-inline",
@@ -102,7 +97,6 @@ twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL
               type = "checkbox",
               name = inputId,
               value = choices[[i]],
-              style = if (center) "margin: 0px !important;" else NULL,
               checked = if (choices[[i]] %in% selected) "checked" else NULL,
               disabled = if (disabled[[i]]) "" else NULL
             ),
