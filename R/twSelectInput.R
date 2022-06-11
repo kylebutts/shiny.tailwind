@@ -54,6 +54,8 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
   label_class <- paste("control-label", label_class)
   select_class <- paste("block form-control", select_class)
 
+  width <- shiny::validateCssUnit(width)
+
   if (is.null(names(choices))) names(choices) <- choices
   nn <- names(choices)
   if (is.null(selected)) selected <- nn[[1]]

@@ -44,6 +44,8 @@ twCheckboxInput <- function(inputId, label, value = FALSE, width = NULL,
   input_class <- paste("form-check-input", input_class)
   label_class <- paste("form-check-label", label_class)
 
+  width <- shiny::validateCssUnit(width)
+
   res <- shiny::div(
     class = container_class,
     style = if (!is.null(width)) paste0("width: ", width) else NULL,

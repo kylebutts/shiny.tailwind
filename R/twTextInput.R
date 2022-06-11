@@ -68,6 +68,8 @@ twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL,
   container_class <- paste("block twTextInput form-group", container_class)
   label_class <- paste("control-label", label_class)
 
+  width <- shiny::validateCssUnit(width)
+
   label_tag <- NULL
 
   if (!is.null(label))

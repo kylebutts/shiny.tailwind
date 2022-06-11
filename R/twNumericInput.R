@@ -49,6 +49,8 @@ twNumericInput <- function(inputId, label, value,
   input_class <- paste("form-control", input_class)
   label_class <- paste("form-label", label_class)
 
+  width <- shiny::validateCssUnit(width)
+
   html_label <- shiny::tags$label(
     class = label_class, "for" = inputId,
     label

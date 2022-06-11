@@ -49,6 +49,7 @@ twVarSelectInput <- function(inputId, label, data, selected = NULL,
 
   # see the return value of ?varSelectInput
   select_class <- paste("symbol", select_class)
+  width <- shiny::validateCssUnit(width)
 
   ch <- names(data)
   if (is.null(ch)) ch <- colnames(data)

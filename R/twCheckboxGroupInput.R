@@ -55,6 +55,8 @@ twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL
   main_label_class <- paste("control-label", main_label_class)
   inner_container_class <- paste("checkbox", inner_container_class)
 
+  width <- shiny::validateCssUnit(width)
+
   if (length(disabled) == 1) disabled <- rep(disabled, length(choices))
   if (length(input_class) == 1) input_class <- rep(input_class, length(choices))
   if (length(label_class) == 1) label_class <- rep(label_class, length(choices))
@@ -77,9 +79,9 @@ twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL
 
   shiny::div(
     id = inputId,
-    class = container_class,
     role = "group",
     "aria-labelledby" = label_id,
+    class = container_class,
     shiny::tags$label(
       class = main_label_class,
       id = label_id,

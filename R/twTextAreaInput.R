@@ -50,6 +50,9 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
   container_class <- paste("twTextInput form-group", container_class)
   label_class <- paste("control-label", label_class)
 
+  width <- shiny::validateCssUnit(width)
+  height <- shiny::validateCssUnit(height)
+
   if (is.null(resize)) resize <- "both"
   allowed_resize <- c("both", "none", "vertical", "horizontal")
   if (!resize %in% allowed_resize)
