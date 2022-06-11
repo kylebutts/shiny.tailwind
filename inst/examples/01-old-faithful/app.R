@@ -1,3 +1,13 @@
+################################################################################
+#' This simple app shows the basic usage of the tailwindcss.
+#'
+#' The app recreates the old-faithful app use in the basic shiny tutorials but
+#' adds styling using tailwindcss.
+#'
+#' The meaning of the different classes can be found in the official tailwindcss
+#' documentation: https://tailwindcss.com/docs/
+################################################################################
+
 library(shiny)
 
 ui <- div(
@@ -30,7 +40,7 @@ ui <- div(
     p("Let's see a distribution of the duration of eruptions."),
 
     div(
-      class = "not-prose italic border-2 flex flex-col place-items-center gap-y-4 py-4 px-4",
+      class = "not-prose italic border-2 flex flex-col place-items-center gap-y-4 py-4 px-4 rounded shadow-xl",
       sliderInput("bins", "Number of Bins:",
         min = 1, max = 10, value = 5
       ),

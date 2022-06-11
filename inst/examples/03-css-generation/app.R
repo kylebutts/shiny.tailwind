@@ -1,4 +1,4 @@
-###################################################
+################################################################################
 #' This example app shows how the TailwindCSS CLI can be used
 #'
 #' The basic idea of the CLI is that the CSS classes are not fetched live from a
@@ -7,12 +7,12 @@
 #' and compiles them to a local file, thus removing the online dependency.
 #'
 #' This requires the CLI (~35MB) to be installed locally, see also
-#' ?install_tailwindcss_cli
+#' ?install_tailwindcss_cli. Note this needs to be done only once
 #'
 #' See also: ?compile_tailwindcss, ?install_tailwindcss_cli and
 #' https://tailwindcss.com/blog/standalone-cli
 #'
-###################################################
+################################################################################
 
 library(shiny)
 library(shiny.tailwind)

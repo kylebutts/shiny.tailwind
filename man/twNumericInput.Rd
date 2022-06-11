@@ -12,6 +12,7 @@ twNumericInput(
   max = NA,
   step = NA,
   width = NULL,
+  placeholder = "",
   disabled = FALSE,
   container_class = NULL,
   label_class = NULL,
