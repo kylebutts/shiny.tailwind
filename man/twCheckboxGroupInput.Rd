@@ -9,6 +9,7 @@ twCheckboxGroupInput(
   label,
   choices = NULL,
   selected = NULL,
+  inline = FALSE,
   width = NULL,
   container_class = NULL,
   main_label_class = NULL,
@@ -31,6 +32,8 @@ must not be provided, and vice-versa. The values should be strings; other
 types (such as logicals and numbers) will be coerced to strings.}
 
 \item{selected}{The values that should be initially selected, if any.}
+
+\item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally)}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}

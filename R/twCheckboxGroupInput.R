@@ -45,13 +45,16 @@
 #'     }
 #' )
 #' }
-twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL, width = NULL,
+twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL,
+                                 inline = FALSE, width = NULL,
                                  container_class = NULL, main_label_class = NULL,
                                  input_class = NULL, label_class = NULL,
                                  inner_container_class = NULL, disabled = FALSE,
                                  center = FALSE) {
 
-  container_class <- paste("form-group shiny-input-checkboxgroup shiny-input-container", container_class)
+  container_class <- paste("form-group shiny-input-checkboxgroup shiny-input-container",
+                           if (inline) "shiny-input-container-inline",
+                           container_class)
   input_class <- paste("form-check-input", input_class)
   label_class <- paste("form-check-label", label_class)
   main_label_class <- paste("control-label", main_label_class)
@@ -89,7 +92,7 @@ twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL
       label
     ),
     shiny::div(
-      class = "shiny-options-group",
+      class = paste("shiny-options-group", if (inline) "flex flex-wrap"),
       lapply(seq_along(choices), function(i) {
         shiny::div(
           class = inner_container_class[[i]],
