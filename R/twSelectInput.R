@@ -1,7 +1,5 @@
 #' Wrapper around [`shiny::selectInput()`] but allowing for more classes
 #'
-#' Note selectize is turned off (for now)
-#'
 #' @inheritParams shiny::selectInput
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label

@@ -6,10 +6,13 @@
 \usage{
 twSelectInput(
   inputId,
-  label = NULL,
+  label,
   choices,
   selected = NULL,
   multiple = FALSE,
+  selectize = TRUE,
+  width = NULL,
+  size = NULL,
   container_class = NULL,
   label_class = NULL,
   select_class = NULL
@@ -33,6 +36,16 @@ single-select lists and no values for multiple select lists.}
 
 \item{multiple}{Is selection of multiple items allowed?}
 
+\item{selectize}{Whether to use \pkg{selectize.js} or not.}
+
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+
+\item{size}{Number of items to show in the selection box; a larger number
+will result in a taller box. Not compatible with \code{selectize=TRUE}.
+Normally, when \code{multiple=FALSE}, a select input will be a drop-down list,
+but when \code{size} is set, it will be a box instead.}
+
 \item{container_class}{additional classes to be applied to the container}
 
 \item{label_class}{additional classes to be applied to the label}
@@ -40,17 +53,17 @@ single-select lists and no values for multiple select lists.}
 \item{select_class}{additional classes to be applied to the select elements}
 }
 \description{
-Note selectize is turned off (for now)
+Wrapper around \code{\link[shiny:selectInput]{shiny::selectInput()}} but allowing for more classes
 }
 \examples{
-twSelectInput(
-  "variable", "Variable:",
-  c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
-  # Apply tailwind classes
-  container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
-  label_class = "font-serif",
-  select_class = "drop-shadow-lg font-mono"
-)
+shiny::selectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
+                   selected = c("a", "b"), width = "200px",
+                   multiple = TRUE)
+twSelectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
+              selected = c("a", "b"), width = "200px",
+              multiple = TRUE, selectize = TRUE,
+              container_class = "CONTAINER", label_class = "LABEL",
+              select_class = "SELECT")
 
 if (interactive()) {
 library(shiny)
@@ -59,12 +72,13 @@ shinyApp(
     ui = fluidPage(
         use_tailwind(),
         twSelectInput(
-          "variable", "Variable:",
+          "variable", "Variable to select:",
           c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+          multiple = TRUE,
           # Apply tailwind classes
-          container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
+          container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-72",
           label_class = "font-serif",
-          select_class = "drop-shadow-lg font-mono"
+          select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
         ),
         tableOutput("data")
     ),
