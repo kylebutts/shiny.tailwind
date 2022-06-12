@@ -92,6 +92,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
 # internal helper function to read utf8
 read_utf8_ <- function(file) {
   r <- readLines(file, encoding = "UTF-8", warn = FALSE)
-  if (!any(validUTF8(r))) stop(sprintf("The file %s is not encoded in UTF 8.", file))
+  if (!any(validUTF8(r)))
+    stop(sprintf("The file %s is not encoded in UTF 8.", file))
   r
 }
