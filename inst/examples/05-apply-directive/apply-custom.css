@@ -25,3 +25,9 @@
 .irs-bar {
   @apply bg-teal-500 border-y-2 border-teal-500 !important;
 }
+
+
+/* override the colors of the selectize inputs*/
+.selectize-control.multi .selectize-input > div {
+  @apply bg-teal-500;
+}
