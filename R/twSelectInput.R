@@ -61,7 +61,7 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
   if (is.null(selected)) selected <- nn[[1]]
 
   label_id <- paste0(inputId, "-label")
-  shiny::div(
+  res <- shiny::div(
     class = container_class,
     style = if (!is.null(width)) paste0("width: ", width, ";") else NULL,
     size = if (!is.null(size)) size else NULL,
@@ -88,4 +88,11 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
                                         '{"plugins":["selectize-plugin-a11y"]}')
     )
   )
+
+  if (selectize)
+    attr(res, "html_dependencies") <- attr(shiny::selectInput("a", "a", "a",
+                                                              selectize = TRUE),
+                                           "html_dependencies")
+  res
 }
+

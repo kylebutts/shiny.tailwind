@@ -57,9 +57,9 @@ twVarSelectInput <- function(inputId, label, data, selected = NULL,
     stop("Could not determine the column names of 'data'. Is it a named data.frame/matrix?")
 
   twSelectInput(
-    inputId = inputId, label = label, choices = names(data), selected = selected,
-    multiple = multiple, selectize = selectize, width = width,
-    container_class = container_class, label_class = label_class,
-    select_class = select_class
+    inputId = inputId, label = label, choices = names(data),
+    selected = selected, multiple = multiple, selectize = selectize,
+    width = width, container_class = container_class,
+    label_class = label_class, select_class = select_class
   )
 }
