@@ -140,6 +140,7 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
         "Could not find CLI tailwindcss.",
         "Please follow install instructions and put it in your PATH or supply the path to this function",
         "Download: https://github.com/tailwindlabs/tailwindcss/releases",
+        attr(r, "condition"),
         sep = "\n"
       ))
     }
@@ -232,8 +233,10 @@ compile_tailwindcss <- function(infile, outfile,
   )
   if (verbose) cat(paste0("Runnding tailwindcss CLI command:\n  ", cmd))
   a <- try(system(cmd, intern = TRUE), silent = TRUE)
-  if (inherits(a, "try-error"))
+  if (inherits(a, "try-error")) {
+    cat(gsub("\\\\r\\\\n", "\n", a))
     stop("Could not execute tailwindcss CLI with error\n", a)
+  }
 
   return(invisible(outfile))
 }
