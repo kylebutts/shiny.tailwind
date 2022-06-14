@@ -58,8 +58,6 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
   if (!resize %in% allowed_resize)
     stop("'resize' should be one of '", paste(allowed_resize, collapse = "', '"), "'")
 
-  label_tag <- NULL
-
   if (!is.null(label))
     label_tag <- shiny::tags$label(class = label_class,
                                    id = paste0(inputId, "-label"),

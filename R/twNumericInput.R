@@ -1,5 +1,5 @@
 #' Wrapper around [`shiny::numericInput()`] but allowing for more classes
-
+#'
 #' @inheritParams shiny::numericInput
 #' @param type the type for the input, eg "text" (default), "password", "email",
 #' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
