@@ -74,6 +74,5 @@ twNumericInput <- function(inputId, label, value,
     if (label_after_input) html_label
   )
 
-  return(res)
-
+  res
 }

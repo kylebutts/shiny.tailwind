@@ -40,8 +40,11 @@ ui <- div(
                            ),
       ),
       div(class = "rounded-box flex-initial mx-4",
-          sliderInput("bins", "Number of Bins:",
-                      min = 1, max = 10, value = 5)
+          twSliderInput("bins", "Number of Bins:",
+                        min = 1, max = 10, value = 5,
+                        container_class = "border border-gray",
+                        label_class = "font-mono",
+                        input_class = "drop-shadow")
       ),
       div(class = "rounded-box flex-initial mx-4",
           twTextInput("title", "Title", value = "Histogram of Cars",

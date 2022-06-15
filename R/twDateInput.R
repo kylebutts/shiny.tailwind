@@ -80,5 +80,4 @@ twDateInput <- function(inputId,
   }
 
   res
-
 }
