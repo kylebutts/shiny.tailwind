@@ -1,0 +1,3 @@
+.twTab-active {
+  @apply bg-indigo-600;
+}

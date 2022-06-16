@@ -1,0 +1,62 @@
+library(shiny)
+library(shiny.tailwind)
+
+fancy_title <- function(txt)
+  shiny::div(
+    class = "w-full text-center py-12",
+    shiny::h1(
+      class = "font-extrabold text-8xl text-fuchsia-600",
+      txt
+    )
+  )
+
+ui <- div(
+  class = "overflow-hidden",
+  # custom.css overrides the .twTab-active CSS style
+  use_tailwind(css = "inst/examples/06-sidebar-dashboard/custom.css"),
+
+  # Top Bar
+  div(
+    class = "border-b px-5 py-1 h-16 flex",
+    h1("Example Dashboard Layout",
+       class = "my-auto font-sans font-bold tracking-wider")
+  ),
+  # Rest of App below
+  div(
+    class = "flex h-screen",
+    # Left Side Navigation
+    twTabNav(
+      div(icon("database"), span("Database", class = "pl-2")),
+      div(icon("server"), span("Server", class = "pl-2")),
+      container_class = "h-full flex-none pt-5 bg-indigo-900",
+      tab_class = "py-2 px-6 w-full text-white hover:bg-indigo-700"
+    ),
+
+    # Body of the App
+    twTabContent(
+      div(
+        fancy_title("First Tab"),
+        plotOutput("plot1")
+      ),
+      div(
+        fancy_title("Second Tab"),
+        plotOutput("plot2")
+      ),
+      container_class = "flex-1 bg-indigo-50"
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot1 <- renderPlot({
+    print("Plot 1")
+    plot(1:10, rnorm(10))
+  })
+  output$plot2 <- renderPlot({
+    print("Plot 2")
+    plot(1:100, rnorm(100))
+  })
+}
+
+shinyApp(ui, server)
+
