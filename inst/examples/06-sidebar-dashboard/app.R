@@ -1,3 +1,18 @@
+################################################################################
+#' This example app shows how to construct a sidebar-dashboard using tailwindcss
+#'
+#' Note that contrary to shiny::tabsetPanel() and shinydashboard::dashboardPage()
+#' shiny.tailwind does not have a combined tabset-nav and tabset-content function
+#' instead the functions are separated to allow more flexibility.
+#' Ie you have the twTabNav() function to create the navigation part of the tabs
+#' and twTabContent() to create the content of the tabs.
+#' This allows you to create tabs and nav elements independently from each other.
+#'
+#' Note that internally, the nav element includes a small JS script to allow
+#' shiny to detect which tab is active and applies the twTab-active class for
+#' styling purposes.
+################################################################################
+
 library(shiny)
 library(shiny.tailwind)
 
@@ -13,7 +28,7 @@ fancy_title <- function(txt)
 ui <- div(
   class = "overflow-hidden",
   # custom.css overrides the .twTab-active CSS style
-  use_tailwind(css = "inst/examples/06-sidebar-dashboard/custom.css"),
+  use_tailwind(css = "custom.css"),
 
   # Top Bar
   div(
