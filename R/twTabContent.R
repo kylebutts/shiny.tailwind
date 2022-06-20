@@ -98,7 +98,7 @@
 twTabContent <- function(..., ids = NULL, container_class = NULL, content_class = NULL) {
   dots <- list(...)
 
-  if (is.null(ids)) ids <- paste0("twTab-", seq_along(dots), "-content")
+  if (is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
 
   if (length(dots) != length(ids))
     stop("ids has to have the same length as the provided tab navigation elements")
@@ -108,10 +108,15 @@ twTabContent <- function(..., ids = NULL, container_class = NULL, content_class 
     class = container_class,
 
     lapply(seq_along(dots), function(i) {
+      id <- dots[[i]]$attribs$id
+      if (is.null(id)) id <- ids[[i]]
+      idc <- strsplit(id, "-")[[1]]
+      if (idc[length(idc)] != "content") id <- paste0(id, "-content")
+
       div(
         class = paste("twTabContent", if (i == 1) "twTabContent-active", content_class),
         style = if (i == 1) "display: block;" else "display: none;",
-        id = ids[[i]],
+        id = id,
         dots[[i]]
       )
     })
