@@ -41,9 +41,10 @@ only consist of the creation of the JSON object \code{tailwind.config = {}}.
 The function will place it in the appropriate script tag.
 }
 \examples{
-if (interactive()) {
-  library(shiny)
-  list.files(system.file("examples", package = "shiny.tailwind"))
-  runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
-}
+library(shiny)
+example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
+                           full.names = TRUE)
+basename(example_apps)
+
+if (interactive()) runApp(example_apps[1])
 }

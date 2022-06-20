@@ -17,31 +17,32 @@
 #'                  container_class = "CONTAINER", label_class = "LABEL",
 #'                  select_class = "SELECT")
 #'
-#' if (interactive()) {
+#' # basic full shiny example
 #' library(shiny)
 #' # requires dplyr for dplyr::select
-#' # basic example
-#' shinyApp(
-#'   ui = fluidPage(
-#'     use_tailwind(),
-#'     twVarSelectInput(
-#'       "variable", "Variable to select:",
-#'       mtcars,
-#'       multiple = TRUE,
-#'       # Apply tailwind classes
-#'       container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-64",
-#'       label_class = "font-serif",
-#'       select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
-#'     ),
-#'     tableOutput("data")
+#'
+#' ui <- fluidPage(
+#'   use_tailwind(),
+#'   twVarSelectInput(
+#'     "variable", "Variable to select:",
+#'     mtcars,
+#'     multiple = TRUE,
+#'     # Apply tailwind classes
+#'     container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-64",
+#'     label_class = "font-serif",
+#'     select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
 #'   ),
-#'   server = function(input, output) {
-#'     output$data <- renderTable({
-#'       dplyr::select(mtcars, !!!input$variable)
-#'     }, rownames = TRUE)
-#'   }
+#'   tableOutput("data")
 #' )
+#'
+#' server <- function(input, output) {
+#'   output$data <- renderTable({
+#'     dplyr::select(mtcars, !!!input$variable)
+#'   }, rownames = TRUE)
 #' }
+#'
+#' if (interactive() && requireNamespace("dplyr", quietly = TRUE))
+#'   shinyApp(ui_basic, server)
 twVarSelectInput <- function(inputId, label, data, selected = NULL,
                              multiple = FALSE, selectize = TRUE, width = NULL,
                              container_class = NULL, label_class = NULL,

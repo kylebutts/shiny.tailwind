@@ -48,26 +48,26 @@ twSelectizeInput("selectize", "A Selection", choice = c("A", "B"),
                  container_class = "CONTAINER", label_class = "LABEL",
                  input_class = "INPUT")
 
-if (interactive()) {
+# basic full shiny example
 library(shiny)
-# basic example
-shinyApp(
-  ui = fluidPage(
-    use_tailwind(),
-    twSelectizeInput(
-      "values", "A Selection", choice = c("A", "B"), multiple = TRUE,
-      # Apply tailwind classes
-      container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-      label_class = "font-mono text-gray-600",
-      input_class = "drop-shadow-lg text-gray-600 font-mono rounded-md border-amber-400"
-    ),
-    verbatimTextOutput("value")
+
+ui <- fluidPage(
+  use_tailwind(),
+  twSelectizeInput(
+    "values", "A Selection", choice = c("A", "B"), multiple = TRUE,
+    # Apply tailwind classes
+    container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+    label_class = "font-mono text-gray-600",
+    input_class = "drop-shadow-lg text-gray-600 font-mono rounded-md border-amber-400"
   ),
-  server = function(input, output) {
-    output$value <- renderText({ as.character(input$values) })
-  }
+  verbatimTextOutput("value")
 )
+
+server <- function(input, output) {
+  output$value <- renderText({ as.character(input$values) })
 }
+
+if (interactive()) shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:selectInput]{shiny::selectizeInput()}}

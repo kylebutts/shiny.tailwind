@@ -20,27 +20,27 @@
 #'                 placeholder = "Placeholder",
 #'                 container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 #'
-#' if (interactive()) {
+#' # basic full shiny example
 #' library(shiny)
-#' # basic example
-#' shinyApp(
-#'   ui = fluidPage(
-#'     use_tailwind(),
-#'     twTextAreaInput(
-#'       "text", "A Text", placeholder = "Here goes a placeholder",
-#'       width = "400px", height = "400px",
-#'       # Apply tailwind classes
-#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-#'       label_class = "font-serif text-gray-600",
-#'       input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
-#'     ),
-#'     verbatimTextOutput("value")
+#'
+#' ui <- fluidPage(
+#'   use_tailwind(),
+#'   twTextAreaInput(
+#'     "text", "A Text", placeholder = "Here goes a placeholder",
+#'     width = "400px", height = "400px",
+#'     # Apply tailwind classes
+#'     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'     label_class = "font-serif text-gray-600",
+#'     input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
 #'   ),
-#'   server = function(input, output) {
-#'     output$value <- renderText(input$text)
-#'   }
+#'   verbatimTextOutput("value")
 #' )
+#'
+#' server <- function(input, output) {
+#'   output$value <- renderText(input$text)
 #' }
+#'
+#' if (interactive()) shinyApp(ui_basic, server)
 twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, width = NULL, height = NULL,
                             rows = NULL, cols = NULL, resize = NULL,
                             container_class = NULL, label_class = NULL, input_class = NULL,
