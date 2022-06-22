@@ -20,10 +20,7 @@
 #'
 #' # basic full shiny example
 #' library(shiny)
-<<<<<<< HEAD
-#' # basic example
-#' shinyApp(
-#'   ui = fluidPage(
+#' ui <- fluidPage(
 #'     use_tailwind(),
 #'     twFileInput(
 #'       inputId = "file", label = "Upload", multiple = TRUE,
@@ -36,21 +33,6 @@
 #'       progress_class = "bg-red-800"
 #'     ),
 #'     verbatimTextOutput("data")
-=======
-#'
-#' ui <- fluidPage(
-#'   use_tailwind(),
-#'   twFileInput(
-#'     inputId = "file", label = "Upload", multiple = TRUE,
-#'     buttonLabel = "Upload", placeholder = "Nothing selected",
-#'     container_class = "shadow-md rounded-md bg-gray-50 m-2 p-2 w-96",
-#'     label_class = "font-serif text-red-800",
-#'     select_class = "font-mono font-bold text-red-800 rounded-r-lg",
-#'     button_class = "bg-red-800 border-red-800 hover:bg-red-700 hover:border-red-700 text-white hover:text-gray-50",
-#'     progress_class = "bg-red-800"
->>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
-#'   ),
-#'   verbatimTextOutput("data")
 #' )
 #'
 #' server <- function(input, output) {
@@ -59,7 +41,7 @@
 #'   })
 #' }
 #'
-#' if (interactive()) shinyApp(ui, server)
+#' if (interactive()) shiny::shinyApp(ui, server)
 twFileInput <- function(inputId, label, multiple = FALSE, accept = NULL,
                         width = NULL, buttonLabel = "Browse...",
                         placeholder = "No file selected",

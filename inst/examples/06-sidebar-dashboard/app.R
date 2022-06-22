@@ -27,12 +27,7 @@ fancy_title <- function(txt)
 
 ui <- div(
   class = "overflow-hidden",
-<<<<<<< HEAD
   use_tailwind(),
-=======
-  # custom.css overrides the .twTab-active CSS style
-  use_tailwind(css = "custom.css"),
->>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 
   # Top Bar
   div(

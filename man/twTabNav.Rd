@@ -71,13 +71,9 @@ server <- function(input, output, session) {
  })
 }
 
-<<<<<<< HEAD
 if (interactive()) {
 shiny::shinyApp(ui_basic, server)
 }
-=======
-if (interactive()) shinyApp(ui_basic, server)
->>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 
 #############################################################################
 # Styled App
@@ -100,7 +96,7 @@ ui_styled <- div(
       plotOutput("plot1")
     ),
     div(
-      h1("Second Tab", 
+      h1("Second Tab",
          class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
       plotOutput("plot2")
     ),
