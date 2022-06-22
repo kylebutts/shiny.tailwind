@@ -33,11 +33,12 @@
 #'
 #' @export
 #' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   list.files(system.file("examples", package = "shiny.tailwind"))
-#'   runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
-#' }
+#' library(shiny)
+#' example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
+#'                            full.names = TRUE)
+#' basename(example_apps)
+#'
+#' if (interactive()) runApp(example_apps[1])
 use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   # Check files exists
   if (!is.null(css) && any(!file.exists(css))) {

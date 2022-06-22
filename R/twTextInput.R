@@ -1,5 +1,5 @@
 #' Wrapper around [`shiny::textInput()`] but allowing for more classes
-
+#' 
 #' @inheritParams shiny::textInput
 #' @param type the type for the input, eg "text" (default), "password", "email",
 #' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
@@ -14,6 +14,7 @@
 #'
 #' @export
 #' @examples
+<<<<<<< HEAD
 #' shiny::textInput(
 #'   "id", "Label", value = "The value", width = "200px",
 #'   placeholder = "Placeholder"
@@ -24,9 +25,15 @@
 #'   container_class = "CONTAINER", label_class = "LABEL",
 #'   input_class = "INPUT"
 #' )
+=======
+#' shiny::textInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder")
+#' twTextInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder",
+#'           type = "email", container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 #'
-#' if (interactive()) {
+#' # basic full shiny example
 #' library(shiny)
+<<<<<<< HEAD
 #' # basic example
 #' shinyApp(
 #'   ui = fluidPage(
@@ -62,24 +69,60 @@
 #'         input_class = paste("drop-shadow-lg font-mono text-gray-600",
 #'         "rounded-md border-amber-400")
 #'       )
+=======
+#'
+#' ui <- fluidPage(
+#'   use_tailwind(),
+#'   div(
+#'     class = "flex flex-wrap",
+#'     twTextInput(
+#'       "text", "A Text", type = "text", placeholder = "Some Text",
+#'       # Apply tailwind classes
+#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'       label_class = "font-serif text-gray-600",
+#'       input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
 #'     ),
-#'     verbatimTextOutput("value")
+#'     twTextInput(
+#'       "email", "An Email", type = "email", placeholder = "me@example.com",
+#'       # Apply tailwind classes
+#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'       label_class = "font-serif text-gray-600",
+#'       input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
+#'     ),
+#'     twTextInput(
+#'       "pw", "A Password", type = "password", placeholder = "dont let it be password",
+#'       # Apply tailwind classes
+#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'       label_class = "font-serif text-gray-600",
+#'       input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+#'     )
 #'   ),
-#'   server = function(input, output) {
-#'     output$value <- renderText({
-#'       paste(capture.output(str(list(
-#'         text = input$text,
-#'         email = input$email,
-#'         pw = input$pw
-#'       ))), collapse = "\n")
-#'     })
-#'   }
+#'   verbatimTextOutput("value")
 #' )
+#'
+#' server <- function(input, output) {
+#'   output$value <- renderText({
+#'     paste(capture.output(str(list(
+#'       text = input$text,
+#'       email = input$email,
+#'       pw = input$pw
+#'     ))), collapse = "\n")
+#'   })
 #' }
+<<<<<<< HEAD
 twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL,
                         width = NULL, type = "text",
                         container_class = NULL, label_class = NULL,
                         input_class = NULL, label_after_input = FALSE) {
+=======
+#'
+#' if (interactive()) shinyApp(ui, server)
+twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL, width = NULL,
+                        type = "text",
+                        container_class = NULL, label_class = NULL, input_class = NULL,
+                        label_after_input = FALSE) {
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
   input_class <- paste("block form-control", input_class)
   container_class <- paste("block twTextInput form-group", container_class)
   label_class <- paste("control-label", label_class)

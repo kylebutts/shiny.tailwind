@@ -20,27 +20,27 @@
 #'                      label_class = c("LABEL 1", "LABEL 2"),
 #'                      input_class = "INPUT-ALL")
 #'
-#' if (interactive()) {
+#' # basic full shiny example
 #' library(shiny)
-#' # basic example
-#' shinyApp(
-#'   ui = fluidPage(
-#'     use_tailwind(),
-#'     twCheckboxGroupInput(
-#'       "chks", "Check all that apply:",
-#'       choices = c("I want this" = "a", "I want that" = "b", "None (disabled)" = "c"),
-#'       disabled = c(FALSE, FALSE, TRUE),
-#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-#'       label_class = "font-serif text-gray-600",
-#'       input_class = "rounded rounded-full text-pink-500 border-pink-200 focus:ring-pink-500",
-#'     ),
-#'     verbatimTextOutput("out")
+#'
+#' ui <- fluidPage(
+#'   use_tailwind(),
+#'   twCheckboxGroupInput(
+#'     "chks", "Check all that apply:",
+#'     choices = c("This" = "a", "That" = "b", "None (disabled)" = "c"),
+#'     disabled = c(FALSE, FALSE, TRUE),
+#'     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'     label_class = "font-serif text-gray-600",
+#'     input_class = "rounded rounded-full text-pink-500 border-pink-200 focus:ring-pink-500",
 #'   ),
-#'   server = function(input, output) {
-#'     output$out <- renderText({input$chks})
-#'   }
+#'   verbatimTextOutput("out")
 #' )
+#'
+#' server <- function(input, output) {
+#'   output$out <- renderText({input$chks})
 #' }
+#'
+#' if (interactive()) shinyApp(ui, server)
 twCheckboxGroupInput <- function(inputId, label, choices = NULL, selected = NULL,
                                  inline = FALSE, width = NULL,
                                  container_class = NULL, main_label_class = NULL,

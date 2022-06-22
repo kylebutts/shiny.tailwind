@@ -71,9 +71,13 @@ server <- function(input, output, session) {
  })
 }
 
+<<<<<<< HEAD
 if (interactive()) {
 shiny::shinyApp(ui_basic, server)
 }
+=======
+if (interactive()) shinyApp(ui_basic, server)
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 
 #############################################################################
 # Styled App
@@ -91,20 +95,20 @@ ui_styled <- div(
 
   twTabContent(
     div(
-      h1("First Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+      h1("First Tab",
+         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
       plotOutput("plot1")
     ),
     div(
-      h1("Second Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+      h1("Second Tab", 
+         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
       plotOutput("plot2")
     ),
     container_class = "flex-1 bg-indigo-50"
   )
 )
 
-if (interactive()) {
-shinyApp(ui_styled, server)
-}
+if (interactive()) shinyApp(ui_styled, server)
 }
 \seealso{
 \code{\link[=twTabContent]{twTabContent()}}

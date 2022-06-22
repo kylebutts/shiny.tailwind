@@ -45,26 +45,26 @@ shiny::checkboxInput("id", "label", value = FALSE)
 twCheckboxInput("id", "label", value = TRUE, width = "200px", disabled = TRUE,
                 container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 
-if (interactive()) {
+# basic full shiny example
 library(shiny)
-# basic example
-shinyApp(
-  ui = fluidPage(
-    use_tailwind(),
-    twCheckboxInput(
-      "chk", "Check me!", value = TRUE,
-      container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
-      label_class = "font-serif text-gray-600",
-      input_class = "text-pink-500 focus:ring-pink-500",
-      center = TRUE
-    ),
-    verbatimTextOutput("out")
+
+ui <- fluidPage(
+  use_tailwind(),
+  twCheckboxInput(
+    "chk", "Check me!", value = TRUE,
+    container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+    label_class = "font-serif text-gray-600",
+    input_class = "text-pink-500 focus:ring-pink-500",
+    center = TRUE
   ),
-  server = function(input, output) {
-    output$out <- renderText({input$chk})
-  }
+  verbatimTextOutput("out")
 )
+
+server <- function(input, output) {
+  output$out <- renderText({input$chk})
 }
+
+if (interactive()) shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}}

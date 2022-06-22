@@ -61,9 +61,13 @@
 #'  })
 #' }
 #'
+<<<<<<< HEAD
 #' if (interactive()) {
 #' shiny::shinyApp(ui_basic, server)
 #' }
+=======
+#' if (interactive()) shinyApp(ui_basic, server)
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 #'
 #' #############################################################################
 #' # Styled App
@@ -81,20 +85,20 @@
 #'
 #'   twTabContent(
 #'     div(
-#'       h1("First Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+#'       h1("First Tab",
+#'          class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
 #'       plotOutput("plot1")
 #'     ),
 #'     div(
-#'       h1("Second Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+#'       h1("Second Tab", 
+#'          class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
 #'       plotOutput("plot2")
 #'     ),
 #'     container_class = "flex-1 bg-indigo-50"
 #'   )
 #' )
 #'
-#' if (interactive()) {
-#' shinyApp(ui_styled, server)
-#' }
+#' if (interactive()) shinyApp(ui_styled, server)
 twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL) {
   dots <- list(...)
 

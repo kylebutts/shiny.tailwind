@@ -38,8 +38,14 @@ CSS class if their styling needs to be overriden (see also the example).
 }
 \examples{
 twTabContent(
+<<<<<<< HEAD
   shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
   shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
+=======
+  div(h1("First Tab"), plotOutput("plot1"), id = "firstTab"),
+  div(h1("Second Tab"), plotOutput("plot2"), id = "secondTab"),
+  container_class = "CONTAINER", content_class = "CONTENT"
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 )
 
 #############################################################################
@@ -72,9 +78,13 @@ server <- function(input, output, session) {
  })
 }
 
+<<<<<<< HEAD
 if (interactive()) {
 shiny::shinyApp(ui_basic, server)
 }
+=======
+if (interactive()) shinyApp(ui_basic, server)
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 
 #############################################################################
 # Styled App
@@ -90,6 +100,7 @@ twTabNav(
   tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
 ),
 
+<<<<<<< HEAD
 twTabContent(
   shiny::div(
     shiny::h1("First Tab",
@@ -100,6 +111,18 @@ twTabContent(
   shiny::div(
     shiny::h1("Second Tab",
     class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+=======
+  twTabContent(
+    div(
+      h1("First Tab",
+         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+      plotOutput("plot1")
+    ),
+    div(
+      h1("Second Tab",
+         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
+      plotOutput("plot2")
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
     ),
     shiny::plotOutput("plot2")
   ),
@@ -107,9 +130,13 @@ twTabContent(
 )
 )
 
+<<<<<<< HEAD
 if (interactive()) {
   shiny::shinyApp(ui_styled, server)
 }
+=======
+if (interactive()) shinyApp(ui_styled, server)
+>>>>>>> 98e938d9f77b30625679f4b7af4d275a7b618dc7
 }
 \seealso{
 \code{\link[=twTabNav]{twTabNav()}}
