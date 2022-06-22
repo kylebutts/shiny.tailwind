@@ -64,8 +64,8 @@ Wrapper around \code{\link[shiny:fileInput]{shiny::fileInput()}} but allowing fo
 \examples{
 shiny::fileInput("id", "label", multiple = TRUE, accept = c(".csv", ".rds"),
                  width = "200px", buttonLabel = "Upload", placeholder = "Here")
-twfileInput("id", "label", multiple = TRUE, accept = c(".csv", ".rds"),
-            width = "200px", buttonLabel = "Upload", placeholder = "Here"
+twFileInput("id", "label", multiple = TRUE, accept = c(".csv", ".rds"),
+            width = "200px", buttonLabel = "Upload", placeholder = "Here",
             container_class = "CONTAINER", label_class = "LABEL",
             select_class = "SELECT")
 
@@ -81,7 +81,8 @@ shinyApp(
       container_class = "shadow-md rounded-md bg-gray-50 m-2 p-2 w-96",
       label_class = "font-serif text-red-800",
       select_class = "font-mono font-bold text-red-800 rounded-r-lg",
-      button_class = "bg-red-800 border-red-800 hover:bg-red-700 hover:border-red-700 text-white hover:text-gray-50",
+      button_class = paste("bg-red-800 border-red-800 hover:bg-red-700",
+      "hover:border-red-700 text-white hover:text-gray-50"),
       progress_class = "bg-red-800"
     ),
     verbatimTextOutput("data")

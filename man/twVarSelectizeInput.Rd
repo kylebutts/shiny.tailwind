@@ -18,6 +18,13 @@ twVarSelectizeInput(
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
+\item{...}{Arguments passed to \code{varSelectInput()}.}
+
+\item{options}{A list of options. See the documentation of \pkg{selectize.js}
+for possible options (character option values inside \code{\link[base:AsIs]{base::I()}} will
+be treated as literal JavaScript code; see \code{\link[shiny:renderDataTable]{renderDataTable()}}
+for details).}
+
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 

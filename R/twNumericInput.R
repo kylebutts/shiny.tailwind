@@ -1,8 +1,7 @@
 #' Wrapper around [`shiny::numericInput()`] but allowing for more classes
 #'
 #' @inheritParams shiny::numericInput
-#' @param type the type for the input, eg "text" (default), "password", "email",
-#' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
+#' @param placeholder Placeholder text for numeric input. Disappears after input
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
@@ -43,7 +42,8 @@ twNumericInput <- function(inputId, label, value,
                            min = NA, max = NA, step = NA, width = NULL,
                            placeholder = "",
                            disabled = FALSE, container_class = NULL,
-                           label_class = NULL, input_class = NULL, label_after_input = FALSE) {
+                           label_class = NULL, input_class = NULL,
+                           label_after_input = FALSE) {
 
   container_class <- paste("form-group", container_class)
   input_class <- paste("form-control", input_class)

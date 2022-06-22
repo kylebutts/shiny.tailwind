@@ -67,9 +67,9 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   }
   unlink(file)
   download_url <- paste0(url, "/download/", version, "/", file)
-  suppressWarnings(
-    a <- try(download.file(download_url, file), silent = TRUE)
-  )
+  suppressWarnings({
+    a <- try(utils::download.file(download_url, file), silent = TRUE)
+  })
 
   if (inherits(a, "try-error")) {
     stop(sprintf(

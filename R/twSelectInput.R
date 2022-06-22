@@ -43,7 +43,7 @@
 #' )
 #' }
 twSelectInput <- function(inputId, label, choices, selected = NULL,
-                          multiple = FALSE, selectize = TRUE, width = NULL, size = NULL,
+                          multiple = FALSE, selectize = FALSE, width = NULL, size = NULL,
                           container_class = NULL, label_class = NULL,
                           select_class = NULL) {
 

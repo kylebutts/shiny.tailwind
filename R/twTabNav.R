@@ -37,32 +37,32 @@
 #' library(shiny)
 #' # basic Tabs
 #'
-#' ui_basic <- div(
-#'   h1("Completely Unstyled Tabs..."),
+#' ui_basic <- shiny::div(
+#'   shiny::h1("Completely Unstyled Tabs..."),
 #'   twTabNav(
-#'     div("Tab 1 (click me)"),
-#'     div("Tab 2 (click me)")
+#'     shiny::div("Tab 1 (click me)"),
+#'     shiny::div("Tab 2 (click me)")
 #'   ),
 #'
 #'   twTabContent(
-#'     div(h1("First Tab"), plotOutput("plot1")),
-#'     div(h1("Second Tab"), plotOutput("plot2"))
+#'     shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
+#'     shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
 #'   )
 #' )
 #'
 #' server <- function(input, output, session) {
-#'   output$plot1 <- renderPlot({
+#'   output$plot1 <- shiny::renderPlot({
 #'     print("Plot 1")
 #'     plot(1:10, rnorm(10))
 #'   })
-#'   output$plot2 <- renderPlot({
+#'   output$plot2 <- shiny::renderPlot({
 #'     print("Plot 2")
 #'     plot(1:100, rnorm(100))
 #'  })
 #' }
 #'
 #' if (interactive()) {
-#' shinyApp(ui_basic, server)
+#' shiny::shinyApp(ui_basic, server)
 #' }
 #'
 #' #############################################################################
@@ -103,13 +103,13 @@ twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL) 
   if (length(dots) != length(ids))
     stop("ids has to have the same length as the provided tab navigation elements")
 
-  div(
+  shiny::div(
     class = container_class,
 
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
       if (is.null(id)) id <- ids[[i]]
-      div(
+      shiny::div(
         class = paste("twTab", if (i == 1) "twTab-active", tab_class),
         id = id,
         dots[[i]]

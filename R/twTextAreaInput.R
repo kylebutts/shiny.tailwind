@@ -1,8 +1,6 @@
 #' Wrapper around [`shiny::textAreaInput()`] but allowing for more classes
 
 #' @inheritParams shiny::textAreaInput
-#' @param type the type for the input, eg "text" (default), "password", "email",
-#' "month", "url", ... see also [MDN Input Types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types])
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element
@@ -16,9 +14,9 @@
 #' @examples
 #' shiny::textAreaInput("id", "Label", value = "The value", width = "200px",
 #'                      placeholder = "Placeholder")
-#' twTextAreaInput("id", "Label", value = "The value", width = "200px", height = "200px",
-#'                 placeholder = "Placeholder",
-#'                 container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+#' twTextAreaInput("id", "Label", value = "The value", width = "200px",
+#'  height = "200px", placeholder = "Placeholder",
+#'  container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 #'
 #' if (interactive()) {
 #' library(shiny)
@@ -43,7 +41,8 @@
 #' }
 twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, width = NULL, height = NULL,
                             rows = NULL, cols = NULL, resize = NULL,
-                            container_class = NULL, label_class = NULL, input_class = NULL,
+                            container_class = NULL, label_class = NULL,
+                            input_class = NULL,
                             label_after_input = FALSE) {
 
   input_class <- paste("form-control", input_class)

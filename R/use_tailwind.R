@@ -1,5 +1,7 @@
 #' TailwindCSS with Shiny
 #'
+#' @import htmltools
+#'
 #' @details
 #'   TailwindCSS is a utility-based design framework that makes designing simple.
 #'   See details in the README for this package for why this is so great.

@@ -48,9 +48,16 @@ c.f. 04-shiny-inputs example app.}
 Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes
 }
 \examples{
-shiny::textInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder")
-twTextInput("id", "Label", value = "The value", width = "200px", placeholder = "Placeholder",
-            type = "email", container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+shiny::textInput(
+  "id", "Label", value = "The value", width = "200px",
+  placeholder = "Placeholder"
+)
+twTextInput(
+  "id", "Label", value = "The value", width = "200px",
+  placeholder = "Placeholder", type = "email",
+  container_class = "CONTAINER", label_class = "LABEL",
+  input_class = "INPUT"
+)
 
 if (interactive()) {
 library(shiny)
@@ -63,23 +70,31 @@ shinyApp(
       twTextInput(
         "text", "A Text", type = "text", placeholder = "Some Text",
         # Apply tailwind classes
-        container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+        container_class = paste("w-48 m-4 p-2 border border-gray-200",
+          "rounded-md drop-shadow-md"),
         label_class = "font-serif text-gray-600",
-        input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+        input_class = paste("drop-shadow-lg font-mono text-gray-600",
+          "rounded-md border-amber-400")
       ),
       twTextInput(
-        "email", "An Email", type = "email", placeholder = "me@example.com",
+        "email", "An Email", type = "email",
+        placeholder = "me@example.com",
         # Apply tailwind classes
-        container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+        container_class = paste("w-48 m-4 p-2 border border-gray-200",
+        "rounded-md drop-shadow-md"),
         label_class = "font-serif text-gray-600",
-        input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+        input_class = paste("drop-shadow-lg font-mono text-gray-600",
+        "rounded-md border-amber-400")
       ),
       twTextInput(
-        "pw", "A Password", type = "password", placeholder = "dont let it be password",
+        "pw", "A Password", type = "password",
+        placeholder = "dont let it be password",
         # Apply tailwind classes
-        container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+        container_class = paste("w-48 m-4 p-2 border border-gray-200",
+        "rounded-md drop-shadow-md"),
         label_class = "font-serif text-gray-600",
-        input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+        input_class = paste("drop-shadow-lg font-mono text-gray-600",
+        "rounded-md border-amber-400")
       )
     ),
     verbatimTextOutput("value")

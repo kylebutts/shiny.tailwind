@@ -10,7 +10,7 @@ twSelectInput(
   choices,
   selected = NULL,
   multiple = FALSE,
-  selectize = TRUE,
+  selectize = FALSE,
   width = NULL,
   size = NULL,
   container_class = NULL,

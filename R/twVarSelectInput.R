@@ -19,7 +19,6 @@
 #'
 #' if (interactive()) {
 #' library(shiny)
-#' # requires dplyr for dplyr::select
 #' # basic example
 #' shinyApp(
 #'   ui = fluidPage(
@@ -37,7 +36,7 @@
 #'   ),
 #'   server = function(input, output) {
 #'     output$data <- renderTable({
-#'       dplyr::select(mtcars, !!!input$variable)
+#'       mtcars[[input$variable]]
 #'     }, rownames = TRUE)
 #'   }
 #' )

@@ -3,7 +3,7 @@
 #' Note that the colors for the selected elements can be customized.
 #' c.f. 05-apply-directive example app
 #'
-#' @inheritParams shiny::sliderInput
+#' @inheritParams shiny::varSelectizeInput
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
 #' @param input_class additional classes to be applied to the input element

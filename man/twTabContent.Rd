@@ -38,8 +38,8 @@ CSS class if their styling needs to be overriden (see also the example).
 }
 \examples{
 twTabContent(
-  div(h1("First Tab), plotOutput("plot1")),
-  div(h1("Second Tab), plotOutput("plot2")),
+  shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
+  shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
 )
 
 #############################################################################
@@ -48,63 +48,67 @@ twTabContent(
 library(shiny)
 # basic Tabs
 
-ui_basic <- div(
-  h1("Completely Unstyled Tabs..."),
+ui_basic <- shiny::div(
+  shiny::h1("Completely Unstyled Tabs..."),
   twTabNav(
-    div("Tab 1 (click me)"),
-    div("Tab 2 (click me)")
+    shiny::div("Tab 1 (click me)"),
+    shiny::div("Tab 2 (click me)")
   ),
 
   twTabContent(
-    div(h1("First Tab"), plotOutput("plot1")),
-    div(h1("Second Tab"), plotOutput("plot2"))
+    shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
+    shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
   )
 )
 
 server <- function(input, output, session) {
-  output$plot1 <- renderPlot({
+  output$plot1 <- shiny::renderPlot({
     print("Plot 1")
     plot(1:10, rnorm(10))
   })
-  output$plot2 <- renderPlot({
+  output$plot2 <- shiny::renderPlot({
     print("Plot 2")
     plot(1:100, rnorm(100))
  })
 }
 
 if (interactive()) {
-shinyApp(ui_basic, server)
+shiny::shinyApp(ui_basic, server)
 }
 
 #############################################################################
 # Styled App
 
-ui_styled <- div(
-  class = "h-screen bg-white overflow-hidden flex",
-  shiny.tailwind::use_tailwind(),
+ui_styled <- shiny::div(
+class = "h-screen bg-white overflow-hidden flex",
+shiny.tailwind::use_tailwind(),
 
-  twTabNav(
-    div(icon("database"), span("Tab One", class = "pl-2")),
-    div(icon("server"), span("Tab Two", class = "pl-2")),
-    container_class = "h-full pt-10 pt-2 bg-indigo-900",
-    tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
+twTabNav(
+  shiny::div(icon("database"), shiny::span("Tab One", class = "pl-2")),
+  shiny::div(icon("server"), shiny::span("Tab Two", class = "pl-2")),
+  container_class = "h-full pt-10 pt-2 bg-indigo-900",
+  tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
+),
+
+twTabContent(
+  shiny::div(
+    shiny::h1("First Tab",
+    class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+    ),
+    shiny::plotOutput("plot1")
   ),
-
-  twTabContent(
-    div(
-      h1("First Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
-      plotOutput("plot1")
+  shiny::div(
+    shiny::h1("Second Tab",
+    class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
     ),
-    div(
-      h1("Second Tab", class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"),
-      plotOutput("plot2")
-    ),
-    container_class = "flex-1 bg-indigo-50"
-  )
+    shiny::plotOutput("plot2")
+  ),
+  container_class = "flex-1 bg-indigo-50"
+)
 )
 
 if (interactive()) {
-shinyApp(ui_styled, server)
+  shiny::shinyApp(ui_styled, server)
 }
 }
 \seealso{

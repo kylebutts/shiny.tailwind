@@ -2,7 +2,7 @@
 #' This app shows how we can create a simple form with multiple inputs using
 #' tailwindcss styling.
 #' The app shows two different styles, the second style shows you how we can
-#' create a UI with compnents (ie functions to create the code for us), reducing
+#' create a UI with components (ie functions to create the code for us), reducing
 #' the repetitiveness of the tailwindcss classes.
 ################################################################################
 
@@ -20,7 +20,6 @@ rounded_container <- function(...) {
 # Form 1 ----
 form1 <- rounded_container(
   div(class = "font-extrabold text-xl text-gray-900 mb-2", "Style 1 Inputs"),
-
   twTextInput(
     inputId = "email", label = "Your Email", placeholder = "me@example.com", type = "email",
     label_class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300",
@@ -31,7 +30,6 @@ form1 <- rounded_container(
     label_class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300",
     input_class = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
   ),
-
   twNumericInput(
     inputId = "number", label = "Pick a number", value = "",
     container_class = "mt-6", label_class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300",
@@ -40,7 +38,7 @@ form1 <- rounded_container(
   twSelectInput(
     inputId = "countries",label = "Select your country",
     choices = c("United States", "Canada", "France", "Germany"),
-    container_class = "mt-6",
+    container_class = "mt-6", selectize = FALSE,
     label_class = "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400",
     select_class = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
   ),
@@ -51,7 +49,8 @@ form1 <- rounded_container(
     input_class = "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
   ),
   twCheckboxGroupInput(
-    "remember2", label = "", choices = c("Rememer Me" = "a", "Send Ads!" = "b"),
+    "remember2",
+    label = "", choices = c("Rememer Me" = "a", "Send Ads!" = "b"),
     inline = TRUE,
     container_class = "items-center h-5 mt-6 mx-2",
     label_class = "ml-2 text-sm font-medium text-gray-900 dark:text-gray-300",
@@ -87,7 +86,6 @@ floating_input <- function(inputId, label, type = "text", ...) {
 
 form2 <- rounded_container(
   div(class = "font-extrabold text-xl text-gray-900 mb-2", "Floating Inputs"),
-
   floating_input("floating_email", "Email address", type = "email"),
   floating_input("floating_number", "Pick a number", type = "numeric", value = ""),
   div(
@@ -101,8 +99,10 @@ form2 <- rounded_container(
     floating_input("floating_phone", "Phone number (123-456-7890)", type = "tel"),
     floating_input("floating_company", "Company (Ex. Google)")
   ),
-  floating_input("floating_yourself", "Describe yourself", type = "area",
-                 resize = "vertical")
+  floating_input("floating_yourself", "Describe yourself",
+    type = "area",
+    resize = "vertical"
+  )
 )
 
 

@@ -60,9 +60,6 @@ will use the client browser's default setting for resizing textareas.}
 \item{label_after_input}{TRUE/FALSE if the label should be put after the
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
-
-\item{type}{the type for the input, eg "text" (default), "password", "email",
-"month", "url", ... see also \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types]}{MDN Input Types}}
 }
 \description{
 Wrapper around \code{\link[shiny:textAreaInput]{shiny::textAreaInput()}} but allowing for more classes
@@ -70,9 +67,9 @@ Wrapper around \code{\link[shiny:textAreaInput]{shiny::textAreaInput()}} but all
 \examples{
 shiny::textAreaInput("id", "Label", value = "The value", width = "200px",
                      placeholder = "Placeholder")
-twTextAreaInput("id", "Label", value = "The value", width = "200px", height = "200px",
-                placeholder = "Placeholder",
-                container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+twTextAreaInput("id", "Label", value = "The value", width = "200px",
+ height = "200px", placeholder = "Placeholder",
+ container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
 
 if (interactive()) {
 library(shiny)

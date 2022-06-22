@@ -36,6 +36,8 @@ twNumericInput(
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
+\item{placeholder}{Placeholder text for numeric input. Disappears after input}
+
 \item{disabled}{if the user should not be able to interact with the field}
 
 \item{container_class}{additional classes to be applied to the container}
@@ -47,9 +49,6 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 \item{label_after_input}{TRUE/FALSE if the label should be put after the
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
-
-\item{type}{the type for the input, eg "text" (default), "password", "email",
-"month", "url", ... see also \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types]}{MDN Input Types}}
 }
 \description{
 Wrapper around \code{\link[shiny:numericInput]{shiny::numericInput()}} but allowing for more classes
