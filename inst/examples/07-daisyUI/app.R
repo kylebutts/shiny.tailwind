@@ -27,7 +27,7 @@ code <- function(code, prefix = "$", class = NULL) {
 
 
 ui <- div(
-  class = "grid grid-cols-4 gap-4 p2",
+  class = "grid grid-cols-4 gap-4 p-2",
   use_daisyui(),
 
   div(
