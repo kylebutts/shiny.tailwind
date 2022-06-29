@@ -67,7 +67,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   if (!is.null(css)) {
     html_css <- lapply(css, function(x) {
       htmltools::HTML(paste(
-        sprintf("<style type='%s'>\n\n", "text/tailwindcss"),
+        "<style type='text/tailwindcss'>\n\n",
         paste(read_utf8_(x), collapse = "\n"),
         "\n\n</style>",
         collapse = "\n"

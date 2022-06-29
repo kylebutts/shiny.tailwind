@@ -32,6 +32,15 @@ tailwind classes and they will load dynamically and automatically.
 If you want to compile your used tailwindcss classes to a local css
 file, see the [Details](#details-about-shinytailwind) section.
 
+`shiny.tailwind` also allows you to use [daisyUI](https://daisyui.com/)
+and [flowbite](https://flowbite.com/) components. See also the examples
+
+-   daisyUI:
+    `system.file("examples", "07-daisyUI", package = "shiny.tailwind")`
+    and
+-   flowbite:
+    `system.file("examples", "08-flowbite", package = "shiny.tailwind")`
+
 ## Example
 
 Here is a basic example.
@@ -48,42 +57,51 @@ library(shiny.tailwind)
 # RStudio viewer, the following code uses your default browser
 options(shiny.launch.browser = .rs.invokeShinyWindowExternal)
 
-# Define UI for application that draws a histogram
+# Define UI for application that draws a histogram using HTML divs and tailwind
 ui <- div(
-  class = "px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl",
+  class = "px-4 py-10 max-w-6xl mx-auto",
   # Load Tailwind CSS Just-in-time
-  shiny.tailwind::use_tailwind(),
+  use_tailwind(),
+  
+  # apply tailwind classes to existing classes, in this case the slider input
+  tags$style(type = "text/tailwindcss","
+  .irs-single {@apply bg-pink-500 !important;}
+  .irs-bar {@apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 border-none !important;}
+  "),
   
   # Title
   div(class = "flex flex-col w-full text-center py-12",
-      h1(class = "text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500",
-         "Old Faithful"
+      h1(
+        class = paste(
+          "text-6xl font-extrabold tracking-tight text-transparent bg-clip-text",
+          "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+        ),
+        "Old Faithful"
       )
   ),
   
   # Inputs
-  div(class = "block shadow-md py-4 px-4 flex flex-row rounded-md",
-      div(class = "flex-initial mx-4",
-          sliderInput("bins", "Number of Bins:",
-                      min = 1, max = 10, value = 5)
-      ),
-      div(class = "flex-initial mx-4",
-          twTextInput("firstname", "First Name", value = "",
-                      input_class = "rounded-md border border-2 border-lime-500")
-      ),
-      div(class = "flex-initial mx-4",
-          twTextInput("lastname", "Last Name", value = "",
-                      input_class = "rounded-md border border-2 border-amber-500")
-      ),
+  div(class = "flex gap-2 shadow-md py-4 px-4 flex flex-row rounded-md bg-stone-50",
+      twSliderInput("bins", "Number of Bins:", min = 1, max = 10, value = 5,
+                    label_class = "font-bold"),
+      twTextInput("title", "Title", value = "Histogram of Eruptions",
+                  label_class = "font-bold",
+                  input_class = "rounded-md border border-2 border-stone-200"),
+      twTextInput("xlab", "x-Axis Label", value = "Waiting Time",
+                  label_class = "font-bold",
+                  input_class = "rounded-md border border-2 border-stone-200"),
+      twTextInput("ylab", "y-Axis Label", value = "Frequency",
+                  label_class = "font-bold",
+                  input_class = "rounded-md border border-2 border-stone-200")
   ),
   
   # Plot
-  div(class = "block shadow-md py-4 px-4 mt-4",
+  div(class = "block shadow-md rounded-md py-4 px-4 mt-4 bg-stone-50",
       plotOutput("distPlot")
   )
 )
 
-# Define server logic required to draw a histogram
+# Define server logic required to draw a histogram, does not use shiny.tailwind
 server <- function(input, output) {
   
   output$distPlot <- renderPlot({
@@ -92,9 +110,9 @@ server <- function(input, output) {
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
     # draw the histogram with the specified number of bins
-    hist(x,
-         breaks = bins,
-         col = 'darkgray', border = 'white')
+    par(bg = NA) # remove white background of plot
+    hist(x, breaks = bins, col = "#ec4899", border = "white",
+         main = input$title, xlab = input$xlab, ylab = input$ylab)
   })
 }
 
@@ -131,6 +149,17 @@ are some example classes
 -   `w-#/12` sets a column of width \#/12 (similar to bootstrap’s grid).
     See also [docs/width](https://tailwindcss.com/docs/width).
 -   [Much, much more](https://tailwindcss.com/docs/).
+
+For example, the following UI code would create a div that has a margin
+of 4 tailwind units vertically (`my-4`), a large shadow (`shadow-lg`)
+and has a width of 3/12 (`w-3/12`):
+
+``` r
+div(
+  class = "my-4 shadow-lg w-3/12",
+  ... # put the contents of the box here.
+)
+```
 
 This makes a common framework for designing that is quick and intuitive.
 
@@ -215,7 +244,6 @@ mybox <- function(...) {
 }
 
 # in UI:
-
 div(
   class = "flex flex-wrap",
   mybox("This is the first box"),
@@ -252,6 +280,10 @@ the config JSON object as ‘window.tailwindConfig’ and you must call
 
 -   [TailwindCSS](https://tailwindcss.com/) and [Tailwind
     Typography](https://github.com/tailwindlabs/tailwindcss-typography)
+
+-   [daisyUI](https://daisyui.com/)
+
+-   [flowbite](https://flowbite.com/)
 
 -   [BeyondCo Tailwind JIT Broswer
     Compiler](https://beyondco.de/blog/tailwind-jit-compiler-via-cdn)
