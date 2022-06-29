@@ -14,16 +14,15 @@ library(shiny)
 library(shiny.tailwind)
 library(ggplot2)
 library(dplyr)
-library(tidyr)
 theme_set(theme_light())
 
-dataset <- mpg %>% select_if(is.numeric)
+dataset <- mpg[, c("displ", "year", "cyl", "cty", "hwy")]
 
 # Define UI for application that draws a histogram
 ui <- div(
   class = "main-div",
   # Load Tailwind CSS Just-in-time
-  shiny.tailwind::use_tailwind(css = "apply-custom.css"),
+  use_tailwind(css = "apply-custom.css"),
 
   # Title
   div(class = "flex flex-col w-full text-center py-12",
@@ -37,7 +36,7 @@ ui <- div(
           # note the background of the inputs is styled in apply-custom.css
           twVarSelectInput("var", "Variable:", dataset, multiple = TRUE,
                            container_class = "mx-2 w-64"
-                           ),
+          ),
       ),
       div(class = "rounded-box flex-initial mx-4",
           twSliderInput("bins", "Number of Bins:",
@@ -63,10 +62,11 @@ server <- function(input, output) {
   output$distPlot <- renderPlot({
     dataset %>%
       select(!!!input$var) %>%
-      pivot_longer(everything()) %>% # TODO replace with reshape to reduce dependencies
-      ggplot(aes(x = value, fill = name)) +
+      # alternatively use tidyr::pivot_longer(everything())
+      stack() %>%
+      ggplot(aes(x = values, fill = ind)) +
       geom_histogram(bins = input$bins + 1) +
-      facet_wrap(~name, scales = "free_x") +
+      facet_wrap(~ind, scales = "free_x") +
       labs(title = input$title)
   })
 }
