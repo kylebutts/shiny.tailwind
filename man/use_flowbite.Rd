@@ -4,10 +4,12 @@
 \alias{use_flowbite}
 \title{Allows you to use flowbite components}
 \usage{
-use_flowbite(version = "1.4.7")
+use_flowbite(version = "1.4.7", ...)
 }
 \arguments{
 \item{version}{the version of flowbite to use, default is 1.4.7}
+
+\item{...}{further arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }
 \value{
 the required HTML-HEAD tags
