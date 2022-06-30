@@ -65,11 +65,15 @@ c.f. 04-shiny-inputs example app.}
 Wrapper around \code{\link[shiny:textAreaInput]{shiny::textAreaInput()}} but allowing for more classes
 }
 \examples{
-shiny::textAreaInput("id", "Label", value = "The value", width = "200px",
-                     placeholder = "Placeholder")
-twTextAreaInput("id", "Label", value = "The value", width = "200px",
- height = "200px", placeholder = "Placeholder",
- container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+shiny::textAreaInput("id", "Label",
+  value = "The value", width = "200px",
+  placeholder = "Placeholder"
+)
+twTextAreaInput("id", "Label",
+  value = "The value", width = "200px",
+  height = "200px", placeholder = "Placeholder",
+  container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -77,7 +81,8 @@ library(shiny)
 ui <- fluidPage(
   use_tailwind(),
   twTextAreaInput(
-    "text", "A Text", placeholder = "Here goes a placeholder",
+    "text", "A Text",
+    placeholder = "Here goes a placeholder",
     width = "400px", height = "400px",
     # Apply tailwind classes
     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
@@ -91,7 +96,7 @@ server <- function(input, output) {
   output$value <- renderText(input$text)
 }
 
-if (interactive()) shinyApp(ui_basic, server)
+if(interactive()) shiny::shinyApp(ui_basic, server)
 }
 \seealso{
 \code{\link[shiny:textAreaInput]{shiny::textAreaInput()}}

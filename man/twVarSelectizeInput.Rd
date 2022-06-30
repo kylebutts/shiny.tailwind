@@ -45,8 +45,9 @@ c.f. 05-apply-directive example app
 \examples{
 shiny::varSelectizeInput("selectize", "A Selection", mtcars)
 twVarSelectizeInput("selectize", "A Selection", mtcars,
-                    container_class = "CONTAINER", label_class = "LABEL",
-                    input_class = "INPUT")
+  container_class = "CONTAINER", label_class = "LABEL",
+  input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -54,7 +55,8 @@ library(shiny)
 ui <- fluidPage(
   use_tailwind(),
   twVarSelectizeInput(
-    "values", "A Selection", mtcars, multiple = TRUE,
+    "values", "A Selection", mtcars,
+    multiple = TRUE,
     # Apply tailwind classes
     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
     label_class = "font-mono text-gray-600",
@@ -64,10 +66,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ as.character(input$values) })
+  output$value <- renderText({
+    as.character(input$values)
+  })
 }
 
-if (interactive()) shinyApp(ui_basic, server)
+if(interactive()) shiny::shinyApp(ui_basic, server)
 }
 \seealso{
 \code{\link[shiny:varSelectInput]{shiny::varSelectizeInput()}}

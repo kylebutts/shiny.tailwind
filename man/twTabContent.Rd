@@ -54,7 +54,6 @@ ui_basic <- shiny::div(
     shiny::div("Tab 1 (click me)"),
     shiny::div("Tab 2 (click me)")
   ),
-
   twTabContent(
     shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
     shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
@@ -69,47 +68,41 @@ server <- function(input, output, session) {
   output$plot2 <- shiny::renderPlot({
     print("Plot 2")
     plot(1:100, rnorm(100))
- })
+  })
 }
 
-if (interactive()) {
-shiny::shinyApp(ui_basic, server)
-}
+if(interactive()) shiny::shinyApp(ui_basic, server)
 
 #############################################################################
 # Styled App
 
 ui_styled <- shiny::div(
-class = "h-screen bg-white overflow-hidden flex",
-shiny.tailwind::use_tailwind(),
-
-twTabNav(
-  shiny::div(icon("database"), shiny::span("Tab One", class = "pl-2")),
-  shiny::div(icon("server"), shiny::span("Tab Two", class = "pl-2")),
-  container_class = "h-full pt-10 pt-2 bg-indigo-900",
-  tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
-),
-
-twTabContent(
-  shiny::div(
-    shiny::h1("First Tab",
-    class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
-    ),
-    shiny::plotOutput("plot1")
+  class = "h-screen bg-white overflow-hidden flex",
+  shiny.tailwind::use_tailwind(),
+  twTabNav(
+    shiny::div(icon("database"), shiny::span("Tab One", class = "pl-2")),
+    shiny::div(icon("server"), shiny::span("Tab Two", class = "pl-2")),
+    container_class = "h-full pt-10 pt-2 bg-indigo-900",
+    tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
   ),
-  shiny::div(
-    shiny::h1("Second Tab",
-    class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+  twTabContent(
+    shiny::div(
+      shiny::h1("First Tab",
+        class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+      ),
+      shiny::plotOutput("plot1")
     ),
-    shiny::plotOutput("plot2")
-  ),
-  container_class = "flex-1 bg-indigo-50"
-)
+    shiny::div(
+      shiny::h1("Second Tab",
+        class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+      ),
+      shiny::plotOutput("plot2")
+    ),
+    container_class = "flex-1 bg-indigo-50"
+  )
 )
 
-if (interactive()) {
-  shiny::shinyApp(ui_styled, server)
-}
+if(interactive()) shiny::shinyApp(ui_styled, server)
 
 }
 \seealso{

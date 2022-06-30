@@ -15,7 +15,8 @@
 #' @examples
 #' shiny::dateRangeInput("date", "A Date")
 #' twDateRangeInput(
-#'   "date", "A Date Range", container_class = "CONTAINER", label_class = "LABEL",
+#'   "date", "A Date Range",
+#'   container_class = "CONTAINER", label_class = "LABEL",
 #'   input_class = "INPUT", sep_class = "SEP"
 #' )
 #'
@@ -36,10 +37,12 @@
 #' )
 #'
 #' server <- function(input, output) {
-#'   output$value <- renderText({ as.character(input$date) })
+#'   output$value <- renderText({
+#'     as.character(input$date)
+#'   })
 #' }
 #'
-#' if (interactive()) shinyApp(ui, server)
+#' if(interactive()) shiny::shinyApp(ui, server)
 twDateRangeInput <- function(inputId,
                              label,
                              start = NULL,
@@ -58,7 +61,6 @@ twDateRangeInput <- function(inputId,
                              input_class = NULL,
                              sep_class = NULL,
                              label_after_input = FALSE) {
-
   res <- shiny::dateRangeInput(
     inputId = inputId,
     label = label,
@@ -91,7 +93,7 @@ twDateRangeInput <- function(inputId,
     input_class
   )
 
-  if (label_after_input) {
+  if(label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

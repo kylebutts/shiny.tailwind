@@ -88,7 +88,8 @@ Wrapper around \code{\link[shiny:dateRangeInput]{shiny::dateRangeInput()}} but a
 \examples{
 shiny::dateRangeInput("date", "A Date")
 twDateRangeInput(
-  "date", "A Date Range", container_class = "CONTAINER", label_class = "LABEL",
+  "date", "A Date Range",
+  container_class = "CONTAINER", label_class = "LABEL",
   input_class = "INPUT", sep_class = "SEP"
 )
 
@@ -109,10 +110,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ as.character(input$date) })
+  output$value <- renderText({
+    as.character(input$date)
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:dateRangeInput]{shiny::dateRangeInput()}}

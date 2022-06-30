@@ -80,7 +80,7 @@ flowbite_accordion <- function(id, ...) {
                  "flex justify-between items-center p-5 w-full font-medium",
                  "text-left text-gray-500 border border-b-0",
                  "border-gray-200 focus:ring-4 focus:ring-gray-200",
-                 "hover:bg-gray-100", if (i == 1) "rounded-t-xl"),
+                 "hover:bg-gray-100", if(i == 1) "rounded-t-xl"),
                "data-accordion-target" = paste0("#", id, "-body-", i),
                "aria-expanded" = "true",
                "aria-controls" = paste0(id, "-body-", i),
@@ -216,4 +216,4 @@ ui <- div(
   )
 )
 
-shinyApp(ui, function(input, output) {})
+if(interactive()) shiny::shinyApp(ui, function(input, output) {})

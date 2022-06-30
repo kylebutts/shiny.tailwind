@@ -44,9 +44,11 @@ Note that the colors for the slider bar can be customized by overriding the
 }
 \examples{
 shiny::selectizeInput("selectize", "A Selection", choice = c("A", "B"))
-twSelectizeInput("selectize", "A Selection", choice = c("A", "B"),
-                 container_class = "CONTAINER", label_class = "LABEL",
-                 input_class = "INPUT")
+twSelectizeInput("selectize", "A Selection",
+  choice = c("A", "B"),
+  container_class = "CONTAINER", label_class = "LABEL",
+  input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -54,7 +56,8 @@ library(shiny)
 ui <- fluidPage(
   use_tailwind(),
   twSelectizeInput(
-    "values", "A Selection", choice = c("A", "B"), multiple = TRUE,
+    "values", "A Selection",
+    choice = c("A", "B"), multiple = TRUE,
     # Apply tailwind classes
     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
     label_class = "font-mono text-gray-600",
@@ -64,10 +67,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ as.character(input$values) })
+  output$value <- renderText({
+    as.character(input$values)
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:selectInput]{shiny::selectizeInput()}}

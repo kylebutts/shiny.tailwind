@@ -43,7 +43,6 @@
 #'     shiny::div("Tab 1 (click me)"),
 #'     shiny::div("Tab 2 (click me)")
 #'   ),
-#'
 #'   twTabContent(
 #'     shiny::div(shiny::h1("First Tab"), shiny::plotOutput("plot1")),
 #'     shiny::div(shiny::h1("Second Tab"), shiny::plotOutput("plot2"))
@@ -58,70 +57,64 @@
 #'   output$plot2 <- shiny::renderPlot({
 #'     print("Plot 2")
 #'     plot(1:100, rnorm(100))
-#'  })
+#'   })
 #' }
 #'
-#' if (interactive()) {
-#' shiny::shinyApp(ui_basic, server)
-#' }
+#' if(interactive()) shiny::shinyApp(ui_basic, server)
 #'
 #' #############################################################################
 #' # Styled App
 #'
 #' ui_styled <- shiny::div(
-#' class = "h-screen bg-white overflow-hidden flex",
-#' shiny.tailwind::use_tailwind(),
-#'
-#' twTabNav(
-#'   shiny::div(icon("database"), shiny::span("Tab One", class = "pl-2")),
-#'   shiny::div(icon("server"), shiny::span("Tab Two", class = "pl-2")),
-#'   container_class = "h-full pt-10 pt-2 bg-indigo-900",
-#'   tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
-#' ),
-#'
-#' twTabContent(
-#'   shiny::div(
-#'     shiny::h1("First Tab",
-#'     class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
-#'     ),
-#'     shiny::plotOutput("plot1")
+#'   class = "h-screen bg-white overflow-hidden flex",
+#'   shiny.tailwind::use_tailwind(),
+#'   twTabNav(
+#'     shiny::div(icon("database"), shiny::span("Tab One", class = "pl-2")),
+#'     shiny::div(icon("server"), shiny::span("Tab Two", class = "pl-2")),
+#'     container_class = "h-full pt-10 pt-2 bg-indigo-900",
+#'     tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
 #'   ),
-#'   shiny::div(
-#'     shiny::h1("Second Tab",
-#'     class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+#'   twTabContent(
+#'     shiny::div(
+#'       shiny::h1("First Tab",
+#'         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+#'       ),
+#'       shiny::plotOutput("plot1")
 #'     ),
-#'     shiny::plotOutput("plot2")
-#'   ),
-#'   container_class = "flex-1 bg-indigo-50"
-#' )
+#'     shiny::div(
+#'       shiny::h1("Second Tab",
+#'         class = "p-10 text-center font-sans text-8xl font-extrabold text-slate-800"
+#'       ),
+#'       shiny::plotOutput("plot2")
+#'     ),
+#'     container_class = "flex-1 bg-indigo-50"
+#'   )
 #' )
 #'
-#' if (interactive()) {
-#'   shiny::shinyApp(ui_styled, server)
-#' }
+#' if(interactive()) shiny::shinyApp(ui_styled, server)
 #'
 #' @export
 twTabContent <- function(..., ids = NULL, container_class = NULL, content_class = NULL) {
   dots <- list(...)
 
-  if (is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
+  if(is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
 
-  if (length(dots) != length(ids))
+  if(length(dots) != length(ids)) {
     stop("ids has to have the same length as the provided tab navigation elements")
+  }
 
 
   shiny::div(
     class = container_class,
-
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
-      if (is.null(id)) id <- ids[[i]]
+      if(is.null(id)) id <- ids[[i]]
       idc <- strsplit(id, "-")[[1]]
-      if (idc[length(idc)] != "content") id <- paste0(id, "-content")
+      if(idc[length(idc)] != "content") id <- paste0(id, "-content")
 
       shiny::div(
-        class = paste("twTabContent", if (i == 1) "twTabContent-active", content_class),
-        style = if (i == 1) "display: block;" else "display: none;",
+        class = paste("twTabContent", if(i == 1) "twTabContent-active", content_class),
+        style = if(i == 1) "display: block;" else "display: none;",
         id = id,
         dots[[i]]
       )

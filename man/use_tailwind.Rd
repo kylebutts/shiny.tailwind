@@ -43,8 +43,9 @@ The function will place it in the appropriate script tag.
 \examples{
 library(shiny)
 example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
-                           full.names = TRUE)
+  full.names = TRUE
+)
 basename(example_apps)
 
-if (interactive()) runApp(example_apps[1])
+if(interactive()) runApp(example_apps[1])
 }

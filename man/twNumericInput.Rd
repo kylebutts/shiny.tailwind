@@ -55,8 +55,10 @@ Wrapper around \code{\link[shiny:numericInput]{shiny::numericInput()}} but allow
 }
 \examples{
 shiny::numericInput("number", "A Number", 42, min = 10, max = 100, step = 13, width = "200px")
-twNumericInput("number", "A Number", 42, min = 10, max = 100, step = 13, width = "200px",
-               container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+twNumericInput("number", "A Number", 42,
+  min = 10, max = 100, step = 13, width = "200px",
+  container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -74,10 +76,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ input$number })
+  output$value <- renderText({
+    input$number
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:numericInput]{shiny::numericInput()}}

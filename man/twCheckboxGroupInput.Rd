@@ -55,12 +55,14 @@ Wrapper around \code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()
 }
 \examples{
 shiny::checkboxGroupInput("id", "label", choices = c("A", "B"))
-twCheckboxGroupInput("id", "label", choices = c("A", "B"),
-                     width = "200px", disabled = c(TRUE, FALSE),
-                     container_class = "OUTER.CONTAINER",
-                     inner_container_class = c("INNER CONTAINER 1", "INNER CONTAINER 2"),
-                     label_class = c("LABEL 1", "LABEL 2"),
-                     input_class = "INPUT-ALL")
+twCheckboxGroupInput("id", "label",
+  choices = c("A", "B"),
+  width = "200px", disabled = c(TRUE, FALSE),
+  container_class = "OUTER.CONTAINER",
+  inner_container_class = c("INNER CONTAINER 1", "INNER CONTAINER 2"),
+  label_class = c("LABEL 1", "LABEL 2"),
+  input_class = "INPUT-ALL"
+)
 
 # basic full shiny example
 library(shiny)
@@ -79,10 +81,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$out <- renderText({input$chks})
+  output$out <- renderText({
+    input$chks
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()}}

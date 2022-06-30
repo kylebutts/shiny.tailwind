@@ -16,9 +16,11 @@
 #' @export
 #' @examples
 #' shiny::selectizeInput("selectize", "A Selection", choice = c("A", "B"))
-#' twSelectizeInput("selectize", "A Selection", choice = c("A", "B"),
-#'                  container_class = "CONTAINER", label_class = "LABEL",
-#'                  input_class = "INPUT")
+#' twSelectizeInput("selectize", "A Selection",
+#'   choice = c("A", "B"),
+#'   container_class = "CONTAINER", label_class = "LABEL",
+#'   input_class = "INPUT"
+#' )
 #'
 #' # basic full shiny example
 #' library(shiny)
@@ -26,7 +28,8 @@
 #' ui <- fluidPage(
 #'   use_tailwind(),
 #'   twSelectizeInput(
-#'     "values", "A Selection", choice = c("A", "B"), multiple = TRUE,
+#'     "values", "A Selection",
+#'     choice = c("A", "B"), multiple = TRUE,
 #'     # Apply tailwind classes
 #'     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
 #'     label_class = "font-mono text-gray-600",
@@ -36,10 +39,12 @@
 #' )
 #'
 #' server <- function(input, output) {
-#'   output$value <- renderText({ as.character(input$values) })
+#'   output$value <- renderText({
+#'     as.character(input$values)
+#'   })
 #' }
 #'
-#' if (interactive()) shinyApp(ui, server)
+#' if(interactive()) shiny::shinyApp(ui, server)
 twSelectizeInput <- function(inputId,
                              ...,
                              options = NULL,
@@ -48,7 +53,6 @@ twSelectizeInput <- function(inputId,
                              label_class = NULL,
                              input_class = NULL,
                              label_after_input = FALSE) {
-
   res <- shiny::selectizeInput(
     inputId = inputId,
     ...,
@@ -60,7 +64,7 @@ twSelectizeInput <- function(inputId,
   res$children[[1]]$attribs$class <- paste(res$children[[1]]$attribs$class, label_class)
   res$children[[2]]$attribs$class <- paste(res$children[[2]]$attribs$class, input_class)
 
-  if (label_after_input) {
+  if(label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

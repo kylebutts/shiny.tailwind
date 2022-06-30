@@ -18,9 +18,9 @@ library(shiny)
 library(shiny.tailwind)
 
 # 1) Install tailwindcss if needed ----
-if (!is_tailwindcss_installed()) {
+if(!is_tailwindcss_installed()) {
   install_tailwindcss_cli()
-  if (Sys.info()[["sysname"]] != "Windows")
+  if(Sys.info()[["sysname"]] != "Windows")
     system("chmod +x tailwindcss")
 }
 
@@ -56,4 +56,4 @@ server <- function(input, output) {
 }
 
 # 4) Run the application ----
-shinyApp(ui = ui, server = server)
+if(interactive()) shiny::shinyApp(ui = ui, server = server)

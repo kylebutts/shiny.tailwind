@@ -14,7 +14,8 @@
 #' @examples
 #' shiny::dateInput("date", "A Date")
 #' twDateInput("date", "A Date",
-#'             container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+#'   container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT"
+#' )
 #'
 #' # basic full shiny example
 #' library(shiny)
@@ -32,10 +33,12 @@
 #' )
 #'
 #' server <- function(input, output) {
-#'   output$value <- renderText({ as.character(input$date) })
+#'   output$value <- renderText({
+#'     as.character(input$date)
+#'   })
 #' }
 #'
-#' if (interactive()) shinyApp(ui, server)
+#' if(interactive()) shiny::shinyApp(ui, server)
 twDateInput <- function(inputId,
                         label,
                         value = NULL,
@@ -53,7 +56,6 @@ twDateInput <- function(inputId,
                         label_class = NULL,
                         input_class = NULL,
                         label_after_input = FALSE) {
-
   res <- shiny::dateInput(
     inputId = inputId,
     label = label,
@@ -73,7 +75,7 @@ twDateInput <- function(inputId,
   res$children[[1]]$attribs$class <- paste(res$children[[1]]$attribs$class, label_class)
   res$children[[2]]$attribs$class <- paste(res$children[[2]]$attribs$class, input_class)
 
-  if (label_after_input) {
+  if(label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

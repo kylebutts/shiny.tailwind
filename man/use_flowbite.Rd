@@ -17,6 +17,3 @@ the required HTML-HEAD tags
 \description{
 See also: \url{https://flowbite.com/} and \url{https://flowbite.com/#components}
 }
-\examples{
-asd
-}

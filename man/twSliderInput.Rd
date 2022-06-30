@@ -102,9 +102,11 @@ Note that the colors for the slider bar can be customized by overriding the
 }
 \examples{
 shiny::sliderInput("values", "A Range", min = 0, max = 100, value = 75)
-twSliderInput("values", "A Range", min = 0, max = 100, value = 75,
-              container_class = "CONTAINER", label_class = "LABEL",
-              input_class = "INPUT")
+twSliderInput("values", "A Range",
+  min = 0, max = 100, value = 75,
+  container_class = "CONTAINER", label_class = "LABEL",
+  input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -112,7 +114,8 @@ library(shiny)
 ui <- fluidPage(
   use_tailwind(),
   twSliderInput(
-    "values", "A Range", min = 0, max = 100, value = 75,
+    "values", "A Range",
+    min = 0, max = 100, value = 75,
     # Apply tailwind classes
     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
     label_class = "font-mono text-gray-600",
@@ -122,10 +125,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ as.character(input$date) })
+  output$value <- renderText({
+    as.character(input$date)
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:sliderInput]{shiny::sliderInput()}}

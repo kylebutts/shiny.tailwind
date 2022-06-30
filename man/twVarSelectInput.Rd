@@ -44,46 +44,45 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 Wrapper around \code{\link[shiny:varSelectInput]{shiny::varSelectInput()}} but allowing for more classes
 }
 \examples{
-shiny::varSelectInput("id", "label", mtcars, width = "200px",
-                      selected = c("vs", "cyl"), multiple = TRUE)
+shiny::varSelectInput("id", "label", mtcars,
+  width = "200px",
+  selected = c("vs", "cyl"), multiple = TRUE
+)
 twVarSelectInput("id", "label", mtcars,
-                 selected = c("vs", "cyl"), width = "200px",
-                 multiple = TRUE, selectize = TRUE,
-                 container_class = "CONTAINER", label_class = "LABEL",
-                 select_class = "SELECT")
+  selected = c("vs", "cyl"), width = "200px",
+  multiple = TRUE, selectize = TRUE,
+  container_class = "CONTAINER", label_class = "LABEL",
+  select_class = "SELECT"
+)
 
 # basic full shiny example
 library(shiny)
 # basic example
-shinyApp(
-  ui = fluidPage(
-    use_tailwind(),
-    twVarSelectInput(
-      "variable", "Variable to select:",
-      mtcars,
-      multiple = TRUE,
-      # Apply tailwind classes
-      container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-64",
-      label_class = "font-serif",
-      select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
-    ),
-    tableOutput("data")
+ui = fluidPage(
+  use_tailwind(),
+  twVarSelectInput(
+    "variable", "Variable to select:",
+    mtcars,
+    multiple = TRUE,
+    # Apply tailwind classes
+    container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-64",
+    label_class = "font-serif",
+    select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
   ),
-  server = function(input, output) {
-    output$data <- renderTable({
-      mtcars[[input$variable]]
-    }, rownames = TRUE)
-  }
+  tableOutput("data")
 )
 
 server <- function(input, output) {
-  output$data <- renderTable({
-    mtcars[[input$variable]]
-  }, rownames = TRUE)
+  output$data <- renderTable(
+    {
+      mtcars[[input$variable]]
+    },
+    rownames = TRUE
+  )
 }
 
-if (interactive() && requireNamespace("dplyr", quietly = TRUE))
-  shinyApp(ui_basic, server)
+if(interactive()) shiny::shinyApp(ui_basic, server)
+
 }
 \seealso{
 \code{\link[shiny:varSelectInput]{shiny::varSelectInput()}}

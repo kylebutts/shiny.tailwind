@@ -85,7 +85,8 @@ Wrapper around \code{\link[shiny:dateInput]{shiny::dateInput()}} but allowing fo
 \examples{
 shiny::dateInput("date", "A Date")
 twDateInput("date", "A Date",
-            container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT")
+  container_class = "CONTAINER", label_class = "LABEL", input_class = "INPUT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -103,10 +104,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$value <- renderText({ as.character(input$date) })
+  output$value <- renderText({
+    as.character(input$date)
+  })
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:dateInput]{shiny::dateInput()}}

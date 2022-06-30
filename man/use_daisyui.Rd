@@ -27,15 +27,14 @@ library(shiny)
 ui <- div(
   class = "h-full w-full",
   use_daisyui(),
-
   div(
     class = "text-sm breadcrumbs",
     tags$ul(
       tags$li(tags$a("Home")),
       tags$li(tags$a("Documents")),
-      tags$li(tags$a("Add Documents")),
+      tags$li(tags$a("Add Documents"))
     )
   )
 )
-if (interactive()) shinyApp(ui, function(input, output) {})
+if(interactive()) shiny::shinyApp(ui, function(input, output) {})
 }

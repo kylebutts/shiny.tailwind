@@ -121,7 +121,7 @@ server <- function(input, output) {
 }
 
 # Run the application
-shinyApp(ui = ui, server = server)
+if(interactive()) shiny::shinyApp(ui = ui, server = server)
 ```
 
 Additional examples are found in the `inst/examples/` folder, eg

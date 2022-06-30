@@ -6,10 +6,9 @@
 #' @param ... further arguments passed to [use_tailwind()]
 #'
 #' @return the required HTML-HEAD tags
-#' @export
 #'
-#' @examples
-#' asd
+#'
+#' @export
 use_flowbite <- function(version = "1.4.7", ...) {
   min_css <- sprintf("https://unpkg.com/flowbite@%s/dist/flowbite.min.css", version)
   js <- sprintf("https://unpkg.com/flowbite@%s/dist/flowbite.js", version)

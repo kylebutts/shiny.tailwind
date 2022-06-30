@@ -15,11 +15,13 @@
 #' @export
 #' @examples
 #' shiny::textInput(
-#'   "id", "Label", value = "The value", width = "200px",
+#'   "id", "Label",
+#'   value = "The value", width = "200px",
 #'   placeholder = "Placeholder"
 #' )
 #' twTextInput(
-#'   "id", "Label", value = "The value", width = "200px",
+#'   "id", "Label",
+#'   value = "The value", width = "200px",
 #'   placeholder = "Placeholder", type = "email",
 #'   container_class = "CONTAINER", label_class = "LABEL",
 #'   input_class = "INPUT"
@@ -29,46 +31,61 @@
 #' library(shiny)
 #' # basic example
 #' ui <- fluidPage(
-#'     use_tailwind(),
-#'     div(
-#'       class = "flex flex-wrap",
-#'       twTextInput(
-#'         "text", "A Text", type = "text", placeholder = "Some Text",
-#'         # Apply tailwind classes
-#'         container_class = paste("w-48 m-4 p-2 border border-gray-200",
-#'           "rounded-md drop-shadow-md"),
-#'         label_class = "font-serif text-gray-600",
-#'         input_class = paste("drop-shadow-lg font-mono text-gray-600",
-#'           "rounded-md border-amber-400")
+#'   use_tailwind(),
+#'   div(
+#'     class = "flex flex-wrap",
+#'     twTextInput(
+#'       "text", "A Text",
+#'       type = "text", placeholder = "Some Text",
+#'       # Apply tailwind classes
+#'       container_class = paste(
+#'         "w-48 m-4 p-2 border border-gray-200",
+#'         "rounded-md drop-shadow-md"
 #'       ),
-#'       twTextInput(
-#'         "email", "An Email", type = "email",
-#'         placeholder = "me@example.com",
-#'         # Apply tailwind classes
-#'         container_class = paste("w-48 m-4 p-2 border border-gray-200",
-#'         "rounded-md drop-shadow-md"),
-#'         label_class = "font-serif text-gray-600",
-#'         input_class = paste("drop-shadow-lg font-mono text-gray-600",
-#'         "rounded-md border-amber-400")
-#'       ),
-#'       twTextInput(
-#'         "pw", "A Password", type = "password",
-#'         placeholder = "dont let it be password",
-#'         # Apply tailwind classes
-#'         container_class = paste("w-48 m-4 p-2 border border-gray-200",
-#'         "rounded-md drop-shadow-md"),
-#'         label_class = "font-serif text-gray-600",
-#'         input_class = paste("drop-shadow-lg font-mono text-gray-600",
-#'         "rounded-md border-amber-400")
+#'       label_class = "font-serif text-gray-600",
+#'       input_class = paste(
+#'         "drop-shadow-lg font-mono text-gray-600",
+#'         "rounded-md border-amber-400"
 #'       )
 #'     ),
 #'     twTextInput(
-#'       "pw", "A Password", type = "password", placeholder = "dont let it be password",
+#'       "email", "An Email",
+#'       type = "email",
+#'       placeholder = "me@example.com",
 #'       # Apply tailwind classes
-#'       container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'       container_class = paste(
+#'         "w-48 m-4 p-2 border border-gray-200",
+#'         "rounded-md drop-shadow-md"
+#'       ),
 #'       label_class = "font-serif text-gray-600",
-#'       input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+#'       input_class = paste(
+#'         "drop-shadow-lg font-mono text-gray-600",
+#'         "rounded-md border-amber-400"
+#'       )
+#'     ),
+#'     twTextInput(
+#'       "pw", "A Password",
+#'       type = "password",
+#'       placeholder = "dont let it be password",
+#'       # Apply tailwind classes
+#'       container_class = paste(
+#'         "w-48 m-4 p-2 border border-gray-200",
+#'         "rounded-md drop-shadow-md"
+#'       ),
+#'       label_class = "font-serif text-gray-600",
+#'       input_class = paste(
+#'         "drop-shadow-lg font-mono text-gray-600",
+#'         "rounded-md border-amber-400"
+#'       )
 #'     )
+#'   ),
+#'   twTextInput(
+#'     "pw", "A Password",
+#'     type = "password", placeholder = "dont let it be password",
+#'     # Apply tailwind classes
+#'     container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+#'     label_class = "font-serif text-gray-600",
+#'     input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
 #'   ),
 #'   verbatimTextOutput("value")
 #' )
@@ -83,7 +100,7 @@
 #'   })
 #' }
 #'
-#' if (interactive()) shiny::shinyApp(ui, server)
+#' if(interactive()) shiny::shinyApp(ui, server)
 #'
 twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL,
                         width = NULL, type = "text",
@@ -97,19 +114,20 @@ twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL,
 
   label_tag <- NULL
 
-  if (!is.null(label))
+  if(!is.null(label)) {
     label_tag <- shiny::tags$label(
       class = label_class,
       id = paste0(inputId, "-label"),
       `for` = inputId,
       label
     )
+  }
 
   shiny::tagList(
     shiny::tags$div(
       class = container_class,
-      style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
-      if (!label_after_input) label_tag,
+      style = if(!is.null(width)) paste0("width:", width, ";") else NULL,
+      if(!label_after_input) label_tag,
       shiny::tags$input(
         id = inputId,
         type = type,
@@ -117,7 +135,7 @@ twTextInput <- function(inputId, label = NULL, value = NULL, placeholder = NULL,
         placeholder = placeholder,
         class = input_class
       ),
-      if (label_after_input) label_tag,
+      if(label_after_input) label_tag,
     )
   )
 }

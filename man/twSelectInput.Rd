@@ -57,13 +57,15 @@ Wrapper around \code{\link[shiny:selectInput]{shiny::selectInput()}} but allowin
 }
 \examples{
 shiny::selectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
-                   selected = c("a", "b"), width = "200px",
-                   multiple = TRUE)
+  selected = c("a", "b"), width = "200px",
+  multiple = TRUE
+)
 twSelectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
-              selected = c("a", "b"), width = "200px",
-              multiple = TRUE, selectize = TRUE,
-              container_class = "CONTAINER", label_class = "LABEL",
-              select_class = "SELECT")
+  selected = c("a", "b"), width = "200px",
+  multiple = TRUE, selectize = TRUE,
+  container_class = "CONTAINER", label_class = "LABEL",
+  select_class = "SELECT"
+)
 
 # basic full shiny example
 library(shiny)
@@ -83,12 +85,15 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-  output$data <- renderTable({
-    mtcars[, c("mpg", input$variable), drop = FALSE]
-  }, rownames = TRUE)
+  output$data <- renderTable(
+    {
+      mtcars[, c("mpg", input$variable), drop = FALSE]
+    },
+    rownames = TRUE
+  )
 }
 
-if (interactive()) shinyApp(ui, server)
+if(interactive()) shiny::shinyApp(ui, server)
 }
 \seealso{
 \code{\link[shiny:selectInput]{shiny::selectInput()}}

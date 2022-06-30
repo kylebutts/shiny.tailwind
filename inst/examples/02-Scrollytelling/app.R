@@ -159,4 +159,4 @@ server <- function(input, output) {
 }
 
 # Run the application
-shinyApp(ui = ui, server = server)
+if(interactive()) shiny::shinyApp(ui = ui, server = server)
