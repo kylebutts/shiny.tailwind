@@ -1,3 +1,9 @@
+################################################################################
+#' This app shows a basic "Scrollytelling" application.
+#'
+#' See also: https://tailwindcss.com/docs/
+################################################################################
+
 # ---- Setup -------------------------------------------------------------------
 library(shiny)
 library(DT)
@@ -153,4 +159,4 @@ server <- function(input, output) {
 }
 
 # Run the application
-shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = ui, server = server)

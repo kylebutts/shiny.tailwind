@@ -20,16 +20,15 @@
 #' @param version the version to install, default is latest
 #' @param verbose if the version etc should be reported
 #'
-#' @return the path to the tailwindcss CLI invisibly
 #' @export
 #'
 #' @seealso [compile_tailwindcss]
 #' @examples
-#' if (interactive()) {
+#' if(interactive()) {
 #'   install_tailwindcss_cli()
 #' }
 install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbose = FALSE) {
-  if (is_tailwindcss_installed() && !overwrite) {
+  if(is_tailwindcss_installed() && !overwrite) {
     stop("Found existing tailwindcss installation. Abort installation!")
   }
 
@@ -37,29 +36,30 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   # 1) find system, either linux, macos, or windows
   sys <- tolower(info[["sysname"]])
   # TODO: not sure if this is catches all Mac OS?!
-  if (sys == "darwin") sys <- "macos"
+  if(sys == "darwin") sys <- "macos"
 
   # 2) find architecture
   # TODO: does this distinguish between x64 and ARM64 in all cases?
-  arch <- if (info[["machine"]] == "x86-64") "x64" else "arm64"
+  arch <- if(info[["machine"]] == "x86-64") "x64" else "arm64"
 
   file <- paste("tailwindcss",
-                if (sys == "windows") {
-                  "windows-x64.exe"
-                } else {
-                  paste(sys, arch, sep = "-")
-                },
-                sep = "-"
+    if(sys == "windows") {
+      "windows-x64.exe"
+    } else {
+      paste(sys, arch, sep = "-")
+    },
+    sep = "-"
   )
 
   # 3) get latest release version
   url <- "https://github.com/tailwindlabs/tailwindcss/releases"
-  if (version == "latest") {
+  if(version == "latest") {
     html <- readLines(url)
     h1 <- html[grepl("\\<h1\\>", html)][1]
-    version <- gsub("^.*>([^>]+)</a>$", "\\1", h1)
+    # Extract release version
+    version <- gsub(".*releases/tag/(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
   }
-  if (verbose) {
+  if(verbose) {
     cat(paste0(
       "Trying to download tailwindcss CLI version ", version, "\n",
       "  from ", url, "\n"
@@ -67,11 +67,11 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   }
   unlink(file)
   download_url <- paste0(url, "/download/", version, "/", file)
-  suppressWarnings(
-    a <- try(download.file(download_url, file), silent = TRUE)
-  )
+  suppressWarnings({
+    a <- try(utils::download.file(download_url, file), silent = TRUE)
+  })
 
-  if (inherits(a, "try-error")) {
+  if(inherits(a, "try-error")) {
     stop(sprintf(
       paste0(
         "Could not download tailwindcss CLI.\n",
@@ -84,10 +84,10 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
 
   # 4) rename file to tailwindcss(.exe)
   target <- "tailwindcss"
-  if (sys == "windows") target <- paste0(target, ".exe")
+  if(sys == "windows") target <- paste0(target, ".exe")
   file.rename(file, target)
 
-  if (sys == "macos") system("chmod +x tailwindcss")
+  if(sys == "macos") system("chmod +x tailwindcss")
 
   cat(sprintf(paste0(
     "Success: installed tailwindcss version %s as '%s'!\n",
@@ -100,8 +100,8 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
 
 # internal helper
 get_cli_executable <- function(tailwindcss = NULL) {
-  if (is.null(tailwindcss)) {
-    if (Sys.info()[["sysname"]] == "Windows") {
+  if(is.null(tailwindcss)) {
+    if(Sys.info()[["sysname"]] == "Windows") {
       tailwindcss <- "tailwindcss.exe"
     } else {
       tailwindcss <- "./tailwindcss"
@@ -125,7 +125,7 @@ get_cli_executable <- function(tailwindcss = NULL) {
 #' @export
 #'
 #' @examples
-#' if (interactive()) {
+#' if(interactive()) {
 #'   is_tailwindcss_installed()
 #' }
 is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
@@ -134,12 +134,13 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
   cmd <- paste(tailwindcss, "-h")
   r <- try(system(cmd, intern = TRUE), silent = TRUE)
 
-  if (inherits(r, "try-error") || length(r) <= 2) {
-    if (verbose) {
+  if(inherits(r, "try-error") || length(r) <= 2) {
+    if(verbose) {
       warning(paste(
         "Could not find CLI tailwindcss.",
         "Please follow install instructions and put it in your PATH or supply the path to this function",
         "Download: https://github.com/tailwindlabs/tailwindcss/releases",
+        attr(r, "condition"),
         sep = "\n"
       ))
     }
@@ -147,7 +148,7 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
   }
 
   version <- gsub("tailwindcss +", "", r[[2]])
-  if (verbose) {
+  if(verbose) {
     cat(sprintf("Found tailwindcss version %s\n", version))
   }
   return(TRUE)
@@ -173,7 +174,7 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 #'
 #' @seealso [install_tailwindcss_cli]
 #' @examples
-#' if (interactive()) {
+#' if(interactive()) {
 #'   temp <- tempdir()
 #'   owd <- setwd(temp)
 #'
@@ -206,7 +207,7 @@ compile_tailwindcss <- function(infile, outfile,
   stopifnot(length(infile) == 1)
   stopifnot(length(outfile) == 1)
 
-  if (!is_tailwindcss_installed(tailwindcss = tailwindcss)) {
+  if(!is_tailwindcss_installed(tailwindcss = tailwindcss)) {
     stop("Could not find an installation of tailwindcss!")
   }
   tailwindcss <- get_cli_executable(tailwindcss)
@@ -214,9 +215,11 @@ compile_tailwindcss <- function(infile, outfile,
   conf_file <- "tailwind.config.js"
 
   # Create config if there is none
-  if (!file.exists(conf_file)) {
-    cat(sprintf("Could not find %s, copying default from shiny.tailwind\n",
-                conf_file))
+  if(!file.exists(conf_file)) {
+    cat(sprintf(
+      "Could not find %s, copying default from shiny.tailwind\n",
+      conf_file
+    ))
 
     file.copy(
       system.file("default-tailwind.config.js", package = "shiny.tailwind"),
@@ -227,13 +230,15 @@ compile_tailwindcss <- function(infile, outfile,
   cmd <- paste(
     tailwindcss, "--config", conf_file,
     "--input", infile, "--output", outfile,
-    if (watch) "--watch",
-    if (minify) "--minify"
+    if(watch) "--watch",
+    if(minify) "--minify"
   )
-  if (verbose) cat(paste0("Runnding tailwindcss CLI command:\n  ", cmd))
+  if(verbose) cat(paste0("Runnding tailwindcss CLI command:\n  ", cmd))
   a <- try(system(cmd, intern = TRUE), silent = TRUE)
-  if (inherits(a, "try-error"))
+  if(inherits(a, "try-error")) {
+    cat(gsub("\\\\r\\\\n", "\n", a))
     stop("Could not execute tailwindcss CLI with error\n", a)
+  }
 
-  return(invisible(outfile))
+  return()
 }

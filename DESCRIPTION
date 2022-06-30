@@ -20,9 +20,9 @@ LazyData: true
 RoxygenNote: 7.2.0
 License: MIT + file LICENSE
 Depends:
-  R (>= 3.6.0)
+    R (>= 3.6.0),
+    htmltools
 Imports: 
-    htmltools,
     shiny
 URL: https://github.com/kylebutts/shiny.tailwind
 BugReports: https://github.com/kylebutts/shiny.tailwind/issues
