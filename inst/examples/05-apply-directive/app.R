@@ -25,49 +25,56 @@ ui <- div(
   use_tailwind(css = "apply-custom.css"),
 
   # Title
-  div(class = "flex flex-col w-full text-center py-12",
-      h1(class = "fancy-title", "Histogram of Cars")
+  div(
+    class = "flex flex-col w-full text-center py-12",
+    h1(class = "fancy-title", "Histogram of Cars")
   ),
 
   # Inputs
-  div(class = "rounded-box block py-4 px-4 flex flex-row",
-
-      div(class = "rounded-box flex-initial mx-4",
-          # note the background of the inputs is styled in apply-custom.css
-          twVarSelectInput("var", "Variable:", dataset, multiple = TRUE,
-                           container_class = "mx-2 w-64"
-          ),
+  div(
+    class = "rounded-box block py-4 px-4 flex flex-row justify-around",
+    div(
+      # note the background of the inputs is styled in apply-custom.css
+      twVarSelectInput(
+        "var", "Variable:", dataset,
+        selectize = FALSE,
+        container_class = "w-64",
+        select_class = "rounded-md text-indigo-500 w-64"
       ),
-      div(class = "rounded-box flex-initial mx-4",
-          twSliderInput("bins", "Number of Bins:",
-                        min = 1, max = 10, value = 5,
-                        container_class = "border border-gray",
-                        label_class = "font-mono",
-                        input_class = "drop-shadow")
-      ),
-      div(class = "rounded-box flex-initial mx-4",
-          twTextInput("title", "Title", value = "Histogram of Cars",
-                      input_class = "rounded-md text-teal-500 font-bold")
+    ),
+    div(
+      twSliderInput(
+        "bins", "Number of Bins:",
+        min = 1, max = 10, value = 5,
+        label_class = "font-mono",
+        input_class = "drop-shadow"
       )
+    ),
+    div(
+      twTextInput(
+        "title", "Title",
+        value = "Histogram of Cars",
+        input_class = "rounded-md text-indigo-500 font-bold w-64"
+      )
+    )
   ),
 
   # Plot
-  div(class = "rounded-box block py-4 px-4 mt-4",
-      plotOutput("distPlot")
+  div(
+    class = "rounded-box block py-4 px-4 mt-4",
+    plotOutput("distPlot")
   )
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   output$distPlot <- renderPlot({
-    dataset %>%
-      select(!!!input$var) %>%
-      # alternatively use tidyr::pivot_longer(everything())
-      stack() %>%
-      ggplot(aes(x = values, fill = ind)) +
-      geom_histogram(bins = input$bins + 1) +
-      facet_wrap(~ind, scales = "free_x") +
-      labs(title = input$title)
+    var <- as.character(input$var)
+    hist(
+      dataset[[var]],
+      main = input$title, xlab = var,
+      breaks = input$bins
+    )
   })
 }
 

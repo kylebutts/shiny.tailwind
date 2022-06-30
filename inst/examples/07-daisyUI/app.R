@@ -50,7 +50,7 @@ ui <- div(
   ),
 
   div(
-    class = "grid grid-cols-4 gap-4 p-2",
+    class = "max-w-4xl mx-auto grid grid-cols-2 gap-16 p-2",
 
     div(
       title("Breadcrumbs"),

@@ -18,11 +18,14 @@ title <- function(txt) div(txt, class = "text-4xl font-bold mb-2")
 
 # styled element for more info
 see_also <- function(txt, url, class = "") {
-  div(class = paste("text-gray-500", class),
-      txt,
-      a(href = url, url,
-        target = "_blank",
-        class = "text-blue-600 hover:underline decoration-blue-600")
+  div(
+    class = paste("text-gray-500", class),
+    txt,
+    a(
+      href = url, url,
+      target = "_blank",
+      class = "text-blue-600 hover:underline decoration-blue-600"
+    )
   )
 }
 
@@ -40,8 +43,10 @@ tooltip_button <- function(id, label, tooltip_text,
       class = paste(
         "mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4",
         "focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm",
-        "px-5 py-2.5 text-center"),
-      label),
+        "px-5 py-2.5 text-center"
+      ),
+      label
+    ),
 
     # the tooltip
     div(
@@ -49,9 +54,11 @@ tooltip_button <- function(id, label, tooltip_text,
       class = paste(
         "inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium",
         "text-white bg-gray-900 rounded-lg shadow-sm opacity-0",
-        "transition-opacity duration-300 tooltip"),
+        "transition-opacity duration-300 tooltip"
+      ),
       tooltip_text,
-      div(class = "tooltip-arrow", "data-popper-arrow" = NA))
+      div(class = "tooltip-arrow", "data-popper-arrow" = NA)
+    )
   )
 }
 
@@ -63,41 +70,48 @@ flowbite_accordion <- function(id, ...) {
     "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4",
     "4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
   )
-  svg_down <- tags$svg("data-accordion-icon" = NA, class = "w-6 h-6 shrink-0",
-                       fill = "currentColor", viewBox = "0 0 20 20",
-                       xmlns = "http://www.w3.org/2000/svg",
-                       tags$path("fill-rule" = "evenodd", d = svg_path,
-                                 "clip-rule" = "evenodd"))
+  svg_down <- tags$svg(
+    "data-accordion-icon" = NA, class = "w-6 h-6 shrink-0",
+    fill = "currentColor", viewBox = "0 0 20 20",
+    xmlns = "http://www.w3.org/2000/svg",
+    tags$path(
+      "fill-rule" = "evenodd", d = svg_path,
+      "clip-rule" = "evenodd"
+    )
+  )
 
-  div(id = id, "data-accordion" = "collapse",
-      "data-active-classes" = "bg-blue-100 text-blue-600",
-      lapply(seq_along(ll), function(i) {
-        tagList(
-          h2(id = paste0(id, "-heading-", i),
-             tags$button(
-               type = "button",
-               class = paste(
-                 "flex justify-between items-center p-5 w-full font-medium",
-                 "text-left text-gray-500 border border-b-0",
-                 "border-gray-200 focus:ring-4 focus:ring-gray-200",
-                 "hover:bg-gray-100", if(i == 1) "rounded-t-xl"),
-               "data-accordion-target" = paste0("#", id, "-body-", i),
-               "aria-expanded" = "true",
-               "aria-controls" = paste0(id, "-body-", i),
-               span(names(ll)[[i]]),
-               svg_down
-             )
-          ),
+  div(
+    id = id, "data-accordion" = "collapse",
+    "data-active-classes" = "bg-blue-100 text-blue-600",
+    lapply(seq_along(ll), function(i) {
+      tagList(
+        h2(
+          id = paste0(id, "-heading-", i),
+          tags$button(
+            type = "button",
+            class = paste(
+              "flex justify-between items-center p-5 w-full font-medium",
+              "text-left text-gray-500 border",
+              "border-gray-200 focus:ring-4 focus:ring-gray-200",
+              "hover:bg-gray-100", if (i == 1) "rounded-t-xl"
+            ),
+            "data-accordion-target" = paste0("#", id, "-body-", i),
+            "aria-expanded" = "true",
+            "aria-controls" = paste0(id, "-body-", i),
+            span(names(ll)[[i]]),
+            svg_down
+          )
+        ),
+        div(
+          id = paste0(id, "-body-", i), class = "hidden",
+          "aria-labelledby" = paste0(id, "-heading-", i),
           div(
-            id = paste0(id, "-body-", i), class = "hidden",
-            "aria-labelledby" = paste0(id, "-heading-", i),
-            div(
-              class = "p-5 border border-b-0 border-gray-200",
-              ll[[i]]
-            )
+            class = "p-5 border border-gray-200",
+            ll[[i]]
           )
         )
-      })
+      )
+    })
   )
 }
 # define the svg code for a paperplane -> simple toast element
@@ -119,24 +133,27 @@ ui <- div(
     class = "p-2 mb-4",
     div("Flowbite UI Examples", class = "text-center text-6xl font-bold mb-2"),
     see_also("More information about flowbite can be found here:",
-             "https://flowbite.com/", class = "text-center text-xl")
+      "https://flowbite.com/",
+      class = "text-center text-xl"
+    )
   ),
 
   # Example elements :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
   div(
-    class = "grid grid-cols-3 gap-4 mx-2",
+    class = "max-w-4xl mx-auto grid grid-cols-2 gap-16 p-2",
 
     # Tooltips :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     div(
       title("Tooltips"),
       see_also("See also:", "https://flowbite.com/docs/components/tooltips/",
-               class = "mb-2"),
-
-      div(class = "flex justify-start gap-2",
-          tooltip_button("btn1", "Above me", "Now I am visible", "top"),
-          tooltip_button("btn2", "To the right", "Now I am visible", "right"),
-          tooltip_button("btn3", "Below me", "Now I am visible", "bottom"),
-          tooltip_button("btn4", "To the left", "Now I am visible", "left")
+        class = "mb-2"
+      ),
+      div(
+        class = "flex justify-start gap-2",
+        tooltip_button("btn1", "Above me", "Now I am visible", "top"),
+        tooltip_button("btn2", "To the right", "Now I am visible", "right"),
+        tooltip_button("btn3", "Below me", "Now I am visible", "bottom"),
+        tooltip_button("btn4", "To the left", "Now I am visible", "left")
       ),
     ),
 
@@ -145,8 +162,8 @@ ui <- div(
     div(
       title("Accordion"),
       see_also("See also:", "https://flowbite.com/docs/components/accordion/",
-               class = "mb-2"),
-
+        class = "mb-2"
+      ),
       flowbite_accordion(
         id = "accordion-open",
         "What is Flowbite?" = list(
@@ -169,8 +186,7 @@ ui <- div(
             "open source under the MIT license, whereas Tailwind UI is a paid",
             "product. Another difference is that Flowbite relies on smaller and",
             "standalone components, whereas Tailwind UI offers sections of pages."
-          )
-          ),
+          )),
           p(class = "text-gray-500", paste(
             "However, we actually recommend using both Flowbite, Flowbite Pro,",
             "and even Tailwind UI as there is no technical reason stopping you",
@@ -179,13 +195,17 @@ ui <- div(
           p(class = "text-gray-500", "Learn more about these technologies:"),
           tags$ul(
             class = "pl-5 list-disc text-gray-500 dark:text-gray-400",
-            tags$li(a(href = "https://flowbite.com/pro/",
-                      class = "text-blue-600 hover:underline",
-                      "Flowbite Pro")),
-            tags$li(a(href = "https://tailwindui.com/",
-                      class = "text-blue-600 hover:underline",
-                      "Tailwind UI"
-            )))
+            tags$li(a(
+              href = "https://flowbite.com/pro/",
+              class = "text-blue-600 hover:underline",
+              "Flowbite Pro"
+            )),
+            tags$li(a(
+              href = "https://tailwindui.com/",
+              class = "text-blue-600 hover:underline",
+              "Tailwind UI"
+            ))
+          )
         )
       )
     ),
@@ -194,8 +214,8 @@ ui <- div(
     div(
       title("Simple Toast"),
       see_also("See also:", "https://flowbite.com/docs/components/toast/",
-               class = "mb-2"),
-
+        class = "mb-2"
+      ),
       div(
         id = "toast-simple",
         class = paste(

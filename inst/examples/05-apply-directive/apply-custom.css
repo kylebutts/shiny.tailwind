@@ -17,17 +17,17 @@
 
 /* override the colors of all slider inputs (irs)*/
 .irs-grid-text {
-  @apply font-mono text-teal-500;
+  @apply font-mono text-indigo-500;
 }
 .irs-single {
-  @apply bg-teal-500 !important;
+  @apply bg-indigo-500 !important;
 }
 .irs-bar {
-  @apply bg-teal-500 border-y-2 border-teal-500 !important;
+  @apply bg-indigo-500 border-y-2 border-indigo-500 !important;
 }
 
 
 /* override the colors of the selectize inputs*/
-.selectize-control.multi .selectize-input > div {
-  @apply bg-teal-500;
+.selectize-control .selectize-input > div {
+  @apply bg-indigo-500;
 }
