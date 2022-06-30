@@ -20,7 +20,6 @@
 #' @param version the version to install, default is latest
 #' @param verbose if the version etc should be reported
 #'
-#' @return the path to the tailwindcss CLI invisibly
 #' @export
 #'
 #' @seealso [compile_tailwindcss]
@@ -57,7 +56,8 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   if(version == "latest") {
     html <- readLines(url)
     h1 <- html[grepl("\\<h1\\>", html)][1]
-    version <- gsub("^.*>([^>]+)</a>$", "\\1", h1)
+    # Extract release version
+    version <- gsub(".*releases/tag/(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
   }
   if(verbose) {
     cat(paste0(
@@ -240,5 +240,5 @@ compile_tailwindcss <- function(infile, outfile,
     stop("Could not execute tailwindcss CLI with error\n", a)
   }
 
-  return(invisible(outfile))
+  return()
 }

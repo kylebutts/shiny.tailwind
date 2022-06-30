@@ -24,28 +24,29 @@ if(!is_tailwindcss_installed()) {
     system("chmod +x tailwindcss")
 }
 
-# 2) Compile the used Tailwind CSS rules to a specific CSS file ----
-# This makes the CSS rules available for offline use
-# css goes into "www/" folder in shiny apps
-compiled_css_file <- compile_tailwindcss(
-  infile = "custom.css", outfile = "www/tailwind-out.css",
-  verbose = TRUE
-)
 
 # 3) Define UI for the shiny app, including the compiled Tailwind CSS ----
 ui <- div(
   class = "page-div",
+  # 2) Compile the used Tailwind CSS rules to a specific CSS file ----
+  # This makes the CSS rules available for offline use
+  # css goes into "www/" folder in shiny apps
+  # Runs each refresh
+  compile_tailwindcss(
+    infile = "custom.css", outfile = "www/tailwind-out.css",
+    verbose = TRUE
+  ),
   # Adds the compiled CSS files to the app
   tags$head(
     tags$link(
       rel = "stylesheet", type = "text/css",
-      href = gsub("^www/", "", compiled_css_file) # no www/ here
+      href = "tailwind-out.css" # no www/ here
     ),
   ),
   # add some Tailwind CSS classes here
   div(
     class = "w-full text-center py-12 flex justify-center",
-    div(class = "p-4 max-w-xl bg-orange-400 hover:bg-orange-600 rounded text-2xl font-serif font-normal hover:font-bold",
+    div(class = "p-4 max-w-xl bg-violet-400 border-2 border-violet-300 hover:shadow-lg rounded text-2xl font-serif font-normal text-white",
         "Hello World"
     )
   )
@@ -56,4 +57,4 @@ server <- function(input, output) {
 }
 
 # 4) Run the application ----
-if(interactive()) shiny::shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = ui, server = server)

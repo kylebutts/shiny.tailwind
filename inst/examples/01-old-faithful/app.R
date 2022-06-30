@@ -15,7 +15,7 @@ ui <- div(
 
   # Load Tailwind CSS Just-in-time
   shiny.tailwind::use_tailwind(
-	# Custom class page-div using @apply
+	  # Custom class page-div using @apply
     css = c("custom.css"),
 
     # configuration, see here: https://tailwindcss.com/docs/configuration
@@ -69,4 +69,4 @@ server <- function(input, output) {
 }
 
 # Run the application
-if(interactive()) shiny::shinyApp(ui = ui, server = server)
+shiny::shinyApp(ui = ui, server = server)

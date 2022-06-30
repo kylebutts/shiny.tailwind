@@ -112,4 +112,4 @@ ui <- div(
   )
 )
 
-if(interactive()) shiny::shinyApp(ui, function(input, output) {})
+shiny::shinyApp(ui, function(input, output) {})
