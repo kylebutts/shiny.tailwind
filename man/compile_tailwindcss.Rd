@@ -38,7 +38,7 @@ the outfile invisibly
 See also \href{https://tailwindcss.com/blog/standalone-cli}{docs}
 }
 \examples{
-if (interactive()) {
+if(interactive()) {
   temp <- tempdir()
   owd <- setwd(temp)
 

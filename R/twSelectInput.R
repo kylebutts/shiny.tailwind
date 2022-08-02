@@ -1,7 +1,5 @@
 #' Wrapper around [`shiny::selectInput()`] but allowing for more classes
 #'
-#' Note selectize is turned off (for now)
-#'
 #' @inheritParams shiny::selectInput
 #' @param container_class additional classes to be applied to the container
 #' @param label_class additional classes to be applied to the label
@@ -11,67 +9,106 @@
 #'
 #' @export
 #' @examples
-#' if (interactive()) {
-#' library(shiny)
-#' # basic example
-#' shinyApp(
-#'     ui = fluidPage(
-#'         use_tailwind(),
-#'         twSelectInput(
-#'           "variable", "Variable:",
-#'           c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
-#'           # Apply tailwind classes
-#'           container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
-#'           label_class = "font-serif",
-#'           select_class = "drop-shadow-lg font-mono"
-#'         ),
-#'         tableOutput("data")
-#'     ),
-#'     server = function(input, output) {
-#'         output$data <- renderTable({
-#'             mtcars[, c("mpg", input$variable), drop = FALSE]
-#'         }, rownames = TRUE)
-#'     }
+#' shiny::selectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
+#'   selected = c("a", "b"), width = "200px",
+#'   multiple = TRUE
 #' )
+#' twSelectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
+#'   selected = c("a", "b"), width = "200px",
+#'   multiple = TRUE, selectize = TRUE,
+#'   container_class = "CONTAINER", label_class = "LABEL",
+#'   select_class = "SELECT"
+#' )
+#'
+#' # basic full shiny example
+#' library(shiny)
+#'
+#' ui <- fluidPage(
+#'   use_tailwind(),
+#'   twSelectInput(
+#'     "variable", "Variable to select:",
+#'     c("Cylinders" = "cyl", "Transmission" = "am", "Gears" = "gear"),
+#'     multiple = TRUE,
+#'     # Apply tailwind classes
+#'     container_class = "shadow-md rounded-md bg-gray-50 m-4 p-2 w-72",
+#'     label_class = "font-serif",
+#'     select_class = "font-mono font-bold text-red-800 rounded-md bg-stone-50"
+#'   ),
+#'   tableOutput("data")
+#' )
+#'
+#' server <- function(input, output) {
+#'   output$data <- renderTable(
+#'     {
+#'       mtcars[, c("mpg", input$variable), drop = FALSE]
+#'     },
+#'     rownames = TRUE
+#'   )
 #' }
-twSelectInput <- function(inputId,
-                          label = NULL, choices, selected = NULL, multiple = FALSE,
-                          container_class = NULL, label_class = NULL, select_class = NULL) {
+#'
+#' if(interactive()) shiny::shinyApp(ui, server)
+twSelectInput <- function(inputId, label, choices, selected = NULL,
+                          multiple = FALSE, selectize = TRUE, width = NULL, size = NULL,
+                          container_class = NULL, label_class = NULL,
+                          select_class = NULL) {
+  if(selectize && !is.null(size)) {
+    stop("'size' argument is incompatible with 'selectize=TRUE'.")
+  }
 
-    select_class <- paste("block form-control", select_class)
-    container_class <- paste("block twSelectInput form-group", container_class)
-    label_class <- paste("control-label", label_class)
+  container_class <- paste("block twSelectInput form-group", container_class)
+  label_class <- paste("control-label", label_class)
+  select_class <- paste("block form-control", select_class)
 
-    if (!is.null(label)) {
-        label_tag <- shiny::tags$label(
-            class = label_class, id = paste0(inputId, "-label"),
-            `for` = inputId, label
+  width <- shiny::validateCssUnit(width)
+
+  if(is.null(names(choices))) names(choices) <- choices
+  nn <- names(choices)
+  if(is.null(selected)) selected <- nn[[1]]
+
+  label_id <- paste0(inputId, "-label")
+  res <- shiny::div(
+    class = container_class,
+    style = if(!is.null(width)) paste0("width: ", width, ";") else NULL,
+    size = if(!is.null(size)) size else NULL,
+    shiny::tags$label(
+      class = label_class,
+      id = label_id,
+      "for" = inputId,
+      label
+    ),
+    shiny::div(
+      shiny::tags$select(
+        id = inputId,
+        class = select_class,
+        multiple = if(multiple) "multiple" else NULL,
+        lapply(seq_along(choices), function(i) {
+          choice <- choices[[i]]
+          shiny::HTML(sprintf(
+            '<option value="%s"%s>%s</option>',
+            choice,
+            ifelse(choice %in% selected, " selected", ""),
+            nn[[i]]
+          ))
+        })
+      ),
+      if(selectize) {
+        shiny::tags$script(
+          type = "application/json",
+          "data-for" = inputId,
+          "data-nonempty" = "",
+          '{"plugins":["selectize-plugin-a11y"]}'
         )
-    } else {
-        label_tag <- NULL
-    }
-
-    # Extract options from select (IMO easier than rewriting)
-    temp <- shiny::selectInput(inputId = inputId, label = NULL,
-                               choices = choices, selectize = FALSE)
-
-    # Grab options
-    opts <-
-    	as.list(temp)[["children"]][[2]][["children"]][[1]][["children"]][[1]]
-    #                                ^                  ^                  ^
-    #                            skip label       containing div        options
-
-    options <- shiny::HTML(opts)
-
-    shiny::tagList(
-        shiny::tags$div(
-            class = container_class,
-            label_tag,
-            shiny::tags$select(
-                id = inputId,
-                class = select_class,
-                options
-            )
-        )
+      }
     )
+  )
+
+  if(selectize) {
+    attr(res, "html_dependencies") <- attr(
+      shiny::selectInput("a", "a", "a",
+        selectize = TRUE
+      ),
+      "html_dependencies"
+    )
+  }
+  res
 }

@@ -1,0 +1,33 @@
+.main-div {
+  @apply px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8 xl:max-w-6xl;
+}
+
+.fancy-title {
+  @apply text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem] text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+}
+
+.rounded-box {
+  @apply p-2 border border-2 rounded-md shadow-md;
+}
+
+/* override the values for the control-labels*/
+.control-label {
+  @apply font-serif text-gray-800;
+}
+
+/* override the colors of all slider inputs (irs)*/
+.irs-grid-text {
+  @apply font-mono text-indigo-500;
+}
+.irs-single {
+  @apply bg-indigo-500 !important;
+}
+.irs-bar {
+  @apply bg-indigo-500 border-y-2 border-indigo-500 !important;
+}
+
+
+/* override the colors of the selectize inputs*/
+.selectize-control .selectize-input > div {
+  @apply bg-indigo-500;
+}

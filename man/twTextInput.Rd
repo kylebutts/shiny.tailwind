@@ -9,10 +9,12 @@ twTextInput(
   label = NULL,
   value = NULL,
   placeholder = NULL,
+  width = NULL,
   type = "text",
   container_class = NULL,
   label_class = NULL,
-  input_class = NULL
+  input_class = NULL,
+  label_after_input = FALSE
 )
 }
 \arguments{
@@ -26,6 +28,9 @@ twTextInput(
 be entered into the control. Internet Explorer 8 and 9 do not support this
 option.}
 
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+
 \item{type}{the type for the input, eg "text" (default), "password", "email",
 "month", "url", ... see also \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types]}{MDN Input Types}}
 
@@ -33,32 +38,104 @@ option.}
 
 \item{label_class}{additional classes to be applied to the label}
 
-\item{input_class}{additional classes to be applied to the input elements}
+\item{input_class}{additional classes to be applied to the input element}
+
+\item{label_after_input}{TRUE/FALSE if the label should be put after the
+input box. Default is FALSE. Useful for special cases (floating labels),
+c.f. 04-shiny-inputs example app.}
 }
 \description{
 Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes
 }
 \examples{
-if (interactive()) {
+shiny::textInput(
+  "id", "Label",
+  value = "The value", width = "200px",
+  placeholder = "Placeholder"
+)
+twTextInput(
+  "id", "Label",
+  value = "The value", width = "200px",
+  placeholder = "Placeholder", type = "email",
+  container_class = "CONTAINER", label_class = "LABEL",
+  input_class = "INPUT"
+)
+
+# basic full shiny example
 library(shiny)
 # basic example
-shinyApp(
-    ui = fluidPage(
-        use_tailwind(),
-        twTextInput(
-          "caption", "Caption", "Data Summary",
-          # Apply tailwind classes
-          container_class = "rounded-tl-lg bg-teal-500 m-4 p-2",
-          label_class = "font-serif",
-          input_class = "drop-shadow-lg font-mono"
-        ),
-        verbatimTextOutput("value")
+ui <- fluidPage(
+  use_tailwind(),
+  div(
+    class = "flex flex-wrap",
+    twTextInput(
+      "text", "A Text",
+      type = "text", placeholder = "Some Text",
+      # Apply tailwind classes
+      container_class = paste(
+        "w-48 m-4 p-2 border border-gray-200",
+        "rounded-md drop-shadow-md"
+      ),
+      label_class = "font-serif text-gray-600",
+      input_class = paste(
+        "drop-shadow-lg font-mono text-gray-600",
+        "rounded-md border-amber-400"
+      )
     ),
-    server = function(input, output) {
-        output$value <- renderText({ input$caption })
-    }
+    twTextInput(
+      "email", "An Email",
+      type = "email",
+      placeholder = "me@example.com",
+      # Apply tailwind classes
+      container_class = paste(
+        "w-48 m-4 p-2 border border-gray-200",
+        "rounded-md drop-shadow-md"
+      ),
+      label_class = "font-serif text-gray-600",
+      input_class = paste(
+        "drop-shadow-lg font-mono text-gray-600",
+        "rounded-md border-amber-400"
+      )
+    ),
+    twTextInput(
+      "pw", "A Password",
+      type = "password",
+      placeholder = "dont let it be password",
+      # Apply tailwind classes
+      container_class = paste(
+        "w-48 m-4 p-2 border border-gray-200",
+        "rounded-md drop-shadow-md"
+      ),
+      label_class = "font-serif text-gray-600",
+      input_class = paste(
+        "drop-shadow-lg font-mono text-gray-600",
+        "rounded-md border-amber-400"
+      )
+    )
+  ),
+  twTextInput(
+    "pw", "A Password",
+    type = "password", placeholder = "dont let it be password",
+    # Apply tailwind classes
+    container_class = "w-48 m-4 p-2 border border-gray-200 rounded-md drop-shadow-md",
+    label_class = "font-serif text-gray-600",
+    input_class = "drop-shadow-lg font-mono text-gray-600 rounded-md border-amber-400"
+  ),
+  verbatimTextOutput("value")
 )
+
+server <- function(input, output) {
+  output$value <- renderText({
+    paste(capture.output(str(list(
+      text = input$text,
+      email = input$email,
+      pw = input$pw
+    ))), collapse = "\n")
+  })
 }
+
+if(interactive()) shiny::shinyApp(ui, server)
+
 }
 \seealso{
 \code{\link[shiny:textInput]{shiny::textInput()}}

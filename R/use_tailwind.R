@@ -1,5 +1,7 @@
 #' TailwindCSS with Shiny
 #'
+#' @import htmltools
+#'
 #' @details
 #'   TailwindCSS is a utility-based design framework that makes designing simple.
 #'   See details in the README for this package for why this is so great.
@@ -31,21 +33,23 @@
 #'
 #' @export
 #' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   list.files(system.file("examples", package = "shiny.tailwind"))
-#'   runApp(system.file("examples", "01-Old_Faithful", package = "shiny.tailwind"))
-#' }
+#' library(shiny)
+#' example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
+#'   full.names = TRUE
+#' )
+#' basename(example_apps)
+#'
+#' if(interactive()) runApp(example_apps[1])
 use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   # Check files exists
-  if (!is.null(css) && any(!file.exists(css))) {
+  if(!is.null(css) && any(!file.exists(css))) {
     stop(sprintf(
       "File: %s doesn't exist.",
       paste(css[!file.exists(css)], collapse = ", ")
     ))
   }
 
-  if (!is.null(tailwindConfig) && !file.exists(tailwindConfig)) {
+  if(!is.null(tailwindConfig) && !file.exists(tailwindConfig)) {
     stop(sprintf("File: %s doesn't exist", tailwindConfig))
   }
 
@@ -61,10 +65,10 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   html_config <- NULL
 
   # Prepare html elements
-  if (!is.null(css)) {
+  if(!is.null(css)) {
     html_css <- lapply(css, function(x) {
       htmltools::HTML(paste(
-        sprintf("<style type='%s'>\n\n", "text/tailwindcss"),
+        "<style type='text/tailwindcss'>\n\n",
         paste(read_utf8_(x), collapse = "\n"),
         "\n\n</style>",
         collapse = "\n"
@@ -72,7 +76,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
     })
   }
 
-  if (!is.null(tailwindConfig)) {
+  if(!is.null(tailwindConfig)) {
     html_config <- list(htmltools::HTML(paste(
       "<!-- Specify a custom TailwindCSS configuration -->\n",
       "<script>\n\n",
@@ -92,6 +96,8 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
 # internal helper function to read utf8
 read_utf8_ <- function(file) {
   r <- readLines(file, encoding = "UTF-8", warn = FALSE)
-  if (!any(validUTF8(r))) stop(sprintf("The file %s is not encoded in UTF 8.", file))
+  if(!any(validUTF8(r))) {
+    stop(sprintf("The file %s is not encoded in UTF 8.", file))
+  }
   r
 }
