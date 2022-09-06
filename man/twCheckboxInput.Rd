@@ -38,7 +38,7 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 removing bootstrap styling (if applied) to center the checkbox easier}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Wrapper around \code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} but allowing for more classes

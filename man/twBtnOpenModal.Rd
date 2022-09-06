@@ -25,7 +25,7 @@ twBtnOpenModal(
 one used in \code{\link[=twModalDialog]{twModalDialog()}}}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Creates a button to open a Modal Dialog

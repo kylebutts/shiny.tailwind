@@ -39,7 +39,7 @@ input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 05-apply-directive example app.}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Note that the colors for the selected elements can be customized.

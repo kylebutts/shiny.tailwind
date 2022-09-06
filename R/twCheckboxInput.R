@@ -9,7 +9,7 @@
 #'  removing bootstrap styling (if applied) to center the checkbox easier
 #' @seealso [shiny::checkboxInput()]
 #'
-#' @return a HTML element
+#' @return a list with a `shiny.tag` class
 #' 
 #' @export
 #' @examples

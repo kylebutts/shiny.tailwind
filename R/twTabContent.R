@@ -26,7 +26,7 @@
 #' The active elements all have either a `twTab-active` or `twTabContent-active`
 #' CSS class if their styling needs to be overriden (see also the example).
 #'
-#' @return a HTML element to be included in the UI
+#' @return a list with a `shiny.tag` class
 #' @export
 #'
 #' @seealso [twTabNav()]

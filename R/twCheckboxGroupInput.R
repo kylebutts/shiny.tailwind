@@ -10,7 +10,7 @@
 #' @param disabled if the user should not be able to interact with the field
 #' @seealso [shiny::checkboxGroupInput()]
 #'
-#' @return a HTML element
+#' @return a list with a `shiny.tag` class
 #' 
 #' @export
 #' @examples

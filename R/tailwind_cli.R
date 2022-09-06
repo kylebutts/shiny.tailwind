@@ -122,7 +122,7 @@ get_cli_executable <- function(tailwindcss = NULL) {
 #' @param tailwindcss name and path to the executable
 #' @param verbose report version number etc
 #'
-#' @return TRUE/FALSE
+#' @return TRUE/FALSE if the CLI is installed
 #' @export
 #'
 #' @examples

@@ -7,7 +7,7 @@
 #'
 #' @seealso [shiny::selectInput()]
 #'
-#' @return a HTML element
+#' @return a list with a `shiny.tag` class
 #' 
 #' @export
 #' @examples

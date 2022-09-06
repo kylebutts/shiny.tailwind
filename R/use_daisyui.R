@@ -8,7 +8,7 @@
 #' @param version the version of 'daisyUI' to use, default is 2.17.0
 #' @param ... additional arguments passed to [use_tailwind()]
 #'
-#' @return the required HTML-HEAD tags
+#' @return the required HTML-head tags to use 'daisyUI' as `shiny.tag` 
 #' @export
 #'
 #' @examples

@@ -8,7 +8,7 @@
 #' @param modal_id ID of the modal, make sure that the IDs are identical to the
 #' one used in [twModalDialog()]
 #'
-#' @return a HTML element
+#' @return a list with a `shiny.tag` class
 #' @export
 #'
 #' @examples
@@ -60,7 +60,7 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #' @param modal_width optional class to define the modal width, eg `max-w-4xl`
 #' for a wider modal
 #'
-#' @return a HTML element
+#' @return a list with a `shiny.tag` class
 #' @export
 #'
 #' @examples

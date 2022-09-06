@@ -12,7 +12,7 @@ use_daisyui(version = "2.17.0", ...)
 \item{...}{additional arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }
 \value{
-the required HTML-HEAD tags
+the required HTML-head tags to use 'daisyUI' as \code{shiny.tag}
 }
 \description{
 See also: \url{https://daisyui.com/} and \url{https://daisyui.com/components/}

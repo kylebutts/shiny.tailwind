@@ -31,7 +31,7 @@ class-clashes (eg \code{"button"} would be a bad idea). This allows to have
 multiple nested tabsets. See also Example 09-nested-tabsets.}
 }
 \value{
-a HTML element to be included in the UI
+a list with a \code{shiny.tag} class
 }
 \description{
 This function creates only the navigation elements of tabs, the content

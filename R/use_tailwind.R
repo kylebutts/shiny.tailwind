@@ -31,7 +31,8 @@
 #'   `tailwind.config = {}`. See
 #'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
 #'
-#' @return the tailwind dependencies needed to run a tailwind app
+#' @return a list of type `shiny.tag` with head and script elements needed to
+#'   run a tailwind app
 #' @export
 #' 
 #' @examples

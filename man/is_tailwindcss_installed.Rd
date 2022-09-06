@@ -12,7 +12,7 @@ is_tailwindcss_installed(tailwindcss = NULL, verbose = FALSE)
 \item{verbose}{report version number etc}
 }
 \value{
-TRUE/FALSE
+TRUE/FALSE if the CLI is installed
 }
 \description{
 To install the CLI of 'TailwindCSS', please follow the instructions of

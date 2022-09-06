@@ -53,7 +53,7 @@ but when \code{size} is set, it will be a box instead.}
 \item{select_class}{additional classes to be applied to the select elements}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Wrapper around \code{\link[shiny:selectInput]{shiny::selectInput()}} but allowing for more classes

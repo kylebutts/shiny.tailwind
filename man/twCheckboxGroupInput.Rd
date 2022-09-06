@@ -51,7 +51,7 @@ for each option}
 \item{disabled}{if the user should not be able to interact with the field}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Wrapper around \code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()}} but allowing for more classes

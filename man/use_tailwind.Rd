@@ -15,7 +15,8 @@ Tailwind classes. See description for more details.}
 \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.}
 }
 \value{
-the tailwind dependencies needed to run a tailwind app
+a list of type \code{shiny.tag} with head and script elements needed to
+run a tailwind app
 }
 \description{
 'TailwindCSS' with Shiny

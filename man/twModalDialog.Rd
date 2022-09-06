@@ -49,7 +49,7 @@ used in twBtnOpenModal}
 for a wider modal}
 }
 \value{
-a HTML element
+a list with a \code{shiny.tag} class
 }
 \description{
 Creates a Modal Dialog

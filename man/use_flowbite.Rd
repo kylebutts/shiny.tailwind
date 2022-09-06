@@ -12,7 +12,7 @@ use_flowbite(version = "1.4.7", ...)
 \item{...}{further arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }
 \value{
-the required HTML-HEAD tags
+the required HTML-head tags to use 'flowbite' as \code{shiny.tag}
 }
 \description{
 See also: \url{https://flowbite.com/} and \url{https://flowbite.com/#components}
