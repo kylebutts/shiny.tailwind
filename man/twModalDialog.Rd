@@ -8,8 +8,12 @@ twModalDialog(
   ui,
   close_id = "close",
   close_label = "Close",
+ 
+    close_class = "mt-3 w-full justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-bold text-gray-700 hover:bg-gray-50 mt-0 ml-3 w-auto text-sm place-items-center",
   submit_id = "submit",
   submit_label = "Submit",
+ 
+    submit_class = "w-full justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800 ml-3 w-auto text-sm place-items-center",
   title = "Title of Modal",
   modal_id = "shiny-modal",
   modal_width = "max-w-lg"
@@ -23,10 +27,14 @@ twModalDialog(
 \item{close_label}{Label for the close button, can be a tagList of an icon
 and the label}
 
+\item{close_class}{classes for the close button}
+
 \item{submit_id}{ID for the submit button}
 
 \item{submit_label}{Label for the submit button, can be a tagList of an icon
 and the label}
+
+\item{submit_class}{classes for the submit button}
 
 \item{title}{title of the modal}
 

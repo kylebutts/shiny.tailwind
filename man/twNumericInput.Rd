@@ -50,6 +50,9 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
 }
+\value{
+a HTML element
+}
 \description{
 Wrapper around \code{\link[shiny:numericInput]{shiny::numericInput()}} but allowing for more classes
 }

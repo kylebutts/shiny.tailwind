@@ -2,7 +2,7 @@
 % Please edit documentation in R/tailwind_cli.R
 \name{install_tailwindcss_cli}
 \alias{install_tailwindcss_cli}
-\title{Installs the tailwindcss CLI}
+\title{Installs the 'TailwindCSS' CLI}
 \usage{
 install_tailwindcss_cli(overwrite = FALSE, version = "latest", verbose = FALSE)
 }
@@ -14,14 +14,14 @@ install_tailwindcss_cli(overwrite = FALSE, version = "latest", verbose = FALSE)
 \item{verbose}{if the version etc should be reported}
 }
 \value{
-the path to the tailwindcss CLI invisibly
+invisibly the path to the cli program
 }
 \description{
-This will download the tailwindcss standalone CLI to the folder
+This will download the 'TailwindCSS' standalone CLI to the folder
 \code{basedir}.
 }
 \details{
-This will download the tailwindcss standalone CLI to the folder
+This will download the 'TailwindCSS' standalone CLI to the folder
 \code{basedir}.
 See \href{https://tailwindcss.com/blog/standalone-cli}{here} for details on the
 standalone CLI. This saves you from having to install \code{node.js}.

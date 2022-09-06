@@ -58,6 +58,9 @@ object.}
 
 \item{progress_class}{additional classes to be applied to the progress bar (ie color)}
 }
+\value{
+a HTML element
+}
 \description{
 Wrapper around \code{\link[shiny:fileInput]{shiny::fileInput()}} but allowing for more classes
 }

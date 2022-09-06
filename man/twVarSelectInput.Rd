@@ -40,6 +40,9 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
 \item{select_class}{additional classes to be applied to the select elements}
 }
+\value{
+a HTML element
+}
 \description{
 Wrapper around \code{\link[shiny:varSelectInput]{shiny::varSelectInput()}} but allowing for more classes
 }

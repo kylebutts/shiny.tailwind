@@ -2,12 +2,12 @@
 % Please edit documentation in R/use_daisyui.R
 \name{use_daisyui}
 \alias{use_daisyui}
-\title{Allows you to use daisyUI elements}
+\title{Allows you to use 'daisyUI' elements}
 \usage{
 use_daisyui(version = "2.17.0", ...)
 }
 \arguments{
-\item{version}{the version of daisyUI to use, default is 2.17.0}
+\item{version}{the version of 'daisyUI' to use, default is 2.17.0}
 
 \item{...}{additional arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }
@@ -19,7 +19,7 @@ See also: \url{https://daisyui.com/} and \url{https://daisyui.com/components/}
 }
 \details{
 Note that this uses the CDN version, which is not recommended for production
-by daisyUI.
+by 'daisyUI'.
 }
 \examples{
 library(shiny)

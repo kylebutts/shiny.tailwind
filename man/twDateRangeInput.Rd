@@ -82,6 +82,9 @@ date is selected.}
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
 }
+\value{
+a HTML element
+}
 \description{
 Wrapper around \code{\link[shiny:dateRangeInput]{shiny::dateRangeInput()}} but allowing for more classes
 }
