@@ -55,6 +55,8 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #' @param title title of the modal
 #' @param modal_id id of the modal, make sure the ID is identical to the one
 #' used in twBtnOpenModal
+#' @param modal_width optional class to define the modal width, eg `max-w-4xl`
+#' for a wider modal
 #'
 #' @return a HTML element
 #' @export
@@ -84,7 +86,8 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #' if (interactive()) shinyApp(ui, server)
 twModalDialog <- function(ui, close_id = "close", close_label = "Close",
                           submit_id = "submit", submit_label = "Submit",
-                          title = "Title of Modal", modal_id = "shiny-modal") {
+                          title = "Title of Modal", modal_id = "shiny-modal",
+                          modal_width = "max-w-lg") {
   div(
     class = "relative z-50 hidden", id = modal_id,
     "aria-labelledby" = "modal-title", role = "dialog", "aria-modal" = "true",
@@ -95,7 +98,8 @@ twModalDialog <- function(ui, close_id = "close", close_label = "Close",
       div(
         class = "flex items-end sm:items-center justify-center min-h-full p-4 text-center p-0",
         div(
-          class = "relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 max-w-lg w-full",
+          class = paste("relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 max-w-lg",
+                        modal_width) ,
           div(
             class = "bg-white px-4 pt-5 pb-4 p-6 pb-4",
             div(

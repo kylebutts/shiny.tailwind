@@ -11,7 +11,8 @@ twModalDialog(
   submit_id = "submit",
   submit_label = "Submit",
   title = "Title of Modal",
-  modal_id = "shiny-modal"
+  modal_id = "shiny-modal",
+  modal_width = "max-w-lg"
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ and the label}
 
 \item{modal_id}{id of the modal, make sure the ID is identical to the one
 used in twBtnOpenModal}
+
+\item{modal_width}{optional class to define the modal width, eg \verb{max-w-4xl}
+for a wider modal}
 }
 \value{
 a HTML element
