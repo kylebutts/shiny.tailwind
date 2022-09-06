@@ -9,6 +9,7 @@
 
 library(shiny)
 library(shiny.tailwind)
+library(fontawesome)
 
 # 1) Define the open modal button ----
 modal_btn <- twBtnOpenModal(
@@ -31,8 +32,8 @@ modal_ui <- div(
 # 3) Define the full modal dialog ----
 modal <- twModalDialog(
   ui = modal_ui, title = "Delete Account",
-  close_id = "close_modal", close_label = "Close",
-  submit_id = "submit_modal", submit_label = "Delete"
+  close_id = "close_modal", close_label = tagList(icon("times", class = "px-1"), "Close"),
+  submit_id = "submit_modal", submit_label = tagList(icon("trash", class = "px-1"), "Delete"),
 )
 
 
@@ -40,6 +41,7 @@ modal <- twModalDialog(
 ui <- div(
   class = "h-screen p-20 bg-stone-100",
   use_tailwind(),
+  fa_html_dependency(),
   modal_btn,
   modal
 )
