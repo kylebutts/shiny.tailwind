@@ -10,6 +10,8 @@
 #'
 #' @seealso [shiny::dateInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::dateInput("date", "A Date")

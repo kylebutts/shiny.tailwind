@@ -10,6 +10,8 @@
 #' @param disabled if the user should not be able to interact with the field
 #' @seealso [shiny::checkboxGroupInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::checkboxGroupInput("id", "label", choices = c("A", "B"))

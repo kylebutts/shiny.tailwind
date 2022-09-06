@@ -7,6 +7,8 @@
 #'
 #' @seealso [shiny::varSelectInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::varSelectInput("id", "label", mtcars,

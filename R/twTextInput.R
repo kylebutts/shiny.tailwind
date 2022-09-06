@@ -12,6 +12,8 @@
 #'
 #' @seealso [shiny::textInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::textInput(

@@ -31,7 +31,9 @@
 #'   `tailwind.config = {}`. See
 #'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
 #'
+#' @return the tailwind dependencies needed to run a tailwind app
 #' @export
+#' 
 #' @examples
 #' library(shiny)
 #' example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),

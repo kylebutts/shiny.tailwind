@@ -13,6 +13,8 @@
 #'
 #' @seealso [shiny::selectizeInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::selectizeInput("selectize", "A Selection", choice = c("A", "B"))

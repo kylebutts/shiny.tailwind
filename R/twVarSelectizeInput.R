@@ -13,6 +13,8 @@
 #'
 #' @seealso [shiny::varSelectizeInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::varSelectizeInput("selectize", "A Selection", mtcars)

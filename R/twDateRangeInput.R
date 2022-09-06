@@ -11,6 +11,8 @@
 #'
 #' @seealso [shiny::dateRangeInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::dateRangeInput("date", "A Date")

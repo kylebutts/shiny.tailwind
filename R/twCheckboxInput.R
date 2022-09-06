@@ -9,6 +9,8 @@
 #'  removing bootstrap styling (if applied) to center the checkbox easier
 #' @seealso [shiny::checkboxInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::checkboxInput("id", "label", value = FALSE)

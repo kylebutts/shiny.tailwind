@@ -7,6 +7,8 @@
 #'
 #' @seealso [shiny::selectInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::selectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),

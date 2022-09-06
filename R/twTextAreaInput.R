@@ -10,6 +10,8 @@
 #'
 #' @seealso [shiny::textAreaInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::textAreaInput("id", "Label",

@@ -9,6 +9,8 @@
 #'
 #' @seealso [shiny::fileInput()]
 #'
+#' @return a HTML element
+#' 
 #' @export
 #' @examples
 #' shiny::fileInput("id", "label",

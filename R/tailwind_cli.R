@@ -21,7 +21,8 @@
 #' @param verbose if the version etc should be reported
 #'
 #' @export
-#'
+#' @return invisibly the path to the cli program
+#' 
 #' @seealso [compile_tailwindcss]
 #' @examples
 #' if(interactive()) {
