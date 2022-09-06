@@ -35,11 +35,11 @@
 #' }
 #' if (interactive()) shinyApp(ui, server)
 twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, modal_id = "shiny-modal") {
-  shiny::HTML(glue::glue('
-<button id="{btn_id}" class="action-button {btn_class}"
-  onclick="document.getElementById(\'{modal_id}\').classList.remove(\'hidden\')">
+  shiny::HTML(sprintf('
+<button id="%s" class="action-button %s"
+  onclick="document.getElementById(\'%s\').classList.remove(\'hidden\')">
   {tagList(icon, btn_label)}
-</button>'))
+</button>', btn_id, btn_class, modal_id))
 }
 
 
