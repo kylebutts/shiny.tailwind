@@ -17,21 +17,21 @@ install_tailwindcss_cli(overwrite = FALSE, version = "latest", verbose = FALSE)
 invisibly the path to the cli program
 }
 \description{
-This will download the 'TailwindCSS' standalone CLI to the folder
-\code{basedir}.
+This will download the 'TailwindCSS' standalone CLI to the
+current working directory.
 }
 \details{
-This will download the 'TailwindCSS' standalone CLI to the folder
-\code{basedir}.
+This will download the 'TailwindCSS' standalone CLI to the current
+working directory.
 See \href{https://tailwindcss.com/blog/standalone-cli}{here} for details on the
-standalone CLI. This saves you from having to install \code{node.js}.
+standalone CLI. This saves you from having to install 'node.js'.
 
 On the mac, after installing the CLI, you need to make sure that the file
 is executable to run it. For Mac, the easiest way to do so is to ensure
 you're in the correct working directory in R and type
 \code{system("chmod +x tailwindcss")}.
 Alternatively, you could \code{cd} to the directory in terminal and then run
-\verb{chmod +x tailwindcss} on Mac.
+\verb{chmod +x tailwindcss}.
 }
 \examples{
 if(interactive()) {

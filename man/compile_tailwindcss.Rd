@@ -35,7 +35,7 @@ compile the css once), default is False}
 the outfile invisibly
 }
 \description{
-See also \href{https://tailwindcss.com/blog/standalone-cli}{docs}
+See also \href{https://tailwindcss.com/blog/standalone-cli}{tailwind docs}
 }
 \examples{
 if(interactive()) {

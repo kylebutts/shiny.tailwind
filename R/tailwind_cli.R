@@ -1,19 +1,19 @@
 #' Installs the 'TailwindCSS' CLI
 #'
-#' @description This will download the 'TailwindCSS' standalone CLI to the folder
-#'   `basedir`.
+#' @description This will download the 'TailwindCSS' standalone CLI to the
+#' current working directory.
 #'
-#' @details This will download the 'TailwindCSS' standalone CLI to the folder
-#'   `basedir`.
+#' @details This will download the 'TailwindCSS' standalone CLI to the current
+#'   working directory.
 #'   See [here](https://tailwindcss.com/blog/standalone-cli) for details on the
-#'   standalone CLI. This saves you from having to install `node.js`.
+#'   standalone CLI. This saves you from having to install 'node.js'.
 #'
 #'   On the mac, after installing the CLI, you need to make sure that the file
 #'   is executable to run it. For Mac, the easiest way to do so is to ensure
 #'   you're in the correct working directory in R and type
 #'   `system("chmod +x tailwindcss")`.
 #'   Alternatively, you could `cd` to the directory in terminal and then run
-#'   `chmod +x tailwindcss` on Mac.
+#'   `chmod +x tailwindcss`.
 #'
 #'
 #' @param overwrite if existing installations should be overwritten
@@ -158,7 +158,7 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 
 #' Starts the 'TailwindCSS' CLI
 #'
-#' See also [docs](https://tailwindcss.com/blog/standalone-cli)
+#' See also [tailwind docs](https://tailwindcss.com/blog/standalone-cli)
 #'
 #' @param infile the 'TailwindCSS' file (eg containing the `@tailwind` directives). Relative to basedir
 #' @param outfile the target css file, where tailwind will write the css to.
