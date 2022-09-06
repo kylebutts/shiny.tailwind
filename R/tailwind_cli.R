@@ -1,9 +1,9 @@
-#' Installs the tailwindcss CLI
+#' Installs the 'TailwindCSS' CLI
 #'
-#' @description This will download the tailwindcss standalone CLI to the folder
+#' @description This will download the 'TailwindCSS' standalone CLI to the folder
 #'   `basedir`.
 #'
-#' @details This will download the tailwindcss standalone CLI to the folder
+#' @details This will download the 'TailwindCSS' standalone CLI to the folder
 #'   `basedir`.
 #'   See [here](https://tailwindcss.com/blog/standalone-cli) for details on the
 #'   standalone CLI. This saves you from having to install `node.js`.
@@ -112,10 +112,10 @@ get_cli_executable <- function(tailwindcss = NULL) {
 }
 
 
-#' Checks if tailwindcss CLI is installed
+#' Checks if 'TailwindCSS' CLI is installed
 #'
-#' To install the CLI of tailwindcss, please follow the instructions of
-#' [tailwindcss releases](https://github.com/tailwindlabs/tailwindcss/releases).
+#' To install the CLI of 'TailwindCSS', please follow the instructions of
+#' ['TailwindCSS' releases](https://github.com/tailwindlabs/tailwindcss/releases).
 #' Make sure that you either provide the direction to the executable as the
 #' first argument to this function or put it in a folder on your PATH variable.
 #'
@@ -156,11 +156,11 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 }
 
 
-#' Starts the tailwindcss CLI
+#' Starts the 'TailwindCSS' CLI
 #'
 #' See also [docs](https://tailwindcss.com/blog/standalone-cli)
 #'
-#' @param infile the tailwindcss css file (eg containing the `@tailwind` directives). Relative to basedir
+#' @param infile the 'TailwindCSS' file (eg containing the `@tailwind` directives). Relative to basedir
 #' @param outfile the target css file, where tailwind will write the css to.
 #'   Relative to basedir
 #' @param watch if the files should be continuously monitored (versus only
