@@ -134,6 +134,16 @@ list.files(system.file("examples", package = "shiny.tailwind"))
 runApp(system.file("examples", "01-old-faithful", package = "shiny.tailwind"))
 ```
 
+At the moment the following examples are available:
+
+```{r, results = "asis", echo=FALSE}
+cat(paste0("- `",
+           list.files(system.file("examples", package = "shiny.tailwind")),
+           "`",
+           collapse = "\n"))
+```
+
+
 
 ## What is Tailwind CSS?
 
