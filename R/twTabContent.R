@@ -13,6 +13,11 @@
 #' when the elements of the `twTabContent`s are given out of order.
 #' @param container_class additional classes to be applied to the container
 #' @param content_class additional classes to be applied to each content container
+#' @param tabsetid an optional class that is added to the container to be
+#' identify and linked the tabsets. Must match the `tabsetid` of [twTabContent()].
+#' Can be an arbitrary text, but due to it being a class, make sure to not have
+#' class-clashes (eg `"button"` would be a bad idea). This allows to have
+#' multiple nested tabsets. See also Example 09-nested-tabsets.
 #'
 #' @details Note that contrary how [shiny::tabPanel()] constructs a tab page,
 #' these funtions (`twTabContent()` and [twTabNav()]) construct navigation and
@@ -94,7 +99,8 @@
 #' if(interactive()) shiny::shinyApp(ui_styled, server)
 #'
 #' @export
-twTabContent <- function(..., ids = NULL, container_class = NULL, content_class = NULL) {
+twTabContent <- function(..., ids = NULL, container_class = NULL,
+                         content_class = NULL, tabsetid = "tabSet1") {
   dots <- list(...)
 
   if(is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
@@ -109,11 +115,14 @@ twTabContent <- function(..., ids = NULL, container_class = NULL, content_class 
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
       if(is.null(id)) id <- ids[[i]]
+
       idc <- strsplit(id, "-")[[1]]
       if(idc[length(idc)] != "content") id <- paste0(id, "-content")
 
       shiny::div(
-        class = paste("twTabContent", if(i == 1) "twTabContent-active", content_class),
+        class = paste("twTabContent",
+                      paste0(tabsetid, "-content"),
+                      if(i == 1) "twTabContent-active", content_class),
         style = if(i == 1) "display: block;" else "display: none;",
         id = id,
         dots[[i]]

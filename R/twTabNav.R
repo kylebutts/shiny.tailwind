@@ -11,6 +11,12 @@
 #' or when the elements of the `twTabContent`s are given out of order.
 #' @param container_class additional classes to be applied to the container
 #' @param tab_class additional classes to be applied to each tab container
+#' @param tabsetid an optional class that is added to the container to be
+#' identify and linked the tabsets. Must match the `tabsetid` of [twTabContent()].
+#' Can be an arbitrary text, but due to it being a class, make sure to not have
+#' class-clashes (eg `"button"` would be a bad idea). This allows to have
+#' multiple nested tabsets. See also Example 09-nested-tabsets.
+#'
 #'
 #' @details Note that contrary how [shiny::tabPanel()] constructs a tab page,
 #' these funtions (`twTabContent()` and [twTabNav()]) construct navigation and
@@ -93,7 +99,8 @@
 #'
 #' if(interactive()) shiny::shinyApp(ui_styled, server)
 #'
-twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL) {
+twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL,
+                     tabsetid = "tabSet1") {
   dots <- list(...)
 
   if(is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
@@ -107,11 +114,13 @@ twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL) 
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
       if(is.null(id)) id <- ids[[i]]
-      shiny::div(
-        class = paste("twTab", if(i == 1) "twTab-active", tab_class),
-        id = id,
-        dots[[i]]
-      )
+
+      cl <- paste("twTab", tabsetid, if (i == 1) "twTab-active", tab_class)
+
+      htmltools::HTML(sprintf(
+        '<div class="%s" id="%s" onclick="opentab(\'%s\', \'%s\');">%s</div>',
+        cl, id, tabsetid, id, as.character(dots[[i]])
+      ))
     }),
     shiny::includeScript(path = system.file("twTab.js", package = "shiny.tailwind"))
   )

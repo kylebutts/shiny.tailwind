@@ -4,7 +4,13 @@
 \alias{twTabNav}
 \title{Creates the Navigation Element of Tabs}
 \usage{
-twTabNav(..., ids = NULL, container_class = NULL, tab_class = NULL)
+twTabNav(
+  ...,
+  ids = NULL,
+  container_class = NULL,
+  tab_class = NULL,
+  tabsetid = "tabSet1"
+)
 }
 \arguments{
 \item{...}{titles for the navigation elements}
@@ -17,6 +23,12 @@ or when the elements of the \code{twTabContent}s are given out of order.}
 \item{container_class}{additional classes to be applied to the container}
 
 \item{tab_class}{additional classes to be applied to each tab container}
+
+\item{tabsetid}{an optional class that is added to the container to be
+identify and linked the tabsets. Must match the \code{tabsetid} of \code{\link[=twTabContent]{twTabContent()}}.
+Can be an arbitrary text, but due to it being a class, make sure to not have
+class-clashes (eg \code{"button"} would be a bad idea). This allows to have
+multiple nested tabsets. See also Example 09-nested-tabsets.}
 }
 \value{
 a HTML element to be included in the UI
