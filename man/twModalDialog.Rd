@@ -8,16 +8,10 @@ twModalDialog(
   ui,
   close_id = "close",
   close_label = "Close",
- 
-    close_class = paste("mt-3 w-full justify-center rounded-md border border-gray-300 shadow-sm",
-    "px-4 py-2 bg-white text-base font-bold text-gray-700 hover:bg-gray-50",
-    "mt-0 ml-3 w-auto text-sm place-items-center"),
+  close_class = NA,
   submit_id = "submit",
   submit_label = "Submit",
- 
-    submit_class = paste("w-full justify-center rounded-md border border-transparent shadow-sm",
-    "x-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800",
-    "ml-3 w-auto text-sm place-items-center"),
+  submit_class = NA,
   title = "Title of Modal",
   modal_id = "shiny-modal",
   modal_width = "max-w-lg"
@@ -31,14 +25,16 @@ twModalDialog(
 \item{close_label}{Label for the close button, can be a tagList of an icon
 and the label}
 
-\item{close_class}{classes for the close button}
+\item{close_class}{classes for the close button, if NA default values will
+be used}
 
 \item{submit_id}{ID for the submit button}
 
 \item{submit_label}{Label for the submit button, can be a tagList of an icon
 and the label}
 
-\item{submit_class}{classes for the submit button}
+\item{submit_class}{classes for the submit button, if NA default values will
+be used}
 
 \item{title}{title of the modal}
 

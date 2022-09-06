@@ -49,11 +49,13 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #' @param close_id ID for the close button
 #' @param close_label Label for the close button, can be a tagList of an icon
 #' and the label
-#' @param close_class classes for the close button
+#' @param close_class classes for the close button, if NA default values will
+#' be used
 #' @param submit_id ID for the submit button
 #' @param submit_label Label for the submit button, can be a tagList of an icon
 #' and the label
-#' @param submit_class classes for the submit button
+#' @param submit_class classes for the submit button, if NA default values will
+#' be used
 #' @param title title of the modal
 #' @param modal_id id of the modal, make sure the ID is identical to the one
 #' used in twBtnOpenModal
@@ -86,21 +88,25 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #'   })
 #' }
 #' if (interactive()) shinyApp(ui, server)
-twModalDialog <- function(
-    ui,
-    close_id = "close", close_label = "Close",
-    close_class = paste(
+twModalDialog <- function(ui,
+                          close_id = "close", close_label = "Close",
+                          close_class = NA,
+                          submit_id = "submit" , submit_label = "Submit",
+                          submit_class = NA,
+                          title = "Title of Modal", modal_id = "shiny-modal",
+                          modal_width = "max-w-lg") {
+  if (!is.null(close_class) && is.na(close_class))
+    close_class <- paste(
       "mt-3 w-full justify-center rounded-md border border-gray-300 shadow-sm",
       "px-4 py-2 bg-white text-base font-bold text-gray-700 hover:bg-gray-50",
-      "mt-0 ml-3 w-auto text-sm place-items-center"),
-    submit_id = "submit" , submit_label = "Submit",
-    submit_class = paste(
+      "mt-0 ml-3 w-auto text-sm place-items-center"
+    )
+  if (!is.null(submit_class) && is.na(submit_class))
+    submit_class <- paste(
       "w-full justify-center rounded-md border border-transparent shadow-sm",
       "x-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800",
-      "ml-3 w-auto text-sm place-items-center"),
-    title = "Title of Modal", modal_id = "shiny-modal",
-    modal_width = "max-w-lg"
-) {
+      "ml-3 w-auto text-sm place-items-center"
+    )
   div(
     class = "relative z-50 hidden",
     id = modal_id,
