@@ -9,6 +9,8 @@
 #'
 #' @seealso [shiny::fileInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::fileInput("id", "label",

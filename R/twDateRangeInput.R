@@ -11,6 +11,8 @@
 #'
 #' @seealso [shiny::dateRangeInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::dateRangeInput("date", "A Date")

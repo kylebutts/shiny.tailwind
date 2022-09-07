@@ -10,6 +10,8 @@
 #'
 #' @seealso [shiny::dateInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::dateInput("date", "A Date")

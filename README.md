@@ -117,7 +117,7 @@ server <- function(input, output) {
 }
 
 # Run the application
-shinyApp(ui = ui, server = server)
+if(interactive()) shiny::shinyApp(ui = ui, server = server)
 ```
 
 Additional examples are found in the `inst/examples/` folder, eg
@@ -129,6 +129,19 @@ library(shiny.tailwind)
 list.files(system.file("examples", package = "shiny.tailwind"))
 runApp(system.file("examples", "01-old-faithful", package = "shiny.tailwind"))
 ```
+
+At the moment the following examples are available:
+
+-   `01-old-faithful`
+-   `02-Scrollytelling`
+-   `03-css-generation`
+-   `04-shiny-inputs`
+-   `05-apply-directive`
+-   `06-sidebar-dashboard`
+-   `07-daisyUI`
+-   `08-flowbite`
+-   `09-nested-tabsets`
+-   `10-modal`
 
 ## What is Tailwind CSS?
 

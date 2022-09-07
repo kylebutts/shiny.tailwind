@@ -12,6 +12,8 @@
 #'
 #' @seealso [shiny::numericInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::numericInput("number", "A Number", 42, min = 10, max = 100, step = 13, width = "200px")

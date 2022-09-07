@@ -13,6 +13,8 @@
 #'
 #' @seealso [shiny::selectizeInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::selectizeInput("selectize", "A Selection", choice = c("A", "B"))

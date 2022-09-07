@@ -38,6 +38,9 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 05-apply-directive example app.}
 }
+\value{
+a list with a \code{shiny.tag} class
+}
 \description{
 Note that the colors for the selected elements can be customized.
 c.f. 05-apply-directive example app

@@ -13,6 +13,8 @@
 #'
 #' @seealso [shiny::varSelectizeInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::varSelectizeInput("selectize", "A Selection", mtcars)

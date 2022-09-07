@@ -1,9 +1,9 @@
-#' TailwindCSS with Shiny
+#' 'TailwindCSS' with Shiny
 #'
 #' @import htmltools
 #'
 #' @details
-#'   TailwindCSS is a utility-based design framework that makes designing simple.
+#'   'TailwindCSS' is a utility-based design framework that makes designing simple.
 #'   See details in the README for this package for why this is so great.
 #'
 #'   However, the complete set of tailwind css classes is massive (~15mb), so
@@ -31,7 +31,10 @@
 #'   `tailwind.config = {}`. See
 #'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
 #'
+#' @return a list of type `shiny.tag` with head and script elements needed to
+#'   run a tailwind app
 #' @export
+#' 
 #' @examples
 #' library(shiny)
 #' example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),

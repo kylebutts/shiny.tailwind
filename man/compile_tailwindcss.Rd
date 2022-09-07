@@ -2,7 +2,7 @@
 % Please edit documentation in R/tailwind_cli.R
 \name{compile_tailwindcss}
 \alias{compile_tailwindcss}
-\title{Starts the tailwindcss CLI}
+\title{Starts the 'TailwindCSS' CLI}
 \usage{
 compile_tailwindcss(
   infile,
@@ -15,7 +15,7 @@ compile_tailwindcss(
 )
 }
 \arguments{
-\item{infile}{the tailwindcss css file (eg containing the \verb{@tailwind} directives). Relative to basedir}
+\item{infile}{the 'TailwindCSS' file (eg containing the \verb{@tailwind} directives). Relative to basedir}
 
 \item{outfile}{the target css file, where tailwind will write the css to.
 Relative to basedir}
@@ -35,7 +35,7 @@ compile the css once), default is False}
 the outfile invisibly
 }
 \description{
-See also \href{https://tailwindcss.com/blog/standalone-cli}{docs}
+See also \href{https://tailwindcss.com/blog/standalone-cli}{tailwind docs}
 }
 \examples{
 if(interactive()) {

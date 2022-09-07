@@ -2,17 +2,17 @@
 % Please edit documentation in R/use_flowbite.R
 \name{use_flowbite}
 \alias{use_flowbite}
-\title{Allows you to use flowbite components}
+\title{Allows you to use 'flowbite' components}
 \usage{
 use_flowbite(version = "1.4.7", ...)
 }
 \arguments{
-\item{version}{the version of flowbite to use, default is 1.4.7}
+\item{version}{the version of 'flowbite' to use, default is 1.4.7}
 
 \item{...}{further arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }
 \value{
-the required HTML-HEAD tags
+the required HTML-head tags to use 'flowbite' as \code{shiny.tag}
 }
 \description{
 See also: \url{https://flowbite.com/} and \url{https://flowbite.com/#components}

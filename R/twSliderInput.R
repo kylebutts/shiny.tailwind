@@ -13,6 +13,8 @@
 #'
 #' @seealso [shiny::sliderInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::sliderInput("values", "A Range", min = 0, max = 100, value = 75)

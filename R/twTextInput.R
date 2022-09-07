@@ -12,6 +12,8 @@
 #'
 #' @seealso [shiny::textInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::textInput(

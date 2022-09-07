@@ -7,6 +7,8 @@
 #'
 #' @seealso [shiny::varSelectInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::varSelectInput("id", "label", mtcars,

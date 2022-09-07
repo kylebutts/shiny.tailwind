@@ -79,6 +79,9 @@ a integer vector with values from 0 (Sunday) to 6 (Saturday).}
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
 }
+\value{
+a list with a \code{shiny.tag} class
+}
 \description{
 Wrapper around \code{\link[shiny:dateInput]{shiny::dateInput()}} but allowing for more classes
 }

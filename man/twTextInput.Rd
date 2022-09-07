@@ -44,6 +44,9 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 input box. Default is FALSE. Useful for special cases (floating labels),
 c.f. 04-shiny-inputs example app.}
 }
+\value{
+a list with a \code{shiny.tag} class
+}
 \description{
 Wrapper around \code{\link[shiny:textInput]{shiny::textInput()}} but allowing for more classes
 }

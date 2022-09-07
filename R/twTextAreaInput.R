@@ -10,6 +10,8 @@
 #'
 #' @seealso [shiny::textAreaInput()]
 #'
+#' @return a list with a `shiny.tag` class
+#' 
 #' @export
 #' @examples
 #' shiny::textAreaInput("id", "Label",

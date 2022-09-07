@@ -2,7 +2,7 @@
 % Please edit documentation in R/tailwind_cli.R
 \name{is_tailwindcss_installed}
 \alias{is_tailwindcss_installed}
-\title{Checks if tailwindcss CLI is installed}
+\title{Checks if 'TailwindCSS' CLI is installed}
 \usage{
 is_tailwindcss_installed(tailwindcss = NULL, verbose = FALSE)
 }
@@ -12,11 +12,11 @@ is_tailwindcss_installed(tailwindcss = NULL, verbose = FALSE)
 \item{verbose}{report version number etc}
 }
 \value{
-TRUE/FALSE
+TRUE/FALSE if the CLI is installed
 }
 \description{
-To install the CLI of tailwindcss, please follow the instructions of
-\href{https://github.com/tailwindlabs/tailwindcss/releases}{tailwindcss releases}.
+To install the CLI of 'TailwindCSS', please follow the instructions of
+\href{https://github.com/tailwindlabs/tailwindcss/releases}{'TailwindCSS' releases}.
 Make sure that you either provide the direction to the executable as the
 first argument to this function or put it in a folder on your PATH variable.
 }
