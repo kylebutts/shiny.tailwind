@@ -38,8 +38,8 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
   shiny::HTML(sprintf('
 <button id="%s" class="action-button %s"
   onclick="document.getElementById(\'%s\').classList.remove(\'hidden\')">
-  {tagList(icon, btn_label)}
-</button>', btn_id, btn_class, modal_id))
+  %s
+</button>', btn_id, btn_class, modal_id, shiny::tagList(icon, btn_label)))
 }
 
 
