@@ -104,7 +104,7 @@ twModalDialog <- function(ui,
   if (!is.null(submit_class) && is.na(submit_class))
     submit_class <- paste(
       "w-full justify-center rounded-md border border-transparent shadow-sm",
-      "x-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800",
+      "px-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800",
       "ml-3 w-auto text-sm place-items-center"
     )
   div(
