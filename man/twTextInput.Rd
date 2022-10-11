@@ -88,7 +88,7 @@ ui <- fluidPage(
     twTextInput(
       "email", "An Email",
       type = "email",
-      placeholder = "me@example.com",
+      placeholder = "email",
       # Apply tailwind classes
       container_class = paste(
         "w-48 m-4 p-2 border border-gray-200",

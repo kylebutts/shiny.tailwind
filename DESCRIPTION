@@ -1,7 +1,7 @@
 Package: shiny.tailwind
 Type: Package
-Title: TailwindCSS for Shiny Apps
-Version: 0.2.1
+Title: 'TailwindCSS' for Shiny Apps
+Version: 0.2.2
 Authors@R: c(
       person(given = "Kyle",
              family = "Butts",
@@ -12,12 +12,12 @@ Authors@R: c(
              family = "Zimmermann-Kollenda",
              role = "ctb",
              email = "david_j_zimmermann@hotmail.com"))
-Description: Allows TailwindCSS to be used in Shiny apps with just-in-time 
-  compiling, custom css with `@apply` directive, and custom tailwind 
+Description: Allows 'TailwindCSS' to be used in Shiny apps with just-in-time 
+  compiling, custom css with '@apply' directive, and custom tailwind 
   configurations.
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 License: MIT + file LICENSE
 Depends:
     R (>= 3.6.0),
