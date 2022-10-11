@@ -12,8 +12,6 @@
 
 library(shiny)
 library(shiny.tailwind)
-library(ggplot2)
-library(dplyr)
 theme_set(theme_light())
 
 dataset <- mpg[, c("displ", "year", "cyl", "cty", "hwy")]

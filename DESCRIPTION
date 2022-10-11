@@ -29,5 +29,5 @@ BugReports: https://github.com/kylebutts/shiny.tailwind/issues
 Roxygen: list(markdown = TRUE)
 Suggests: 
     fontawesome,
-    dplyr,
+    palmerpenguins,
     ggplot2
