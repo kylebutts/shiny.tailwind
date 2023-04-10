@@ -163,6 +163,7 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 #' @param infile the 'TailwindCSS' file (eg containing the `@tailwind` directives). Relative to basedir
 #' @param outfile the target css file, where tailwind will write the css to.
 #'   Relative to basedir
+#' @param config the path to the tailwind.config.js file Default: tailwind.config.js in the root diretory
 #' @param watch if the files should be continuously monitored (versus only
 #'   compile the css once), default is False
 #' @param tailwindcss name and path to the executable
@@ -201,10 +202,14 @@ is_tailwindcss_installed <- function(tailwindcss = NULL, verbose = FALSE) {
 #'
 #'   setwd(owd)
 #' }
-compile_tailwindcss <- function(infile, outfile,
-                                watch = FALSE, minify = FALSE,
+compile_tailwindcss <- function(infile,
+                                outfile,
+                                config = "tailwind.config.js",
+                                watch = FALSE,
+                                minify = FALSE,
                                 content = ".",
-                                tailwindcss = NULL, verbose = FALSE) {
+                                tailwindcss = NULL,
+                                verbose = FALSE) {
   stopifnot(length(infile) == 1)
   stopifnot(length(outfile) == 1)
 
@@ -213,28 +218,27 @@ compile_tailwindcss <- function(infile, outfile,
   }
   tailwindcss <- get_cli_executable(tailwindcss)
 
-  conf_file <- "tailwind.config.js"
 
   # Create config if there is none
-  if(!file.exists(conf_file)) {
+  if(!file.exists(config)) {
     cat(sprintf(
       "Could not find %s, copying default from shiny.tailwind\n",
-      conf_file
+      config
     ))
 
     file.copy(
       system.file("default-tailwind.config.js", package = "shiny.tailwind"),
-      conf_file
+      config
     )
   }
 
   cmd <- paste(
-    tailwindcss, "--config", conf_file,
+    tailwindcss, "--config", config,
     "--input", infile, "--output", outfile,
     if(watch) "--watch",
     if(minify) "--minify"
   )
-  if(verbose) cat(paste0("Runnding tailwindcss CLI command:\n  ", cmd))
+  if(verbose) cat(paste0("Running tailwindcss CLI command:\n  ", cmd))
   a <- try(system(cmd, intern = TRUE), silent = TRUE)
   if(inherits(a, "try-error")) {
     cat(gsub("\\\\r\\\\n", "\n", a))

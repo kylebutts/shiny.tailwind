@@ -7,6 +7,7 @@
 compile_tailwindcss(
   infile,
   outfile,
+  config = "tailwind.config.js",
   watch = FALSE,
   minify = FALSE,
   content = ".",
@@ -19,6 +20,8 @@ compile_tailwindcss(
 
 \item{outfile}{the target css file, where tailwind will write the css to.
 Relative to basedir}
+
+\item{config}{the path to the tailwind.config.js file Default: tailwind.config.js in the root diretory}
 
 \item{watch}{if the files should be continuously monitored (versus only
 compile the css once), default is False}

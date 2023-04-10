@@ -17,7 +17,7 @@ Description: Allows 'TailwindCSS' to be used in Shiny apps with just-in-time
   configurations.
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 License: MIT + file LICENSE
 Depends:
     R (>= 3.6.0),
