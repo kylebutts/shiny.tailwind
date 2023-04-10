@@ -53,12 +53,12 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   )
 
   # 3) get latest release version
-  url <- "https://github.com/tailwindlabs/tailwindcss/releases"
+  url <- "https://github.com/tailwindlabs/tailwindcss/releases/"
   if(version == "latest") {
-    html <- readLines(url)
+    html <- readLines(paste0(url, "latest"))
     h1 <- html[grepl("\\<h1\\>", html)][1]
     # Extract release version
-    version <- gsub(".*releases/tag/(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
+    version <- gsub(".*(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
   }
   if(verbose) {
     cat(paste0(
