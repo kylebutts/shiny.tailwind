@@ -43,7 +43,7 @@
 #' basename(example_apps)
 #'
 #' if(interactive()) runApp(example_apps[1])
-use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
+use_tailwind <- function(css = NULL, tailwindConfig = NULL, use_jit = FALSE) {
   # Check files exists
   if(!is.null(css) && any(!file.exists(css))) {
     stop(sprintf(
@@ -57,7 +57,11 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   }
 
   # https://tailwindcss.com/docs/installation/play-cdn
-  url <- "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"
+
+  url <- if (use_jit)
+    "https://unpkg.com/tailwindcss-jit-cdn"
+  else
+    "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"
 
   html_cdn <- list(htmltools::HTML(sprintf(
     "<!-- Include CDN JavaScript -->\n<script src='%s'></script>",
@@ -82,7 +86,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   if(!is.null(tailwindConfig)) {
     html_config <- list(htmltools::HTML(paste(
       "<!-- Specify a custom TailwindCSS configuration -->\n",
-      "<script>\n\n",
+      "<script type='tailwind-config'>\n\n",
       paste(read_utf8_(tailwindConfig), collapse = "\n"),
       "\n\n</script>",
       collapse = "\n"
