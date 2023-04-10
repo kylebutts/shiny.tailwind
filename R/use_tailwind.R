@@ -34,7 +34,7 @@
 #' @return a list of type `shiny.tag` with head and script elements needed to
 #'   run a tailwind app
 #' @export
-#' 
+#'
 #' @examples
 #' library(shiny)
 #' example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
@@ -57,7 +57,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   }
 
   # https://tailwindcss.com/docs/installation/play-cdn
-  url <- "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"
+  url <- "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"
 
   html_cdn <- list(htmltools::HTML(sprintf(
     "<!-- Include CDN JavaScript -->\n<script src='%s'></script>",
