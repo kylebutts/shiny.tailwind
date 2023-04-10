@@ -4,7 +4,7 @@
 \alias{use_tailwind}
 \title{'TailwindCSS' with Shiny}
 \usage{
-use_tailwind(css = NULL, tailwindConfig = NULL)
+use_tailwind(css = NULL, tailwindConfig = NULL, use_jit = FALSE)
 }
 \arguments{
 \item{css}{Optional. Path to ".css" file. Can use @apply tags for applying
@@ -13,6 +13,8 @@ Tailwind classes. See description for more details.}
 \item{tailwindConfig}{Optional. Path to ".js" file containing json object
 \code{tailwind.config = {}}. See
 \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.}
+
+\item{use_jit}{Use the \href{https://beyondco.de/blog/tailwind-jit-compiler-via-cdn}{Just In Time compiler} instead}
 }
 \value{
 a list of type \code{shiny.tag} with head and script elements needed to

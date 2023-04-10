@@ -30,7 +30,7 @@
 #' @param tailwindConfig Optional. Path to ".js" file containing json object
 #'   `tailwind.config = {}`. See
 #'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
-#'
+#' @param use_jit Use the [Just In Time compiler](https://beyondco.de/blog/tailwind-jit-compiler-via-cdn) instead
 #' @return a list of type `shiny.tag` with head and script elements needed to
 #'   run a tailwind app
 #' @export
