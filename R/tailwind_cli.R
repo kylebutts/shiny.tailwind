@@ -22,7 +22,7 @@
 #'
 #' @export
 #' @return invisibly the path to the cli program
-#' 
+#'
 #' @seealso [compile_tailwindcss]
 #' @examples
 #' if(interactive()) {
@@ -41,7 +41,7 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
 
   # 2) find architecture
   # TODO: does this distinguish between x64 and ARM64 in all cases?
-  arch <- if(info[["machine"]] == "x86-64") "x64" else "arm64"
+  arch <- if(grepl("x86.64", info[["machine"]])) "x64" else "arm64"
 
   file <- paste("tailwindcss",
     if(sys == "windows") {
@@ -53,12 +53,12 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   )
 
   # 3) get latest release version
-  url <- "https://github.com/tailwindlabs/tailwindcss/releases/"
+  url <- "https://github.com/tailwindlabs/tailwindcss/releases"
   if(version == "latest") {
-    html <- readLines(paste0(url, "latest"))
+    html <- readLines(url)
     h1 <- html[grepl("\\<h1\\>", html)][1]
     # Extract release version
-    version <- gsub(".*(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
+    version <- gsub(".*releases/tag/(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
   }
   if(verbose) {
     cat(paste0(
