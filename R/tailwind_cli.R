@@ -29,7 +29,7 @@
 #'   install_tailwindcss_cli()
 #' }
 install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbose = FALSE) {
-  if(is_tailwindcss_installed() && !overwrite && F) {
+  if(is_tailwindcss_installed() && !overwrite) {
     stop("Found existing tailwindcss installation. Abort installation!")
   }
 
