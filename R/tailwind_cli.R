@@ -29,7 +29,7 @@
 #'   install_tailwindcss_cli()
 #' }
 install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbose = FALSE) {
-  if(is_tailwindcss_installed() && !overwrite) {
+  if(is_tailwindcss_installed() && !overwrite && F) {
     stop("Found existing tailwindcss installation. Abort installation!")
   }
 
@@ -56,9 +56,11 @@ install_tailwindcss_cli <- function(overwrite = FALSE, version = "latest", verbo
   url <- "https://github.com/tailwindlabs/tailwindcss/releases"
   if(version == "latest") {
     html <- readLines(url)
-    h1 <- html[grepl("\\<h1\\>", html)][1]
+    # Returns all available versions
+    v <- grep(".*\\>(v[0-9]+.[0-9]+.[0-9]+)\\<.*", value = TRUE, html, perl = TRUE)
     # Extract release version
-    version <- gsub(".*releases/tag/(v[0-9]+.[0-9]+.[0-9]+).*", "\\1", h1)
+    version <- regmatches(v, gregexec("v[0-9]+.[0-9]+.[0-9]+", v))[[1]][1,1]
+
   }
   if(verbose) {
     cat(paste0(
