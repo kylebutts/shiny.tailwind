@@ -108,7 +108,7 @@ form2 <- rounded_container(
 
 # Combine the main UI elements and define server ----
 ui <- div(
-  class = "max-w-[80%] mx-auto my-24 grid grid-cols-1 xl:grid-cols-2 xl:gap-4",
+  class = "max-w-[80%] mx-auto my-24 grid gap-y-4 grid-cols-1 xl:grid-cols-2 xl:gap-4",
   shiny.tailwind::use_tailwind(),
   form1,
   form2

@@ -18,6 +18,9 @@ ui <- div(
 	  # Custom class page-div using @apply
     css = c("custom.css"),
 
+    # Currently TailwindCSS Typography does not work with v4
+    version = 3,
+
     # configuration, see here: https://tailwindcss.com/docs/configuration
     # This one adds extra colors
     tailwindConfig = "tailwind.config.js"

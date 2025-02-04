@@ -30,7 +30,7 @@
 #' @param tailwindConfig Optional. Path to ".js" file containing json object
 #'   `tailwind.config = {}`. See
 #'   \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.
-#'
+#' @param version Which version of tailwind to use. Default is now v4.
 #' @return a list of type `shiny.tag` with head and script elements needed to
 #'   run a tailwind app
 #' @export
@@ -42,22 +42,26 @@
 #' )
 #' basename(example_apps)
 #'
-#' if(interactive()) runApp(example_apps[1])
-use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
+#' if (interactive()) runApp(example_apps[1])
+use_tailwind <- function(css = NULL, tailwindConfig = NULL, version = 4) {
   # Check files exists
-  if(!is.null(css) && any(!file.exists(css))) {
+  if (!is.null(css) && any(!file.exists(css))) {
     stop(sprintf(
       "File: %s doesn't exist.",
       paste(css[!file.exists(css)], collapse = ", ")
     ))
   }
 
-  if(!is.null(tailwindConfig) && !file.exists(tailwindConfig)) {
+  if (!is.null(tailwindConfig) && !file.exists(tailwindConfig)) {
     stop(sprintf("File: %s doesn't exist", tailwindConfig))
   }
 
   # https://tailwindcss.com/docs/installation/play-cdn
-  url <- "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"
+  if (version == 3) {
+    url <- "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"
+  } else {
+    url <- "https://unpkg.com/@tailwindcss/browser@4?plugins=forms,typography,aspect-ratio,line-clamp"
+  }
 
   html_cdn <- list(htmltools::HTML(sprintf(
     "<!-- Include CDN JavaScript -->\n<script src='%s'></script>",
@@ -68,7 +72,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
   html_config <- NULL
 
   # Prepare html elements
-  if(!is.null(css)) {
+  if (!is.null(css)) {
     html_css <- lapply(css, function(x) {
       htmltools::HTML(paste(
         "<style type='text/tailwindcss'>\n\n",
@@ -79,7 +83,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
     })
   }
 
-  if(!is.null(tailwindConfig)) {
+  if (!is.null(tailwindConfig)) {
     html_config <- list(htmltools::HTML(paste(
       "<!-- Specify a custom TailwindCSS configuration -->\n",
       "<script>\n\n",
@@ -99,7 +103,7 @@ use_tailwind <- function(css = NULL, tailwindConfig = NULL) {
 # internal helper function to read utf8
 read_utf8_ <- function(file) {
   r <- readLines(file, encoding = "UTF-8", warn = FALSE)
-  if(!any(validUTF8(r))) {
+  if (!any(validUTF8(r))) {
     stop(sprintf("The file %s is not encoded in UTF 8.", file))
   }
   r

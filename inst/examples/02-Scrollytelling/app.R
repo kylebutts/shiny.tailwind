@@ -44,7 +44,7 @@ section <- function(section_title = "Section", section_subtitle = "", ...) {
 ui <- div(
   tags$head(
     # Load Tailwind CSS Just-in-time
-    shiny.tailwind::use_tailwind()
+    shiny.tailwind::use_tailwind(version = 3)
   ),
   tags$main(
     class = "h-screen overflow-y-scroll snap snap-y snap-center",
