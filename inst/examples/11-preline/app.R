@@ -27,10 +27,7 @@ generate_pin_inputs <- function(n = 6) {
         placeholder = "",
         `data-hs-pin-input-item` = "",
         maxlength = 1,
-        class = "block size-[80px] text-center border border-[#236e32] rounded-md text-4xl
-                 focus:scale-105 focus:border-[#236e32] focus:border-2 focus:ring-[#236e32] focus:outline-none
-                 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none
-                 disabled:opacity-50 disabled:pointer-events-none"
+        class = "block size-[80px] text-center border border-[#236e32] rounded-md text-4xl focus:scale-105 focus:border-[#236e32] focus:border-2 focus:ring-[#236e32] focus:outline-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none disabled:opacity-50 disabled:pointer-events-none"
       )
     })
   )
@@ -42,68 +39,66 @@ ui <- div(
 
   # PIN Input Card
   div(
-    class = "max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 mx-auto",
+    class = "max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8 mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4 md:p-5",
+    h3(
+      "VALIDATION CODE",
+      class = "text-lg font-semibold text-gray-800 mb-6 text-center"
+    ),
     div(
-      class = "bg-white border border-gray-200 rounded-xl shadow-sm p-4 md:p-5",
-      div(
-        class = "mb-6 text-center",
-        h3("VALIDATION CODE", class = "text-lg font-semibold text-gray-800")
-      ),
-      div(
-        class = "space-y-4 flex justify-center",
-        # Generate 6 PIN input fields
-        generate_pin_inputs(6)
-      )
+      class = "flex space-y-4 justify-center",
+      # Generate 6 PIN input fields
+      generate_pin_inputs(6)
     )
   ),
 
   # Results Card
   div(
-    class = "mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4 md:p-5",
-    div(
-      class = "mb-6",
-      h3("Result", class = "text-lg font-semibold text-gray-800")
+    class = "max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8 mt-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4 md:p-5",
+    h3(
+      "Result",
+      class = "text-lg font-semibold text-gray-800 mb-6 text-center"
     ),
     verbatimTextOutput("result")
   ),
 
   # JS for initializing the PIN input and updating Shiny input
-  tags$script(HTML("
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof HSPinInput !== 'undefined') {
-        HSPinInput.autoInit();
-        var pinInstance = HSPinInput.getInstance('#pin-input');
-        if (pinInstance) {
-          pinInstance.on('completed', function(e) {
-            console.log('PIN completed:', e.currentValue);
-            Shiny.setInputValue('pin', e.currentValue, {priority: 'event'});
-          });
-          var inputs = document.querySelectorAll('#pin-input [data-hs-pin-input-item]');
-          function updatePin() {
-            var currentValue = Array.from(inputs).map(function(el) { return el.value || ''; }).join('');
-            console.log('PIN updated:', currentValue);
-            Shiny.setInputValue('pin', currentValue, {priority: 'event'});
-          }
-          inputs.forEach(function(input) {
-            input.addEventListener('input', updatePin);
-            input.addEventListener('keyup', updatePin);
-          });
-        } else {
-          console.error('Unable to get HSPinInput instance for #pin-input');
-        }
-      } else {
-        console.error('HSPinInput is not defined');
-      }
-    });
-  "))
+  tags$script(HTML(
+    "
+     document.addEventListener('DOMContentLoaded', function() {
+       if (typeof HSPinInput !== 'undefined') {
+         HSPinInput.autoInit();
+         var pinInstance = HSPinInput.getInstance('#pin-input');
+         if (pinInstance) {
+           pinInstance.on('completed', function(e) {
+             console.log('PIN completed:', e.currentValue);
+             Shiny.setInputValue('pin', e.currentValue, {priority: 'event'});
+           });
+           var inputs = document.querySelectorAll('#pin-input [data-hs-pin-input-item]');
+           function updatePin() {
+             var currentValue = Array.from(inputs).map(function(el) { return el.value || ''; }).join('');
+             console.log('PIN updated:', currentValue);
+             Shiny.setInputValue('pin', currentValue, {priority: 'event'});
+           }
+           inputs.forEach(function(input) {
+             input.addEventListener('input', updatePin);
+             input.addEventListener('keyup', updatePin);
+           });
+         } else {
+           console.error('Unable to get HSPinInput instance for #pin-input');
+         }
+       } else {
+         console.error('HSPinInput is not defined');
+       }
+     });
+   "
+  ))
 )
 
 server <- function(input, output, session) {
-
   output$result <- renderText({
-
     # Consolidate the PIN into a single string
-    pin_consolidated <- if (!is.null(input$pin)) paste(input$pin, collapse = "") else ""
+    pin_consolidated <- if (!is.null(input$pin))
+      paste(input$pin, collapse = "") else ""
 
     pin_value <- if (pin_consolidated != "") {
       pin_consolidated
