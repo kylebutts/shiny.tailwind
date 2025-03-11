@@ -4,10 +4,10 @@
 \alias{use_daisyui}
 \title{Allows you to use 'daisyUI' elements}
 \usage{
-use_daisyui(version = "2.17.0", ...)
+use_daisyui(version = "5.0.0", ...)
 }
 \arguments{
-\item{version}{the version of 'daisyUI' to use, default is 2.17.0}
+\item{version}{the version of 'daisyUI' to use, default is 5.0.0}
 
 \item{...}{additional arguments passed to \code{\link[=use_tailwind]{use_tailwind()}}}
 }

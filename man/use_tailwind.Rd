@@ -4,7 +4,7 @@
 \alias{use_tailwind}
 \title{'TailwindCSS' with Shiny}
 \usage{
-use_tailwind(css = NULL, tailwindConfig = NULL)
+use_tailwind(css = NULL, tailwindConfig = NULL, version = 4)
 }
 \arguments{
 \item{css}{Optional. Path to ".css" file. Can use @apply tags for applying
@@ -13,6 +13,8 @@ Tailwind classes. See description for more details.}
 \item{tailwindConfig}{Optional. Path to ".js" file containing json object
 \code{tailwind.config = {}}. See
 \url{https://github.com/tailwindlabs/tailwindcss/releases/tag/v3.0.0-alpha.1}.}
+
+\item{version}{Which version of tailwind to use. Default is now v4.}
 }
 \value{
 a list of type \code{shiny.tag} with head and script elements needed to
@@ -51,5 +53,5 @@ example_apps <- list.files(system.file("examples", package = "shiny.tailwind"),
 )
 basename(example_apps)
 
-if(interactive()) runApp(example_apps[1])
+if (interactive()) runApp(example_apps[1])
 }

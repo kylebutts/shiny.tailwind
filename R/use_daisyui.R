@@ -5,10 +5,10 @@
 #' Note that this uses the CDN version, which is not recommended for production
 #' by 'daisyUI'.
 #'
-#' @param version the version of 'daisyUI' to use, default is 2.17.0
+#' @param version the version of 'daisyUI' to use, default is 5.0.0
 #' @param ... additional arguments passed to [use_tailwind()]
 #'
-#' @return the required HTML-head tags to use 'daisyUI' as `shiny.tag` 
+#' @return the required HTML-head tags to use 'daisyUI' as `shiny.tag`
 #' @export
 #'
 #' @examples
@@ -27,8 +27,8 @@
 #'   )
 #' )
 #' if(interactive()) shiny::shinyApp(ui, function(input, output) {})
-use_daisyui <- function(version = "2.17.0", ...) {
-  min_css <- sprintf("https://cdn.jsdelivr.net/npm/daisyui@%s/dist/full.css", version)
+use_daisyui <- function(version = "5.0.0", ...) {
+  min_css <- sprintf("https://cdn.jsdelivr.net/npm/daisyui@%s/daisyui.css", version)
 
   shiny::tagList(
     use_tailwind(...),

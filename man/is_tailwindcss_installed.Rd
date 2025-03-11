@@ -21,7 +21,7 @@ Make sure that you either provide the direction to the executable as the
 first argument to this function or put it in a folder on your PATH variable.
 }
 \examples{
-if(interactive()) {
+if (interactive()) {
   is_tailwindcss_installed()
 }
 }

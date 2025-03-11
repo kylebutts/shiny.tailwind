@@ -2,15 +2,15 @@
 #'
 #' See also: <https://flowbite.com/> and <https://flowbite.com/#components>
 #'
-#' @param version the version of 'flowbite' to use, default is 1.4.7
+#' @param version the version of 'flowbite' to use, default is 3.1.2
 #' @param ... further arguments passed to [use_tailwind()]
 #'
-#' @return the required HTML-head tags to use 'flowbite' as `shiny.tag` 
+#' @return the required HTML-head tags to use 'flowbite' as `shiny.tag`
 #'
 #' @export
-use_flowbite <- function(version = "1.4.7", ...) {
-  min_css <- sprintf("https://unpkg.com/flowbite@%s/dist/flowbite.min.css", version)
-  js <- sprintf("https://unpkg.com/flowbite@%s/dist/flowbite.js", version)
+use_flowbite <- function(version = "3.1.2", ...) {
+  min_css <- sprintf("https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.css", version)
+  js <- sprintf("https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.js", version)
 
   shiny::tagList(
     use_tailwind(...),

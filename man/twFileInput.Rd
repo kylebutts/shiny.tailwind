@@ -28,9 +28,9 @@ twFileInput(
 multiple files at once. \strong{Does not work on older browsers, including
 Internet Explorer 9 and earlier.}}
 
-\item{accept}{A character vector of "unique file type specifiers" which
-gives the browser a hint as to the type of file the server expects.
-Many browsers use this prevent the user from selecting an invalid file.
+\item{accept}{A character vector of "unique file type specifiers" which gives
+the browser a hint as to the type of file the server expects. Many browsers
+use this prevent the user from selecting an invalid file.
 
 A unique file type specifier can be:
 \itemize{
