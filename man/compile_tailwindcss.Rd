@@ -7,6 +7,7 @@
 compile_tailwindcss(
   infile,
   outfile,
+  version = 4,
   config = "tailwind.config.js",
   watch = FALSE,
   minify = FALSE,
@@ -21,7 +22,10 @@ compile_tailwindcss(
 \item{outfile}{the target css file, where tailwind will write the css to.
 Relative to basedir}
 
-\item{config}{the path to the tailwind.config.js file Default: tailwind.config.js in the root diretory}
+\item{version}{Which version of tailwind to use. Default is now v4.}
+
+\item{config}{the path to the tailwind.config.js file. With v4, the config file is not needed and can instead be specified in the \code{infile} css.
+With v3, the default is tailwind.config.js in the root diretory.}
 
 \item{watch}{if the files should be continuously monitored (versus only
 compile the css once), default is False}
@@ -38,10 +42,11 @@ compile the css once), default is False}
 the outfile invisibly
 }
 \description{
-See also \href{https://tailwindcss.com/blog/standalone-cli}{tailwind docs}
+See \href{https://tailwindcss.com/docs/installation/play-cdn}{v4 docs}
+or \href{https://tailwindcss.com/blog/standalfone-cli}{v3 docs}.
 }
 \examples{
-if(interactive()) {
+if (interactive()) {
   temp <- tempdir()
   owd <- setwd(temp)
 

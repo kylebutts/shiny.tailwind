@@ -20,7 +20,7 @@ twVarSelectizeInput(
 
 \item{...}{Arguments passed to \code{varSelectInput()}.}
 
-\item{options}{A list of options. See the documentation of \pkg{selectize.js}
+\item{options}{A list of options. See the documentation of \pkg{selectize.js}(\url{https://selectize.dev/docs/usage})
 for possible options (character option values inside \code{\link[base:AsIs]{base::I()}} will
 be treated as literal JavaScript code; see \code{\link[shiny:renderDataTable]{renderDataTable()}}
 for details).}

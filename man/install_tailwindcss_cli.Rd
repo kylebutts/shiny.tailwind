@@ -34,7 +34,7 @@ Alternatively, you could \code{cd} to the directory in terminal and then run
 \verb{chmod +x tailwindcss}.
 }
 \examples{
-if(interactive()) {
+if (interactive()) {
   install_tailwindcss_cli()
 }
 }
