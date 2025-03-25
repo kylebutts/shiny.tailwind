@@ -16,11 +16,11 @@ library(shiny.tailwind)
 # way the code will be displayed
 code_mockup <- function(code, prefix = "$", class = NULL) {
   shiny::HTML(sprintf(
-    '<pre data-prefix="%s"%s><code>%s</code></pre>',
+    '<pre data-prefix="%s" %s><code>%s</code></pre>',
     prefix,
     ifelse(
       !is.null(class),
-      paste0(' class="', paste(class, collapse = " "), '"'),
+      paste0('class="', paste(class, collapse = " "), '"'),
       ""
     ),
     code

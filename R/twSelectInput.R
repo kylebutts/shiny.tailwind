@@ -94,12 +94,11 @@ twSelectInput <- function(
         multiple = if (multiple) "multiple" else NULL,
         lapply(seq_along(choices), function(i) {
           choice <- choices[[i]]
-          shiny::HTML(sprintf(
-            '<option value="%s"%s>%s</option>',
-            choice,
-            ifelse(choice %in% selected, " selected", ""),
+          shiny::tags$option(
+            value = choice,
+            selected = ifelse(choice %in% selected, "selected", NULL),
             nn[[i]]
-          ))
+          )
         })
       ),
       if (selectize) {

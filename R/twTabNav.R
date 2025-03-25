@@ -124,14 +124,14 @@ twTabNav <- function(
 
       cl <- paste("twTab", tabsetid, if (i == 1) "twTab-active", tab_class)
 
-      htmltools::HTML(sprintf(
-        '<div class="%s" id="%s" onclick="opentab(\'%s\', \'%s\');">%s</div>',
-        cl,
-        id,
-        tabsetid,
-        id,
-        as.character(dots[[i]])
-      ))
+      shiny::tags$div(
+        class = cl,
+        id = id,
+        onclick = sprintf("opentab(\'%s\', \'%s\')", tabsetid, id),
+        shiny::tagList(
+          dots[[i]]
+        )
+      )
     }),
     shiny::includeScript(
       path = system.file("twTab.js", package = "shiny.tailwind")

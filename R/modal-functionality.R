@@ -40,17 +40,21 @@ twBtnOpenModal <- function(
   icon = NULL,
   modal_id = "shiny-modal"
 ) {
-  shiny::HTML(sprintf(
-    '
-<button id="%s" class="action-button %s"
-  onclick="document.getElementById(\'%s\').classList.remove(\'hidden\')">
-  %s
-</button>',
-    btn_id,
-    btn_class,
-    modal_id,
+  close_script <- sprintf(
+    "document.getElementById('%s').classList.remove('hidden')",
+    modal_id
+  )
+
+  if (is.null(btn_class)) {
+    btn_class <- ""
+  }
+
+  shiny::tags$button(
+    id = btn_id,
+    class = c("action-button", btn_class),
+    onclick = close_script,
     shiny::tagList(icon, btn_label)
-  ))
+  )
 }
 
 
@@ -111,18 +115,21 @@ twModalDialog <- function(
   modal_id = "shiny-modal",
   modal_width = "max-w-lg"
 ) {
-  if (!is.null(close_class) && is.na(close_class))
+  if (!is.null(close_class) && is.na(close_class)) {
     close_class <- paste(
       "mt-3 w-full justify-center rounded-md border border-gray-300 shadow-sm",
       "px-4 py-2 bg-white text-base font-bold text-gray-700 hover:bg-gray-50",
       "mt-0 ml-3 w-auto text-sm place-items-center"
     )
-  if (!is.null(submit_class) && is.na(submit_class))
+  }
+  if (!is.null(submit_class) && is.na(submit_class)) {
     submit_class <- paste(
       "w-full justify-center rounded-md border border-transparent shadow-sm",
       "px-4 py-2 bg-blue-600 text-base font-bold text-white hover:bg-blue-800",
       "ml-3 w-auto text-sm place-items-center"
     )
+  }
+
   div(
     class = "relative z-50 hidden",
     id = modal_id,
@@ -157,28 +164,27 @@ twModalDialog <- function(
           ),
           div(
             class = "bg-gray-50 px-4 py-3 px-6 flex flex-row-reverse",
-            HTML(sprintf(
-              '
-<button type="button" id=%s onclick="document.getElementById(\'%s\').classList.add(\'hidden\')"
-  class = "action-button %s">
-  %s
-</button>',
-              submit_id,
-              modal_id,
-              submit_class,
+            shiny::tags$button(
+              id = submit_id,
+              type = "button",
+              class = c("action-button", submit_class),
+              onclick = sprintf(
+                "document.getElementById('%s').classList.add('hidden')",
+                modal_id
+              ),
               submit_label
-            )),
-            HTML(sprintf(
-              '
-<button type="button" id=%s onclick="document.getElementById(\'%s\').classList.add(\'hidden\')"
-  class = "action-button %s">
-  %s
-</button>',
-              close_id,
-              modal_id,
-              close_class,
+            ),
+
+            shiny::tags$button(
+              id = close_id,
+              type = "button",
+              class = c("action-button", close_class),
+              onclick = sprintf(
+                "document.getElementById('%s').classList.add('hidden')",
+                modal_id
+              ),
               close_label
-            ))
+            )
           )
         )
       )
