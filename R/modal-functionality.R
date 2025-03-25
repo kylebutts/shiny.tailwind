@@ -1,4 +1,3 @@
-
 #' Creates a button to open a Modal Dialog
 #'
 #' @param btn_id ID of the button
@@ -34,12 +33,24 @@
 #'   })
 #' }
 #' if (interactive()) shinyApp(ui, server)
-twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, modal_id = "shiny-modal") {
-  shiny::HTML(sprintf('
+twBtnOpenModal <- function(
+  btn_id,
+  btn_label,
+  btn_class = NULL,
+  icon = NULL,
+  modal_id = "shiny-modal"
+) {
+  shiny::HTML(sprintf(
+    '
 <button id="%s" class="action-button %s"
   onclick="document.getElementById(\'%s\').classList.remove(\'hidden\')">
   %s
-</button>', btn_id, btn_class, modal_id, shiny::tagList(icon, btn_label)))
+</button>',
+    btn_id,
+    btn_class,
+    modal_id,
+    shiny::tagList(icon, btn_label)
+  ))
 }
 
 
@@ -88,13 +99,18 @@ twBtnOpenModal <- function(btn_id, btn_label, btn_class = NULL, icon = NULL, mod
 #'   })
 #' }
 #' if (interactive()) shinyApp(ui, server)
-twModalDialog <- function(ui,
-                          close_id = "close", close_label = "Close",
-                          close_class = NA,
-                          submit_id = "submit" , submit_label = "Submit",
-                          submit_class = NA,
-                          title = "Title of Modal", modal_id = "shiny-modal",
-                          modal_width = "max-w-lg") {
+twModalDialog <- function(
+  ui,
+  close_id = "close",
+  close_label = "Close",
+  close_class = NA,
+  submit_id = "submit",
+  submit_label = "Submit",
+  submit_class = NA,
+  title = "Title of Modal",
+  modal_id = "shiny-modal",
+  modal_width = "max-w-lg"
+) {
   if (!is.null(close_class) && is.na(close_class))
     close_class <- paste(
       "mt-3 w-full justify-center rounded-md border border-gray-300 shadow-sm",
@@ -116,35 +132,53 @@ twModalDialog <- function(ui,
     div(class = "fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"),
 
     div(
-      class="fixed z-10 inset-0 overflow-y-auto",
+      class = "fixed z-10 inset-0 overflow-y-auto",
       div(
         class = "flex items-end sm:items-center justify-center min-h-full p-4 text-center p-0",
         div(
-          class = paste("relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 w-full",
-                        modal_width),
+          class = paste(
+            "relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 w-full",
+            modal_width
+          ),
           div(
             class = "bg-white px-4 pt-5 pb-4 p-6 pb-4",
             div(
               class = "flex items-start",
               div(
                 class = "mt-3 text-center mt-0 ml-4 text-left",
-                h3(class = "font-extrabold mb-2 text-xl leading-6 text-gray-900", id = paste0(modal_id, "-title"), title),
+                h3(
+                  class = "font-extrabold mb-2 text-xl leading-6 text-gray-900",
+                  id = paste0(modal_id, "-title"),
+                  title
+                ),
                 ui
               )
             )
           ),
           div(
             class = "bg-gray-50 px-4 py-3 px-6 flex flex-row-reverse",
-            HTML(sprintf('
+            HTML(sprintf(
+              '
 <button type="button" id=%s onclick="document.getElementById(\'%s\').classList.add(\'hidden\')"
   class = "action-button %s">
   %s
-</button>', submit_id, modal_id, submit_class, submit_label)),
-            HTML(sprintf('
+</button>',
+              submit_id,
+              modal_id,
+              submit_class,
+              submit_label
+            )),
+            HTML(sprintf(
+              '
 <button type="button" id=%s onclick="document.getElementById(\'%s\').classList.add(\'hidden\')"
   class = "action-button %s">
   %s
-</button>', close_id, modal_id, close_class, close_label))
+</button>',
+              close_id,
+              modal_id,
+              close_class,
+              close_label
+            ))
           )
         )
       )

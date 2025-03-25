@@ -13,7 +13,7 @@
 #' @seealso [shiny::numericInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::numericInput("number", "A Number", 42, min = 10, max = 100, step = 13, width = "200px")
@@ -44,12 +44,21 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twNumericInput <- function(inputId, label, value,
-                           min = NA, max = NA, step = NA, width = NULL,
-                           placeholder = "",
-                           disabled = FALSE, container_class = NULL,
-                           label_class = NULL, input_class = NULL,
-                           label_after_input = FALSE) {
+twNumericInput <- function(
+  inputId,
+  label,
+  value,
+  min = NA,
+  max = NA,
+  step = NA,
+  width = NULL,
+  placeholder = "",
+  disabled = FALSE,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  label_after_input = FALSE
+) {
   container_class <- paste("form-group", container_class)
   input_class <- paste("form-control", input_class)
   label_class <- paste("form-label", label_class)
@@ -57,26 +66,27 @@ twNumericInput <- function(inputId, label, value,
   width <- shiny::validateCssUnit(width)
 
   html_label <- shiny::tags$label(
-    class = label_class, "for" = inputId,
+    class = label_class,
+    "for" = inputId,
     label
   )
 
   res <- shiny::div(
     class = container_class,
-    style = if(!is.null(width)) paste0("width:", width) else NULL,
-    if(!label_after_input) html_label,
+    style = if (!is.null(width)) paste0("width:", width) else NULL,
+    if (!label_after_input) html_label,
     shiny::tags$input(
       type = "number",
       id = inputId,
-      value = if(!is.null(value)) value else NULL,
-      min = if(!is.null(min)) min else NULL,
-      max = if(!is.null(max)) max else NULL,
-      step = if(!is.null(step)) step else NULL,
-      disabled = if(disabled) "" else NULL,
+      value = if (!is.null(value)) value else NULL,
+      min = if (!is.null(min)) min else NULL,
+      max = if (!is.null(max)) max else NULL,
+      step = if (!is.null(step)) step else NULL,
+      disabled = if (disabled) "" else NULL,
       placeholder = placeholder,
       class = input_class
     ),
-    if(label_after_input) html_label
+    if (label_after_input) html_label
   )
 
   res

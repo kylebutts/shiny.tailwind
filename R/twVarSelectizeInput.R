@@ -14,7 +14,7 @@
 #' @seealso [shiny::varSelectizeInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::varSelectizeInput("selectize", "A Selection", mtcars)
@@ -46,14 +46,16 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui_basic, server)
-twVarSelectizeInput <- function(inputId,
-                                ...,
-                                options = NULL,
-                                width = NULL,
-                                container_class = NULL,
-                                label_class = NULL,
-                                input_class = NULL,
-                                label_after_input = FALSE) {
+twVarSelectizeInput <- function(
+  inputId,
+  ...,
+  options = NULL,
+  width = NULL,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  label_after_input = FALSE
+) {
   res <- shiny::varSelectizeInput(
     inputId = inputId,
     ...,
@@ -71,7 +73,7 @@ twVarSelectizeInput <- function(inputId,
     input_class
   )
 
-  if(label_after_input) {
+  if (label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

@@ -8,7 +8,7 @@
 #' @seealso [shiny::selectInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::selectInput("id", "label", c("A" = "a", "B" = "b", "C" = "c"),
@@ -49,11 +49,20 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twSelectInput <- function(inputId, label, choices, selected = NULL,
-                          multiple = FALSE, selectize = TRUE, width = NULL, size = NULL,
-                          container_class = NULL, label_class = NULL,
-                          select_class = NULL) {
-  if(selectize && !is.null(size)) {
+twSelectInput <- function(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  multiple = FALSE,
+  selectize = TRUE,
+  width = NULL,
+  size = NULL,
+  container_class = NULL,
+  label_class = NULL,
+  select_class = NULL
+) {
+  if (selectize && !is.null(size)) {
     stop("'size' argument is incompatible with 'selectize=TRUE'.")
   }
 
@@ -63,15 +72,15 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
 
   width <- shiny::validateCssUnit(width)
 
-  if(is.null(names(choices))) names(choices) <- choices
+  if (is.null(names(choices))) names(choices) <- choices
   nn <- names(choices)
-  if(is.null(selected)) selected <- nn[[1]]
+  if (is.null(selected)) selected <- nn[[1]]
 
   label_id <- paste0(inputId, "-label")
   res <- shiny::div(
     class = container_class,
-    style = if(!is.null(width)) paste0("width: ", width, ";") else NULL,
-    size = if(!is.null(size)) size else NULL,
+    style = if (!is.null(width)) paste0("width: ", width, ";") else NULL,
+    size = if (!is.null(size)) size else NULL,
     shiny::tags$label(
       class = label_class,
       id = label_id,
@@ -82,7 +91,7 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
       shiny::tags$select(
         id = inputId,
         class = select_class,
-        multiple = if(multiple) "multiple" else NULL,
+        multiple = if (multiple) "multiple" else NULL,
         lapply(seq_along(choices), function(i) {
           choice <- choices[[i]]
           shiny::HTML(sprintf(
@@ -93,7 +102,7 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
           ))
         })
       ),
-      if(selectize) {
+      if (selectize) {
         shiny::tags$script(
           type = "application/json",
           "data-for" = inputId,
@@ -104,11 +113,9 @@ twSelectInput <- function(inputId, label, choices, selected = NULL,
     )
   )
 
-  if(selectize) {
+  if (selectize) {
     attr(res, "html_dependencies") <- attr(
-      shiny::selectInput("a", "a", "a",
-        selectize = TRUE
-      ),
+      shiny::selectInput("a", "a", "a", selectize = TRUE),
       "html_dependencies"
     )
   }

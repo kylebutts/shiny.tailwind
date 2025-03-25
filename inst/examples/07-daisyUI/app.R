@@ -18,9 +18,11 @@ code_mockup <- function(code, prefix = "$", class = NULL) {
   shiny::HTML(sprintf(
     '<pre data-prefix="%s"%s><code>%s</code></pre>',
     prefix,
-    ifelse(!is.null(class),
-           paste0(' class="', paste(class, collapse = " "), '"'),
-           ""),
+    ifelse(
+      !is.null(class),
+      paste0(' class="', paste(class, collapse = " "), '"'),
+      ""
+    ),
     code
   ))
 }
@@ -30,11 +32,15 @@ title <- function(txt) div(txt, class = "text-4xl font-bold mb-2")
 
 # styled element for more info
 see_also <- function(txt, url, class = "") {
-  div(class = paste("text-gray-500", class),
-      txt,
-      a(href = url, url,
-        target = "_blank",
-        class = "text-blue-600 hover:underline decoration-blue-600")
+  div(
+    class = paste("text-gray-500", class),
+    txt,
+    a(
+      href = url,
+      url,
+      target = "_blank",
+      class = "text-blue-600 hover:underline decoration-blue-600"
+    )
   )
 }
 
@@ -45,8 +51,11 @@ ui <- div(
   div(
     class = "p-2 mb-4",
     div("daisyUI Examples", class = "text-center text-6xl font-bold mb-2"),
-    see_also("More information about daisyUI can be found here:",
-             "https://daisyui.com/", class = "text-center text-xl")
+    see_also(
+      "More information about daisyUI can be found here:",
+      "https://daisyui.com/",
+      class = "text-center text-xl"
+    )
   ),
 
   div(
@@ -54,8 +63,11 @@ ui <- div(
 
     div(
       title("Breadcrumbs"),
-      see_also("See also: ", "https://daisyui.com/components/breadcrumbs/",
-               class = "mb-2"),
+      see_also(
+        "See also: ",
+        "https://daisyui.com/components/breadcrumbs/",
+        class = "mb-2"
+      ),
 
       div(
         class = "text-sm breadcrumbs",
@@ -69,8 +81,11 @@ ui <- div(
 
     div(
       title("Steps"),
-      see_also("See also: ", "https://daisyui.com/components/steps/",
-               class = "mb-2"),
+      see_also(
+        "See also: ",
+        "https://daisyui.com/components/steps/",
+        class = "mb-2"
+      ),
 
       tags$ul(
         class = "steps",
@@ -83,8 +98,11 @@ ui <- div(
 
     div(
       title("Pagination"),
-      see_also("See also: ", "https://daisyui.com/components/pagination/",
-               class = "mb-2"),
+      see_also(
+        "See also: ",
+        "https://daisyui.com/components/pagination/",
+        class = "mb-2"
+      ),
       div(
         class = "btn-group",
         tags$button(class = "btn btn-md", 1),
@@ -100,16 +118,23 @@ ui <- div(
       see_also("See also: ", "https://daisyui.com/components/code/"),
 
       div(
-        class="mockup-code",
+        class = "mockup-code",
         # Note that tags$pre + tags$code introduces newlines which breaks the code
         code_mockup("R"),
-        code_mockup("install.packages(\"shiny.tailwind\")", prefix = "R",
-                    class = "text-warning"),
-        code_mockup("install_tailwindcss_ui()", prefix = "R",
-                    class = "text-success")
+        code_mockup(
+          "install.packages(\"shiny.tailwind\")",
+          prefix = "R",
+          class = "text-warning"
+        ),
+        code_mockup(
+          "install_tailwindcss_ui()",
+          prefix = "R",
+          class = "text-success"
+        )
       )
     )
   )
 )
 
-shiny::shinyApp(ui, function(input, output) {})
+shiny::shinyApp(ui, function(input, output) {
+})

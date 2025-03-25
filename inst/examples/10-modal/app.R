@@ -13,7 +13,8 @@ library(fontawesome)
 
 # 1) Define the open modal button ----
 modal_btn <- twBtnOpenModal(
-  "open_modal", "Show Modal to Delete Account",
+  "open_modal",
+  "Show Modal to Delete Account",
   btn_class = "px-5 py-2 bg-rose-500 hover:bg-rose-700 text-white cursor-pointer rounded-md",
   icon = icon("check")
 )
@@ -22,18 +23,24 @@ modal_btn <- twBtnOpenModal(
 # note that we could have shiny inputs/outputs here as well
 modal_ui <- div(
   class = "mt-2",
-  p(class = "text-sm text-gray-500",
-    paste("Are you sure you want to deactivate your account?",
-          "All of your data will be permanently removed.",
-          "This action cannot be undone.")
+  p(
+    class = "text-sm text-gray-500",
+    paste(
+      "Are you sure you want to deactivate your account?",
+      "All of your data will be permanently removed.",
+      "This action cannot be undone."
+    )
   )
 )
 
 # 3) Define the full modal dialog ----
 modal <- twModalDialog(
-  ui = modal_ui, title = "Delete Account",
-  close_id = "close_modal", close_label = tagList(icon("times", class = "px-1"), "Close"),
-  submit_id = "submit_modal", submit_label = tagList(icon("trash", class = "px-1"), "Delete"),
+  ui = modal_ui,
+  title = "Delete Account",
+  close_id = "close_modal",
+  close_label = tagList(icon("times", class = "px-1"), "Close"),
+  submit_id = "submit_modal",
+  submit_label = tagList(icon("trash", class = "px-1"), "Delete"),
 )
 
 

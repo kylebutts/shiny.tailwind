@@ -22,7 +22,8 @@ see_also <- function(txt, url, class = "") {
     class = paste("text-gray-500", class),
     txt,
     a(
-      href = url, url,
+      href = url,
+      url,
       target = "_blank",
       class = "text-blue-600 hover:underline decoration-blue-600"
     )
@@ -30,8 +31,12 @@ see_also <- function(txt, url, class = "") {
 }
 
 # creates a button with a tooltip
-tooltip_button <- function(id, label, tooltip_text,
-                           tooltip_position = c("top", "right", "bottom", "left")) {
+tooltip_button <- function(
+  id,
+  label,
+  tooltip_text,
+  tooltip_position = c("top", "right", "bottom", "left")
+) {
   tooltip_position <- match.arg(tooltip_position)
 
   tagList(
@@ -50,7 +55,8 @@ tooltip_button <- function(id, label, tooltip_text,
 
     # the tooltip
     div(
-      id = paste0(id, "-tooltip"), role = "tooltip",
+      id = paste0(id, "-tooltip"),
+      role = "tooltip",
       class = paste(
         "inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium",
         "text-white bg-gray-900 rounded-lg shadow-sm opacity-0",
@@ -71,17 +77,21 @@ flowbite_accordion <- function(id, ...) {
     "4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
   )
   svg_down <- tags$svg(
-    "data-accordion-icon" = NA, class = "w-6 h-6 shrink-0",
-    fill = "currentColor", viewBox = "0 0 20 20",
+    "data-accordion-icon" = NA,
+    class = "w-6 h-6 shrink-0",
+    fill = "currentColor",
+    viewBox = "0 0 20 20",
     xmlns = "http://www.w3.org/2000/svg",
     tags$path(
-      "fill-rule" = "evenodd", d = svg_path,
+      "fill-rule" = "evenodd",
+      d = svg_path,
       "clip-rule" = "evenodd"
     )
   )
 
   div(
-    id = id, "data-accordion" = "collapse",
+    id = id,
+    "data-accordion" = "collapse",
     "data-active-classes" = "bg-blue-100 text-blue-600",
     lapply(seq_along(ll), function(i) {
       tagList(
@@ -93,7 +103,8 @@ flowbite_accordion <- function(id, ...) {
               "flex justify-between items-center p-5 w-full font-medium",
               "text-left text-gray-500 border",
               "border-gray-200 focus:ring-4 focus:ring-gray-200",
-              "hover:bg-gray-100", if (i == 1) "rounded-t-xl"
+              "hover:bg-gray-100",
+              if (i == 1) "rounded-t-xl"
             ),
             "data-accordion-target" = paste0("#", id, "-body-", i),
             "aria-expanded" = "true",
@@ -103,7 +114,8 @@ flowbite_accordion <- function(id, ...) {
           )
         ),
         div(
-          id = paste0(id, "-body-", i), class = "hidden",
+          id = paste0(id, "-body-", i),
+          class = "hidden",
           "aria-labelledby" = paste0(id, "-heading-", i),
           div(
             class = "p-5 border border-gray-200",
@@ -132,7 +144,8 @@ ui <- div(
   div(
     class = "p-2 mb-4",
     div("Flowbite UI Examples", class = "text-center text-6xl font-bold mb-2"),
-    see_also("More information about flowbite can be found here:",
+    see_also(
+      "More information about flowbite can be found here:",
       "https://flowbite.com/",
       class = "text-center text-xl"
     )
@@ -145,7 +158,9 @@ ui <- div(
     # Tooltips :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     div(
       title("Tooltips"),
-      see_also("See also:", "https://flowbite.com/docs/components/tooltips/",
+      see_also(
+        "See also:",
+        "https://flowbite.com/docs/components/tooltips/",
         class = "mb-2"
       ),
       div(
@@ -157,41 +172,54 @@ ui <- div(
       ),
     ),
 
-
     # Accordion ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     div(
       title("Accordion"),
-      see_also("See also:", "https://flowbite.com/docs/components/accordion/",
+      see_also(
+        "See also:",
+        "https://flowbite.com/docs/components/accordion/",
         class = "mb-2"
       ),
       flowbite_accordion(
         id = "accordion-open",
         "What is Flowbite?" = list(
-          p(class = "mb-2 text-gray-500", paste(
-            "Flowbite is an open-source library of interactive components built",
-            "on top of Tailwind CSS including buttons, dropdowns, modals,",
-            "navbars, and more."
-          )),
-          p(class = "text-gray-500", HTML(paste(
-            "Check out this guide to learn how to ",
-            "<a href=\"https://flowbite.com/docs/getting-started/introduction/\"",
-            "class=\"text-blue-600 dark:text-blue-500 hover:underline\">",
-            "get started</a> and start developing websites even faster with ",
-            "components on top of Tailwind CSS."
-          )))
+          p(
+            class = "mb-2 text-gray-500",
+            paste(
+              "Flowbite is an open-source library of interactive components built",
+              "on top of Tailwind CSS including buttons, dropdowns, modals,",
+              "navbars, and more."
+            )
+          ),
+          p(
+            class = "text-gray-500",
+            HTML(paste(
+              "Check out this guide to learn how to ",
+              "<a href=\"https://flowbite.com/docs/getting-started/introduction/\"",
+              "class=\"text-blue-600 dark:text-blue-500 hover:underline\">",
+              "get started</a> and start developing websites even faster with ",
+              "components on top of Tailwind CSS."
+            ))
+          )
         ),
         "What are the differences between Flowbite and Tailwind UI?" = list(
-          p(class = "mb-2 text-gray-500", paste(
-            "The main difference is that the core components from Flowbite are",
-            "open source under the MIT license, whereas Tailwind UI is a paid",
-            "product. Another difference is that Flowbite relies on smaller and",
-            "standalone components, whereas Tailwind UI offers sections of pages."
-          )),
-          p(class = "text-gray-500", paste(
-            "However, we actually recommend using both Flowbite, Flowbite Pro,",
-            "and even Tailwind UI as there is no technical reason stopping you",
-            "from using the best of two worlds."
-          )),
+          p(
+            class = "mb-2 text-gray-500",
+            paste(
+              "The main difference is that the core components from Flowbite are",
+              "open source under the MIT license, whereas Tailwind UI is a paid",
+              "product. Another difference is that Flowbite relies on smaller and",
+              "standalone components, whereas Tailwind UI offers sections of pages."
+            )
+          ),
+          p(
+            class = "text-gray-500",
+            paste(
+              "However, we actually recommend using both Flowbite, Flowbite Pro,",
+              "and even Tailwind UI as there is no technical reason stopping you",
+              "from using the best of two worlds."
+            )
+          ),
           p(class = "text-gray-500", "Learn more about these technologies:"),
           tags$ul(
             class = "pl-5 list-disc text-gray-500 dark:text-gray-400",
@@ -213,7 +241,9 @@ ui <- div(
     # Toast ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
     div(
       title("Simple Toast"),
-      see_also("See also:", "https://flowbite.com/docs/components/toast/",
+      see_also(
+        "See also:",
+        "https://flowbite.com/docs/components/toast/",
         class = "mb-2"
       ),
       div(
@@ -224,10 +254,14 @@ ui <- div(
         ),
         role = "alert",
         tags$svg(
-          class = "w-5 h-5 text-blue-600", "aria-hidden" = "true",
-          focusable = "false", "data-prefix" = "fas",
-          "data-icon" = "paper-plane", "role" = "img",
-          xmlns = "http://www.w3.org/2000/svg", viewBox = "0 0 512 512",
+          class = "w-5 h-5 text-blue-600",
+          "aria-hidden" = "true",
+          focusable = "false",
+          "data-prefix" = "fas",
+          "data-icon" = "paper-plane",
+          "role" = "img",
+          xmlns = "http://www.w3.org/2000/svg",
+          viewBox = "0 0 512 512",
           tags$path(fill = "currentColor", d = svg_plane)
         ),
         div(class = "pl-4 text-sm font-normal", "Message sent successfully")
@@ -236,4 +270,5 @@ ui <- div(
   )
 )
 
-shiny::shinyApp(ui, function(input, output) {})
+shiny::shinyApp(ui, function(input, output) {
+})

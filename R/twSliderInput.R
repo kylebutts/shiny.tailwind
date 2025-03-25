@@ -14,7 +14,7 @@
 #' @seealso [shiny::sliderInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::sliderInput("values", "A Range", min = 0, max = 100, value = 75)
@@ -47,26 +47,28 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twSliderInput <- function(inputId,
-                          label,
-                          min,
-                          max,
-                          value,
-                          step = NULL,
-                          round = FALSE,
-                          ticks = TRUE,
-                          animate = FALSE,
-                          width = NULL,
-                          sep = ",",
-                          pre = NULL,
-                          post = NULL,
-                          timeFormat = NULL,
-                          timezone = NULL,
-                          dragRange = TRUE,
-                          container_class = NULL,
-                          label_class = NULL,
-                          input_class = NULL,
-                          label_after_input = FALSE) {
+twSliderInput <- function(
+  inputId,
+  label,
+  min,
+  max,
+  value,
+  step = NULL,
+  round = FALSE,
+  ticks = TRUE,
+  animate = FALSE,
+  width = NULL,
+  sep = ",",
+  pre = NULL,
+  post = NULL,
+  timeFormat = NULL,
+  timezone = NULL,
+  dragRange = TRUE,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  label_after_input = FALSE
+) {
   res <- shiny::sliderInput(
     inputId = inputId,
     label = label,
@@ -87,10 +89,16 @@ twSliderInput <- function(inputId,
   )
 
   res$attribs$class <- paste(res$attribs$class, container_class)
-  res$children[[1]]$attribs$class <- paste(res$children[[1]]$attribs$class, label_class)
-  res$children[[2]]$attribs$class <- paste(res$children[[2]]$attribs$class, input_class)
+  res$children[[1]]$attribs$class <- paste(
+    res$children[[1]]$attribs$class,
+    label_class
+  )
+  res$children[[2]]$attribs$class <- paste(
+    res$children[[2]]$attribs$class,
+    input_class
+  )
 
-  if(label_after_input) {
+  if (label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

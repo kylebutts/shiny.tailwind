@@ -35,7 +35,8 @@ ui <- div(
     # Top Bar
     div(
       class = "border-b px-5 py-1 h-16 flex shrink-0",
-      h1("Example Dashboard Layout",
+      h1(
+        "Example Dashboard Layout",
         class = "my-auto font-sans font-bold tracking-wider"
       )
     ),
@@ -55,7 +56,7 @@ ui <- div(
           fancy_title("First Tab"),
           plotOutput("plot1"),
           div(
-            class="min-h-screen flex items-center justify-center",
+            class = "min-h-screen flex items-center justify-center",
             "Hello!"
           )
         ),

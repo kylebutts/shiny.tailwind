@@ -14,7 +14,7 @@
 #' @seealso [shiny::selectizeInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::selectizeInput("selectize", "A Selection", choice = c("A", "B"))
@@ -47,14 +47,16 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twSelectizeInput <- function(inputId,
-                             ...,
-                             options = NULL,
-                             width = NULL,
-                             container_class = NULL,
-                             label_class = NULL,
-                             input_class = NULL,
-                             label_after_input = FALSE) {
+twSelectizeInput <- function(
+  inputId,
+  ...,
+  options = NULL,
+  width = NULL,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  label_after_input = FALSE
+) {
   res <- shiny::selectizeInput(
     inputId = inputId,
     ...,
@@ -63,10 +65,16 @@ twSelectizeInput <- function(inputId,
   )
 
   res$attribs$class <- paste(res$attribs$class, container_class)
-  res$children[[1]]$attribs$class <- paste(res$children[[1]]$attribs$class, label_class)
-  res$children[[2]]$attribs$class <- paste(res$children[[2]]$attribs$class, input_class)
+  res$children[[1]]$attribs$class <- paste(
+    res$children[[1]]$attribs$class,
+    label_class
+  )
+  res$children[[2]]$attribs$class <- paste(
+    res$children[[2]]$attribs$class,
+    input_class
+  )
 
-  if(label_after_input) {
+  if (label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

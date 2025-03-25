@@ -99,31 +99,40 @@
 #' if(interactive()) shiny::shinyApp(ui_styled, server)
 #'
 #' @export
-twTabContent <- function(..., ids = NULL, container_class = NULL,
-                         content_class = NULL, tabsetid = "tabSet1") {
+twTabContent <- function(
+  ...,
+  ids = NULL,
+  container_class = NULL,
+  content_class = NULL,
+  tabsetid = "tabSet1"
+) {
   dots <- list(...)
 
-  if(is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
+  if (is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
 
-  if(length(dots) != length(ids)) {
-    stop("ids has to have the same length as the provided tab navigation elements")
+  if (length(dots) != length(ids)) {
+    stop(
+      "ids has to have the same length as the provided tab navigation elements"
+    )
   }
-
 
   shiny::div(
     class = container_class,
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
-      if(is.null(id)) id <- ids[[i]]
+      if (is.null(id)) id <- ids[[i]]
 
       idc <- strsplit(id, "-")[[1]]
-      if(idc[length(idc)] != "content") id <- paste0(id, "-content")
+      if (idc[length(idc)] != "content") id <- paste0(id, "-content")
 
       shiny::div(
-        class = paste("twTabContent",
-                      paste0(tabsetid, "-content"),
-                      if(i == 1) "twTabContent-active", content_class),
-        style = if(i == 1) "display: block;" else "display: none;",
+        class = paste(
+          "twTabContent",
+          paste0(tabsetid, "-content"),
+          if (i == 1) "twTabContent-active",
+          content_class
+        ),
+        style = if (i == 1) "display: block;" else "display: none;",
         id = id,
         dots[[i]]
       )

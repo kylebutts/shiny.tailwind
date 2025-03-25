@@ -34,7 +34,9 @@ ui <- div(
     div(
       # note the background of the inputs is styled in apply-custom.css
       twVarSelectInput(
-        "var", "Variable:", dataset,
+        "var",
+        "Variable:",
+        dataset,
         selectize = FALSE,
         container_class = "w-64",
         select_class = "rounded-md text-indigo-500 w-64"
@@ -42,15 +44,19 @@ ui <- div(
     ),
     div(
       twSliderInput(
-        "bins", "Number of Bins:",
-        min = 1, max = 10, value = 5,
+        "bins",
+        "Number of Bins:",
+        min = 1,
+        max = 10,
+        value = 5,
         label_class = "font-mono",
         input_class = "drop-shadow"
       )
     ),
     div(
       twTextInput(
-        "title", "Title",
+        "title",
+        "Title",
         value = "Histogram of Cars",
         input_class = "rounded-md text-indigo-500 font-bold w-64"
       )
@@ -70,7 +76,8 @@ server <- function(input, output) {
     var <- as.character(input$var)
     hist(
       dataset[[var]],
-      main = input$title, xlab = var,
+      main = input$title,
+      xlab = var,
       breaks = input$bins
     )
   })

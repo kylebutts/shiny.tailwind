@@ -18,15 +18,12 @@ library(shiny)
 library(shiny.tailwind)
 
 if (interactive()) {
-
   # 1) Install tailwindcss if needed ----
 
-  if(!is_tailwindcss_installed()) {
+  if (!is_tailwindcss_installed()) {
     install_tailwindcss_cli()
-    if(Sys.info()[["sysname"]] != "Windows")
-      system("chmod +x tailwindcss")
+    if (Sys.info()[["sysname"]] != "Windows") system("chmod +x tailwindcss")
   }
-
 
   # 3) Define UI for the shiny app, including the compiled Tailwind CSS ----
   ui <- div(
@@ -36,27 +33,29 @@ if (interactive()) {
     # css goes into "www/" folder in shiny apps
     # Runs each refresh
     compile_tailwindcss(
-      infile = "custom.css", outfile = "www/tailwind-out.css",
+      infile = "custom.css",
+      outfile = "www/tailwind-out.css",
       verbose = TRUE
     ),
     # Adds the compiled CSS files to the app
     tags$head(
       tags$link(
-        rel = "stylesheet", type = "text/css",
+        rel = "stylesheet",
+        type = "text/css",
         href = "tailwind-out.css" # no www/ here
       ),
     ),
     # add some Tailwind CSS classes here
     div(
       class = "w-full text-center py-12 flex justify-center",
-      div(class = "p-4 max-w-xl bg-violet-400 border-2 border-violet-300 hover:shadow-lg rounded text-2xl font-serif font-normal text-white",
-          "Hello World"
+      div(
+        class = "p-4 max-w-xl bg-violet-400 border-2 border-violet-300 hover:shadow-lg rounded text-2xl font-serif font-normal text-white",
+        "Hello World"
       )
     )
   )
 
   server <- function(input, output) {
-
   }
 
   # 4) Run the application ----

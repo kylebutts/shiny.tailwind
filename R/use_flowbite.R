@@ -9,8 +9,14 @@
 #'
 #' @export
 use_flowbite <- function(version = "3.1.2", ...) {
-  min_css <- sprintf("https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.css", version)
-  js <- sprintf("https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.js", version)
+  min_css <- sprintf(
+    "https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.css",
+    version
+  )
+  js <- sprintf(
+    "https://cdn.jsdelivr.net/npm/flowbite@%s/dist/flowbite.min.js",
+    version
+  )
 
   shiny::tagList(
     use_tailwind(...),

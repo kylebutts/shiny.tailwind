@@ -10,7 +10,7 @@
 #' @seealso [shiny::checkboxInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::checkboxInput("id", "label", value = FALSE)
@@ -42,10 +42,17 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twCheckboxInput <- function(inputId, label, value = FALSE, width = NULL,
-                            disabled = FALSE,
-                            container_class = NULL, label_class = NULL,
-                            input_class = NULL, center = FALSE) {
+twCheckboxInput <- function(
+  inputId,
+  label,
+  value = FALSE,
+  width = NULL,
+  disabled = FALSE,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  center = FALSE
+) {
   container_class <- paste("form-check", container_class)
   input_class <- paste("form-check-input", input_class)
   label_class <- paste("form-check-label", label_class)
@@ -54,17 +61,18 @@ twCheckboxInput <- function(inputId, label, value = FALSE, width = NULL,
 
   res <- shiny::div(
     class = container_class,
-    style = if(!is.null(width)) paste0("width: ", width) else NULL,
+    style = if (!is.null(width)) paste0("width: ", width) else NULL,
     shiny::tags$input(
       type = "checkbox",
       id = inputId,
-      style = if(center) "margin: 0px !important;" else NULL,
-      checked = if(value) "" else NULL,
-      disabled = if(disabled) "" else NULL,
+      style = if (center) "margin: 0px !important;" else NULL,
+      checked = if (value) "" else NULL,
+      disabled = if (disabled) "" else NULL,
       class = input_class
     ),
     shiny::tags$label(
-      class = label_class, "for" = inputId,
+      class = label_class,
+      "for" = inputId,
       label
     )
   )

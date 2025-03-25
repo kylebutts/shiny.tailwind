@@ -10,7 +10,7 @@
 #' @seealso [shiny::fileInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::fileInput("id", "label",
@@ -50,12 +50,20 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twFileInput <- function(inputId, label, multiple = FALSE, accept = NULL,
-                        width = NULL, buttonLabel = "Browse...",
-                        placeholder = "No file selected",
-                        container_class = NULL, label_class = NULL,
-                        select_class = NULL, button_class = NULL,
-                        progress_class = NULL) {
+twFileInput <- function(
+  inputId,
+  label,
+  multiple = FALSE,
+  accept = NULL,
+  width = NULL,
+  buttonLabel = "Browse...",
+  placeholder = "No file selected",
+  container_class = NULL,
+  label_class = NULL,
+  select_class = NULL,
+  button_class = NULL,
+  progress_class = NULL
+) {
   container_class <- paste("twFileInput form-group", container_class)
   label_class <- paste("control-label", label_class)
   select_class <- paste("form-control", select_class)
@@ -67,7 +75,7 @@ twFileInput <- function(inputId, label, multiple = FALSE, accept = NULL,
   label_id <- paste0(inputId, "-label")
 
   shiny::div(
-    style = if(!is.null(width)) paste0("width:", width, ";") else NULL,
+    style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
     class = container_class,
     shiny::tags$label(
       id = label_id,
@@ -87,8 +95,9 @@ twFileInput <- function(inputId, label, multiple = FALSE, accept = NULL,
             name = inputId,
             type = "file",
             style = "position: absolute !important; top: -99999px !important; left: -99999px !important;",
-            multiple = if(multiple) "multiple" else NULL,
-            accept = if(length(accept) > 0) paste(accept, collapse = ",") else NULL
+            multiple = if (multiple) "multiple" else NULL,
+            accept = if (length(accept) > 0) paste(accept, collapse = ",") else
+              NULL
           )
         )
       ),

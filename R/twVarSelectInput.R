@@ -8,7 +8,7 @@
 #' @seealso [shiny::varSelectInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::varSelectInput("id", "label", mtcars,
@@ -50,25 +50,40 @@
 #'
 #' if(interactive()) shiny::shinyApp(ui_basic, server)
 #'
-twVarSelectInput <- function(inputId, label, data, selected = NULL,
-                             multiple = FALSE, selectize = TRUE, width = NULL,
-                             container_class = NULL, label_class = NULL,
-                             select_class = NULL) {
-
+twVarSelectInput <- function(
+  inputId,
+  label,
+  data,
+  selected = NULL,
+  multiple = FALSE,
+  selectize = TRUE,
+  width = NULL,
+  container_class = NULL,
+  label_class = NULL,
+  select_class = NULL
+) {
   # see the return value of ?varSelectInput
   select_class <- paste("symbol", select_class)
   width <- shiny::validateCssUnit(width)
 
   ch <- names(data)
-  if(is.null(ch)) ch <- colnames(data)
-  if(is.null(ch)) {
-    stop("Could not determine the column names of 'data'. Is it a named data.frame/matrix?")
+  if (is.null(ch)) ch <- colnames(data)
+  if (is.null(ch)) {
+    stop(
+      "Could not determine the column names of 'data'. Is it a named data.frame/matrix?"
+    )
   }
 
   twSelectInput(
-    inputId = inputId, label = label, choices = names(data),
-    selected = selected, multiple = multiple, selectize = selectize,
-    width = width, container_class = container_class,
-    label_class = label_class, select_class = select_class
+    inputId = inputId,
+    label = label,
+    choices = names(data),
+    selected = selected,
+    multiple = multiple,
+    selectize = selectize,
+    width = width,
+    container_class = container_class,
+    label_class = label_class,
+    select_class = select_class
   )
 }

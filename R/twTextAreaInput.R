@@ -11,7 +11,7 @@
 #' @seealso [shiny::textAreaInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::textAreaInput("id", "Label",
@@ -46,11 +46,21 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui_basic, server)
-twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, width = NULL, height = NULL,
-                            rows = NULL, cols = NULL, resize = NULL,
-                            container_class = NULL, label_class = NULL,
-                            input_class = NULL,
-                            label_after_input = FALSE) {
+twTextAreaInput <- function(
+  inputId,
+  label,
+  value = "",
+  placeholder = NULL,
+  width = NULL,
+  height = NULL,
+  rows = NULL,
+  cols = NULL,
+  resize = NULL,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  label_after_input = FALSE
+) {
   input_class <- paste("form-control", input_class)
   container_class <- paste("twTextInput form-group", container_class)
   label_class <- paste("control-label", label_class)
@@ -58,23 +68,28 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
   width <- shiny::validateCssUnit(width)
   height <- shiny::validateCssUnit(height)
 
-  if(is.null(resize)) resize <- "both"
+  if (is.null(resize)) resize <- "both"
   allowed_resize <- c("both", "none", "vertical", "horizontal")
-  if(!resize %in% allowed_resize) {
-    stop("'resize' should be one of '", paste(allowed_resize, collapse = "', '"), "'")
+  if (!resize %in% allowed_resize) {
+    stop(
+      "'resize' should be one of '",
+      paste(allowed_resize, collapse = "', '"),
+      "'"
+    )
   }
 
-  if(!is.null(label)) {
+  if (!is.null(label)) {
     label_tag <- shiny::tags$label(
       class = label_class,
       id = paste0(inputId, "-label"),
-      `for` = inputId, label
+      `for` = inputId,
+      label
     )
   }
 
   st <- paste0("resize: ", resize, ";")
-  if(!is.null(width)) st <- paste0("width:", width, ";")
-  if(!is.null(height)) st <- paste0(st, paste0("height:", height, ";"))
+  if (!is.null(width)) st <- paste0("width:", width, ";")
+  if (!is.null(height)) st <- paste0(st, paste0("height:", height, ";"))
 
   html_label <- shiny::tags$label(
     class = label_class,
@@ -86,8 +101,8 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
   shiny::div(
     class = container_class,
     # NOTE, no height here! only in textarea
-    style = if(!is.null(width)) paste0("width:", width, ";") else NULL,
-    if(!label_after_input) html_label,
+    style = if (!is.null(width)) paste0("width:", width, ";") else NULL,
+    if (!label_after_input) html_label,
     shiny::tags$textarea(
       id = inputId,
       class = input_class,
@@ -97,6 +112,6 @@ twTextAreaInput <- function(inputId, label, value = "", placeholder = NULL, widt
       cols = cols,
       value
     ),
-    if(label_after_input) html_label
+    if (label_after_input) html_label
   )
 }

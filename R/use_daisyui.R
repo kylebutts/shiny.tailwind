@@ -28,7 +28,10 @@
 #' )
 #' if(interactive()) shiny::shinyApp(ui, function(input, output) {})
 use_daisyui <- function(version = "5.0.0", ...) {
-  min_css <- sprintf("https://cdn.jsdelivr.net/npm/daisyui@%s/daisyui.css", version)
+  min_css <- sprintf(
+    "https://cdn.jsdelivr.net/npm/daisyui@%s/daisyui.css",
+    version
+  )
 
   shiny::tagList(
     use_tailwind(...),

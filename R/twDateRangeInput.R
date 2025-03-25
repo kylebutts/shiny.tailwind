@@ -12,7 +12,7 @@
 #' @seealso [shiny::dateRangeInput()]
 #'
 #' @return a list with a `shiny.tag` class
-#' 
+#'
 #' @export
 #' @examples
 #' shiny::dateRangeInput("date", "A Date")
@@ -45,24 +45,26 @@
 #' }
 #'
 #' if(interactive()) shiny::shinyApp(ui, server)
-twDateRangeInput <- function(inputId,
-                             label,
-                             start = NULL,
-                             end = NULL,
-                             min = NULL,
-                             max = NULL,
-                             format = "yyyy-mm-dd",
-                             startview = "month",
-                             weekstart = 0,
-                             language = "en",
-                             separator = " to ",
-                             width = NULL,
-                             autoclose = TRUE,
-                             container_class = NULL,
-                             label_class = NULL,
-                             input_class = NULL,
-                             sep_class = NULL,
-                             label_after_input = FALSE) {
+twDateRangeInput <- function(
+  inputId,
+  label,
+  start = NULL,
+  end = NULL,
+  min = NULL,
+  max = NULL,
+  format = "yyyy-mm-dd",
+  startview = "month",
+  weekstart = 0,
+  language = "en",
+  separator = " to ",
+  width = NULL,
+  autoclose = TRUE,
+  container_class = NULL,
+  label_class = NULL,
+  input_class = NULL,
+  sep_class = NULL,
+  label_after_input = FALSE
+) {
   res <- shiny::dateRangeInput(
     inputId = inputId,
     label = label,
@@ -80,7 +82,10 @@ twDateRangeInput <- function(inputId,
   )
 
   res$attribs$class <- paste(res$attribs$class, container_class)
-  res$children[[1]]$attribs$class <- paste(res$children[[1]]$attribs$class, label_class)
+  res$children[[1]]$attribs$class <- paste(
+    res$children[[1]]$attribs$class,
+    label_class
+  )
 
   res$children[[2]]$children[[1]]$attribs$class <- paste(
     res$children[[2]]$children[[1]]$attribs$class,
@@ -95,7 +100,7 @@ twDateRangeInput <- function(inputId,
     input_class
   )
 
-  if(label_after_input) {
+  if (label_after_input) {
     tmp <- res$children[[1]]
     res$children[[1]] <- res$children[[2]]
     res$children[[2]] <- tmp

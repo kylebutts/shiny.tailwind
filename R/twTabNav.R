@@ -99,29 +99,42 @@
 #'
 #' if(interactive()) shiny::shinyApp(ui_styled, server)
 #'
-twTabNav <- function(..., ids = NULL, container_class = NULL, tab_class = NULL,
-                     tabsetid = "tabSet1") {
+twTabNav <- function(
+  ...,
+  ids = NULL,
+  container_class = NULL,
+  tab_class = NULL,
+  tabsetid = "tabSet1"
+) {
   dots <- list(...)
 
-  if(is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
+  if (is.null(ids)) ids <- paste0("twTab-", seq_along(dots))
 
-  if(length(dots) != length(ids)) {
-    stop("ids has to have the same length as the provided tab navigation elements")
+  if (length(dots) != length(ids)) {
+    stop(
+      "ids has to have the same length as the provided tab navigation elements"
+    )
   }
 
   shiny::div(
     class = container_class,
     lapply(seq_along(dots), function(i) {
       id <- dots[[i]]$attribs$id
-      if(is.null(id)) id <- ids[[i]]
+      if (is.null(id)) id <- ids[[i]]
 
       cl <- paste("twTab", tabsetid, if (i == 1) "twTab-active", tab_class)
 
       htmltools::HTML(sprintf(
         '<div class="%s" id="%s" onclick="opentab(\'%s\', \'%s\');">%s</div>',
-        cl, id, tabsetid, id, as.character(dots[[i]])
+        cl,
+        id,
+        tabsetid,
+        id,
+        as.character(dots[[i]])
       ))
     }),
-    shiny::includeScript(path = system.file("twTab.js", package = "shiny.tailwind"))
+    shiny::includeScript(
+      path = system.file("twTab.js", package = "shiny.tailwind")
+    )
   )
 }

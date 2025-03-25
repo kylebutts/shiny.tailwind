@@ -27,41 +27,45 @@ ui <- div(
     tab_class = "cursor-pointer py-2 px-4 my-4 w-full text-white hover:bg-indigo-700"
   ),
 
-
   # Outer Tab Content ====
   twTabContent(
     container_class = "flex-1 bg-indigo-50",
     div(
-      h1("First Tab - Database",
-         class = "p-4 text-center font-sans text-4xl font-extrabold text-slate-800"
+      h1(
+        "First Tab - Database",
+        class = "p-4 text-center font-sans text-4xl font-extrabold text-slate-800"
       ),
       plotOutput("plot1")
     ),
     div(
-      h1("Second Tab - Server",
-         class = "p-4 text-center font-sans text-4xl font-extrabold text-slate-800"
+      h1(
+        "Second Tab - Server",
+        class = "p-4 text-center font-sans text-4xl font-extrabold text-slate-800"
       ),
 
       # Define Inner Tab Nav ====
-      twTabNav(tabsetid = "tabSet-inner",
-               container_class = "w-full bg-indigo-200 flex",
-               tab_class = "cursor-pointer bg-indigo-400 rounded m-2 p-2",
-               div(icon("chart-pie"), span("Pie Chart", class = "pl-2")),
-               div(icon("chart-line"), span("Line Chart", class = "pl-2"))
+      twTabNav(
+        tabsetid = "tabSet-inner",
+        container_class = "w-full bg-indigo-200 flex",
+        tab_class = "cursor-pointer bg-indigo-400 rounded m-2 p-2",
+        div(icon("chart-pie"), span("Pie Chart", class = "pl-2")),
+        div(icon("chart-line"), span("Line Chart", class = "pl-2"))
       ),
 
-
       # Inner Tab Content ====
-      twTabContent(tabsetid = "tabSet-inner",
+      twTabContent(
+        tabsetid = "tabSet-inner",
         div(
-          h1("2nd level - First Tab - A Pie Chart",
-             class = "p-2 text-center font-sans text-2xl font-extrabold text-slate-800"
+          h1(
+            "2nd level - First Tab - A Pie Chart",
+            class = "p-2 text-center font-sans text-2xl font-extrabold text-slate-800"
           ),
           plotOutput("plot2")
         ),
         div(
-          h1("2nd level - Second Tab - A Line Chart",
-             class = "p-2 text-center font-sans text-2xl font-extrabold text-slate-800"
+          h1(
+            "2nd level - Second Tab - A Line Chart",
+            class = "p-2 text-center font-sans text-2xl font-extrabold text-slate-800"
           ),
           plotOutput("plot3")
         )
